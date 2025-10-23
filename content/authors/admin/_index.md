@@ -1,13 +1,13 @@
 ---
 # Display name
-title: Alex Johnson
+title: Tianhua Gao
 
 # Name pronunciation (optional)
 name_pronunciation: ''
 
 # Full name (for SEO)
-first_name: Alex
-last_name: Johnson
+first_name: Tianhua 
+last_name: Gao
 
 # Pronouns (optional)
 pronouns: he/him
