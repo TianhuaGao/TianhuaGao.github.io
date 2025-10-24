@@ -5,7 +5,8 @@
 
 # Appearance 
 appearance:
-  mode: dark 
+  theme_default: dark 
+  #mode: dark 
   color: violet
 
 # SEO
