@@ -1,6 +1,6 @@
 ---
 # Display name
-title: Tianhua Gao
+title: Tianhua Gao高天华
 
 # Name pronunciation (optional)
 name_pronunciation: ''
