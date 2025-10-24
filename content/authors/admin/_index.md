@@ -36,17 +36,17 @@ profiles:
   - icon: at-symbol
     url: 'mailto:gao.tianhua.tkb_gb@u.tsukuba.ac.jp'
     label: E-mail Me
-  - icon: brands/bilibili
-    url: https://space.bilibili.com/93615903?spm_id_from=333.337.0.0
-    label: Bilibili
   - icon: brands/github
-    url: https://github.com/alexjohnsonai
+    url: https://github.com/TianhuaGao
   - icon: brands/linkedin
     url: https://www.linkedin.com/in/alexjohnsonai/
   - icon: academicons/google-scholar
-    url: https://scholar.google.com/citations?user=alexjohnson
+    url: https://scholar.google.com/citations?user=8eQTY_EAAAAJ&hl=zh-CN
+  - icon: academicons/ieee
+    url: https://ieeexplore.ieee.org/author/37089557846
   - icon: academicons/orcid
     url: https://orcid.org/0009-0008-5929-3545
+  
 
 interests:
   - Robotics
