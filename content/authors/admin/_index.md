@@ -38,14 +38,18 @@ profiles:
     label: E-mail Me
   - icon: brands/github
     url: https://github.com/TianhuaGao
+    label: My github
   #- icon: brands/linkedin
   #  url: https://www.linkedin.com/in/alexjohnsonai/
   - icon: academicons/google-scholar
     url: https://scholar.google.com/citations?user=8eQTY_EAAAAJ&hl=zh-CN
+    label: My google scholar
   - icon: academicons/ieee
     url: https://ieeexplore.ieee.org/author/37089557846
+    label: My IEEE Site
   - icon: academicons/orcid
     url: https://orcid.org/0009-0008-5929-3545
+    label: My orcid
   
 
 interests:
