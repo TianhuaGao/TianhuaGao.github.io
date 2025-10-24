@@ -1,6 +1,6 @@
 ---
 # Display name
-title: Tianhua Gao高天华
+title: Tianhua Gao高天華
 
 # Name pronunciation (optional)
 name_pronunciation: ''
@@ -38,8 +38,8 @@ profiles:
     label: E-mail Me
   - icon: brands/github
     url: https://github.com/TianhuaGao
-  - icon: brands/linkedin
-    url: https://www.linkedin.com/in/alexjohnsonai/
+  #- icon: brands/linkedin
+  #  url: https://www.linkedin.com/in/alexjohnsonai/
   - icon: academicons/google-scholar
     url: https://scholar.google.com/citations?user=8eQTY_EAAAAJ&hl=zh-CN
   - icon: academicons/ieee
@@ -57,6 +57,7 @@ interests:
 education:
   - area: PhD Control Engineering (Machine Intelligence & Robotics)
     institution: University of Tsukuba
+    icon: bilibili
     date_start: 2023-04-01
     date_end: 2026-03-30
     summary: |
@@ -169,4 +170,4 @@ awards:
       Recognized for contributions to scaling laws in deep learning.
 ---
 
-Alex Johnson is a Senior AI Research Scientist at Meta AI, where he leads groundbreaking work on large language models and multimodal systems. His research has been published in top conferences like NeurIPS and ICML, with over 10,000 citations. Alex is passionate about pushing the boundaries of AI while ensuring ethical development. Outside of work, he enjoys hiking in the Rockies, building custom PCs, and mentoring the next generation of AI talent.
+Tianhua Gao is currently pursuing the Ph.D. degree with the Graduate School of Systems and Information Engineering, University of Tsukuba, Japan. He is also a Research Assistant with the Intelligent Systems Research Institute, National Institute of Advanced Industrial Science and Technology (AIST), Tsukuba. His current research interests include multi-quadrotor manipulation and learning-based control for robotics.
