@@ -36,7 +36,7 @@ profiles:
   - icon: at-symbol
     url: 'mailto:gao.tianhua.tkb_gb@u.tsukuba.ac.jp'
     label: E-mail Me
-  - icon: assets/media/icons/bilibili.svg
+  - icon: brands/github
     url: https://github.com/TianhuaGao
   #- icon: brands/linkedin
   #  url: https://www.linkedin.com/in/alexjohnsonai/
