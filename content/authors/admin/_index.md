@@ -36,7 +36,7 @@ profiles:
   - icon: at-symbol
     url: 'mailto:gao.tianhua.tkb_gb@u.tsukuba.ac.jp'
     label: E-mail Me
-  - icon: brands/github
+  - icon: Tsukuba.png
     url: https://github.com/TianhuaGao
   #- icon: brands/linkedin
   #  url: https://www.linkedin.com/in/alexjohnsonai/
@@ -57,20 +57,22 @@ interests:
 education:
   - area: PhD Control Engineering (Machine Intelligence & Robotics)
     institution: University of Tsukuba
-    icon: bilibili
+    icon: Tsukuba.png
     date_start: 2023-04-01
     date_end: 2026-03-30
     summary: |
+      GPA: 3.7/4.0
+
       Thesis on _Scaling Laws for Neural Language Models_. Supervised by Prof. Andrew Ng. Published 5 papers in NeurIPS and ICML, with 2 best paper awards.
     button:
       text: 'Read Thesis'
       url: 'https://example.com/thesis.pdf'
-  - area: MS Computer Science
-    institution: Carnegie Mellon University
-    date_start: 2013-09-01
-    date_end: 2015-05-31
+  - area: MS Control Engineering (Control & Robotics)
+    institution: University of Tsukuba
+    date_start: 2021-04-01
+    date_end: 2023-03-30
     summary: |
-      GPA: 4.0/4.0
+      GPA: 3.7/4.0
 
       Specialized in machine learning and robotics.
   - area: BS Computer Science
