@@ -34,9 +34,9 @@ organizations:
 # Need to use another icon? Simply download the SVG icon to your `assets/media/icons/` folder.
 profiles:
   - icon: at-symbol
-    url: 'gao.tianhua.tkb_gb@u.tsukuba.ac.jp'
+    url: 'mailto:gao.tianhua.tkb_gb@u.tsukuba.ac.jp'
     label: E-mail Me
-  - icon: bilibili
+  - icon: custom/bilibili
     url: https://space.bilibili.com/93615903?spm_id_from=333.337.0.0
     label: Bilibili
   - icon: brands/github
