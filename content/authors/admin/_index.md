@@ -23,21 +23,22 @@ superuser: true
 highlight_name: true
 
 # Role/position/tagline
-role: Ph.D. Candidate at University of Tsukuba 
+role: Ph.D. Candidate
 
 # Organizations/Affiliations to display in Biography blox
 organizations:
   - name: University of Tsukuba
-    url: https://ai.meta.com/
+    url: https://www.tsukuba.ac.jp/en/
 
 # Social network links
 # Need to use another icon? Simply download the SVG icon to your `assets/media/icons/` folder.
 profiles:
   - icon: at-symbol
-    url: 'mailto:alex.johnson@meta.com'
+    url: 'gao.tianhua.tkb_gb@u.tsukuba.ac.jp'
     label: E-mail Me
   - icon: bilibili
     url: https://space.bilibili.com/93615903?spm_id_from=333.337.0.0
+    label: Bilibili
   - icon: brands/github
     url: https://github.com/alexjohnsonai
   - icon: brands/linkedin
