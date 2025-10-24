@@ -10,7 +10,7 @@ first_name: Tianhua
 last_name: Gao
 
 # Pronouns (optional)
-#pronouns: 高　天華
+pronouns: 高　天華
 
 # Status emoji
 #status:
