@@ -36,7 +36,7 @@ profiles:
   - icon: at-symbol
     url: 'mailto:gao.tianhua.tkb_gb@u.tsukuba.ac.jp'
     label: E-mail Me
-  - icon: bilibili
+  - icon: brands/bilibili
     url: https://space.bilibili.com/93615903?spm_id_from=333.337.0.0
     label: Bilibili
   - icon: brands/github
@@ -55,10 +55,10 @@ interests:
   - Neuroscience
 
 education:
-  - area: PhD Computer Science (AI Focus)
-    institution: Stanford University
-    date_start: 2015-09-01
-    date_end: 2019-06-30
+  - area: PhD Control Engineering (Machine Intelligence & Robotics)
+    institution: University of Tsukuba
+    date_start: 2023-04-01
+    date_end: 2026-03-30
     summary: |
       Thesis on _Scaling Laws for Neural Language Models_. Supervised by Prof. Andrew Ng. Published 5 papers in NeurIPS and ICML, with 2 best paper awards.
     button:
