@@ -36,8 +36,8 @@ profiles:
   - icon: at-symbol
     url: 'mailto:alex.johnson@meta.com'
     label: E-mail Me
-  - icon: brands/x
-    url: https://twitter.com/AlexAIResearch
+  - icon: bilibili
+    url: https://space.bilibili.com/93615903?spm_id_from=333.337.0.0
   - icon: brands/github
     url: https://github.com/alexjohnsonai
   - icon: brands/linkedin
@@ -45,7 +45,7 @@ profiles:
   - icon: academicons/google-scholar
     url: https://scholar.google.com/citations?user=alexjohnson
   - icon: academicons/orcid
-    url: https://orcid.org/0000-0002-1825-0097
+    url: https://orcid.org/0009-0008-5929-3545
 
 interests:
   - Large Language Models
@@ -132,12 +132,13 @@ skills:
         percent: 70
         icon: book-open
 
-languages:
-  - name: Chinese
-    
-  - name: English
-
-  - name: Japanese
+#languages:
+#  - name: Chinese
+#    percent: 100
+#  - name: English
+#    percent: 50
+#  - name: Japanese
+#    percent: 50
 
 # Awards.
 #   Add/remove as many awards below as you like.
