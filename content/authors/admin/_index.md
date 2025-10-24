@@ -10,11 +10,11 @@ first_name: Tianhua
 last_name: Gao
 
 # Pronouns (optional)
-pronouns: he/him
+#pronouns: he/him
 
 # Status emoji
-status:
-  icon: 🚀
+#status:
+#  icon: 🚀
 
 # Is this the primary user of the site?
 superuser: true
@@ -36,7 +36,7 @@ profiles:
   - icon: at-symbol
     url: 'mailto:gao.tianhua.tkb_gb@u.tsukuba.ac.jp'
     label: E-mail Me
-  - icon: custom/bilibili
+  - icon: custom/bilibili2
     url: https://space.bilibili.com/93615903?spm_id_from=333.337.0.0
     label: Bilibili
   - icon: brands/github
