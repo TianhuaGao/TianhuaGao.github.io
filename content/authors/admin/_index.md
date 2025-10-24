@@ -36,7 +36,7 @@ profiles:
   - icon: at-symbol
     url: 'mailto:gao.tianhua.tkb_gb@u.tsukuba.ac.jp'
     label: E-mail Me
-  - icon: custom/bilibili
+  - icon: bilibili
     url: https://space.bilibili.com/93615903?spm_id_from=333.337.0.0
     label: Bilibili
   - icon: brands/github
@@ -49,10 +49,10 @@ profiles:
     url: https://orcid.org/0009-0008-5929-3545
 
 interests:
-  - Large Language Models
-  - Computer Vision
-  - Reinforcement Learning
-  - AI Ethics
+  - Robotics
+  - Control Theory
+  - Machine Intelligence
+  - Neuroscience
 
 education:
   - area: PhD Computer Science (AI Focus)
