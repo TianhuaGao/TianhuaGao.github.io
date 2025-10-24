@@ -46,7 +46,7 @@ sections:
       view: article-grid
       columns: 2
       spacing:
-        padding: [0, 0, 0, 0]
+        padding: [5rem, 0, 5rem, 0]
   - block: collection
     content:
       title: Recent Publications
