@@ -27,7 +27,7 @@ sections:
       #css_class: hbx-bg-gradient
       background:
         image:
-          filename: gravitywell_steelblue_highcontrast
+          filename: gravitywell_steelblue_highcontrast.svg
       # Avatar customization
       avatar:
         size: medium # Options: small (150px), medium (200px, default), large (320px), xl (400px), xxl (500px)
