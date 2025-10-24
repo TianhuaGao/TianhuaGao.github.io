@@ -33,8 +33,8 @@ sections:
         size: medium # Options: small (150px), medium (200px, default), large (320px), xl (400px), xxl (500px)
         shape: circle # Options: circle (default), square, rounded
       spacing:
-        margin: [100, 0, 100, 0]
-        padding: [100, 0, 100, 0]
+        margin: [1rem, 0, 1rem, 0]
+        padding: [1rem, 0, 1rem, 0]
   - block: collection
     id: papers
     content:
