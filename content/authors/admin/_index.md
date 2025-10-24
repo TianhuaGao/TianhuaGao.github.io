@@ -3,14 +3,14 @@
 title: Tianhua Gao
 
 # Name pronunciation (optional)
-name_pronunciation: ''
+name_pronunciation: 'コウ　テンカ'
 
 # Full name (for SEO)
 first_name: Tianhua 
 last_name: Gao
 
 # Pronouns (optional)
-#pronouns: he/him
+pronouns: 高天華
 
 # Status emoji
 #status:
