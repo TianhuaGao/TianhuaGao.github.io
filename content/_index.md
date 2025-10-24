@@ -32,14 +32,8 @@ sections:
       avatar:
         size: medium # Options: small (150px), medium (200px, default), large (320px), xl (400px), xxl (500px)
         shape: circle # Options: circle (default), square, rounded
-  - block: markdown
-    content:
-      title: ''
-      subtitle: ''
-      text: |-
-        
-    design:
-      columns: '1'
+      spacing:
+        padding: [0, 0, 0, 0]
   - block: collection
     id: papers
     content:
@@ -51,6 +45,8 @@ sections:
     design:
       view: article-grid
       columns: 2
+      spacing:
+        padding: [0, 0, 0, 0]
   - block: collection
     content:
       title: Recent Publications
