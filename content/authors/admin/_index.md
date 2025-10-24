@@ -36,7 +36,7 @@ profiles:
   - icon: at-symbol
     url: 'mailto:gao.tianhua.tkb_gb@u.tsukuba.ac.jp'
     label: E-mail Me
-  - icon: Tsukuba.png
+  - icon: assets/media/Tsukuba.png
     url: https://github.com/TianhuaGao
   #- icon: brands/linkedin
   #  url: https://www.linkedin.com/in/alexjohnsonai/
@@ -57,7 +57,7 @@ interests:
 education:
   - area: PhD Control Engineering (Machine Intelligence & Robotics)
     institution: University of Tsukuba
-    icon: Tsukuba.png
+    icon: media/Tsukuba.png
     date_start: 2023-04-01
     date_end: 2026-03-30
     summary: |
@@ -75,12 +75,12 @@ education:
       GPA: 3.7/4.0
 
       Specialized in machine learning and robotics.
-  - area: BS Computer Science
-    institution: MIT
-    date_start: 2009-09-01
-    date_end: 2013-05-31
+  - area: BS Automation
+    institution: SUES
+    date_start: 2016-09-01
+    date_end: 2020-09-01
     summary: |
-      GPA: 3.9/4.0
+      GPA: 3.4/4.0
 
       Minored in Mathematics. President of AI Club.
 
