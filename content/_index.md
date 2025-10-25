@@ -46,7 +46,7 @@ sections:
       view: article-grid
       columns: 2
       spacing:
-        padding: [5rem, 0, 5rem, 0]
+        padding: [5rem, 0, 2rem, 0]
   - block: collection
     content:
       title: Recent Publications
@@ -57,6 +57,8 @@ sections:
         exclude_featured: false
     design:
       view: citation
+      spacing:
+        padding: [5rem, 0, 2rem, 0]
   - block: collection
     id: talks
     content:
