@@ -19,10 +19,9 @@ publication_short: ""
 abstract: This work introduces a lightweight and interpretable online learning approach called Dimension-Decomposed Learning (DiD-L) for disturbance identification in quadrotor geometric attitude control. To our knowledge in the quadrotor control field, DiD-L is the first online learning approach that is lightweight enough to run in real-time at 400 Hz on microcontroller units (MCUs) such as STM32, and has been validated through real-world experiments.
 
 # Summary. An optional shortened abstract.
-summary: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis posuere tellus ac convallis placerat. Proin tincidunt magna sed ex sollicitudin condimentum.
-
+summary: To our knowledge in the quadrotor control field, DiD-L is the first online learning approach that is lightweight enough to run in real-time at 400 Hz on microcontroller units (MCUs) such as STM32, and has been validated through real-world experiments.
 tags:
-- Arxiv preprint
+- arXiv preprint
 
 featured: true
 
@@ -34,21 +33,21 @@ links:
 - type: preprint
   provider: arxiv
   id: 2508.14422v2 
-- type: code
-  url: https://github.com/HugoBlox/hugo-blox-builder
-- type: slides
-  url: https://www.slideshare.net/
-- type: dataset
-  url: "#"
-- type: poster
-  url: "#"
-- type: source
-  url: "#"
-- type: video
-  url: https://youtube.com
-- type: custom
-  label: Custom Link
-  url: http://example.org
+#- type: code
+#  url: https://github.com/HugoBlox/hugo-blox-builder
+#- type: slides
+#  url: https://www.slideshare.net/
+#- type: dataset
+#  url: "#"
+#- type: poster
+#  url: "#"
+#- type: source
+#  url: "#"
+#- type: video
+#  url: https://youtube.com
+#- type: custom
+#  label: Custom Link
+#  url: http://example.org
 
 # Featured image
 # To use, add an image named `featured.jpg/png` to your page's folder. 
@@ -77,6 +76,21 @@ slides: ""
 
 
 This paper introduces a lightweight and interpretable online learning approach called Dimension-Decomposed Learning (DiD-L) for disturbance identification in quadrotor geometric attitude control. As a module instance of DiD-L, we propose the Sliced Adaptive-Neuro Mapping (SANM). Specifically, to address underlying underfitting problems, the high-dimensional mapping for online identification is axially ``sliced" into multiple low-dimensional submappings (slices). In this way, the complex high-dimensional problem is decomposed into a set of simple low-dimensional subtasks addressed by shallow neural networks and adaptive laws. These neural networks and adaptive laws are updated online via Lyapunov-based adaptation without the persistent excitation (PE) condition. To enhance the interpretability of the proposed approach, we prove that the state solution of the rotational error dynamics exponentially converges into an arbitrarily small ball within an almost global attraction domain, despite time-varying disturbances and inertia uncertainties. This result is novel as it demonstrates exponential convergence without requiring pre-training for unseen disturbances and specific knowledge of the model. To our knowledge in the quadrotor control field, DiD-L is the first online learning approach that is lightweight enough to run in real-time at 400 Hz on microcontroller units (MCUs) such as STM32, and has been validated through real-world experiments.
+
+## Appendix A Attitude Kinematics
+
+The attitude kinematics on $\mathrm{SO}(3)$ can be expressed as
+
+$$
+\begin{equation}
+    \begin{aligned}
+        \bm{\dot{R}} = \bm{R} [\bm{\Omega}]_{\times},
+    \end{aligned}
+\end{equation}
+$$
+
+where $\bm{R} \in \mathrm{SO}(3)$ is the rotation matrix and
+$\bm{\Omega} \in \mathbb{R}^3$ is the body angular velocity vector.
 
 > [!NOTE]
 > Create your slides in Markdown - click the *Slides* button to check out the example.
