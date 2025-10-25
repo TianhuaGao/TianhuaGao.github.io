@@ -166,4 +166,4 @@ awards:
 
 ---
 
-Tianhua Gao is currently pursuing the Ph.D. degree with the Graduate School of Systems and Information Engineering, University of Tsukuba, Japan. He is also a Research Assistant with the Intelligent Systems Research Institute, National Institute of Advanced Industrial Science and Technology (AIST), Tsukuba. His current research interests include multi-quadrotor manipulation and learning-based control for robotics.
+Tianhua Gao is currently pursuing the Ph.D. degree with the Graduate School of Systems and Information Engineering, University of Tsukuba, Japan. During his doctoral study, he has been awarded the University of Tsukuba Fellowship and the SPRING Next-Generation Researcher Scholarship (funded by the Japan Science and Technology Agency (JST)). He is also a Research Assistant with the Intelligent Systems Research Institute, National Institute of Advanced Industrial Science and Technology (AIST), Tsukuba. His research objective is to integrate control theory and neuroscience to advance the field of machine intelligence & control.
