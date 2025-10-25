@@ -83,7 +83,7 @@ The subsequent Lyapunov analysis is conducted in the following open domain:
 $$
 \begin{equation}
    \begin{aligned}
-    \mathcal{D}\!=&\Big{\{}\Big{(}\bm{e_R}, \bm{e_\Omega},(\widetilde{J}_{j},\bm{\tilde{\mathcal{W}}}_{\bm{\textit{R}} j})_{j=1,2,3}\Big{)}\!\in\mathbb{R}^3\!\times\!\mathbb{R}^3\!\times\!\prod^{3}_{j=1}(\mathbb{R}\!\times\!\mathbb{R}^{l})\big{|}\\[-5pt]
+    \mathcal{D}\!=&\Big{\{}\Big{(}\bm{e_R}, \bm{e_\Omega},(\widetilde{J}_{j},\bm{\tilde{\mathcal{W}}}_{\bm{\textit{R}} j})_{j=1,2,3}\Big{)}\!\in\mathbb{R}^3\!\times\!\mathbb{R}^3\!\times\!\prod^{3}_{j=1}(\mathbb{R}\!\times\!\mathbb{R}^{l})\big{|}\\
 & \,\,\,\,\,\,\|\bm{e_R}\|\!+\!\|\bm{e_\Omega}\|\!+\!\sum_{j=1}^3(\|\widetilde{J}_{j}\|+\|\bm{\tilde{\mathcal{W}}}_{\bm{\textit{R}} j}\|) < r_d\Big{\}},
 \end{aligned} 
 \label{D}
