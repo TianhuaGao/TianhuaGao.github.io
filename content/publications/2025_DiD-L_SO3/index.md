@@ -81,13 +81,11 @@ This paper introduces a lightweight and interpretable online learning approach c
 
 The attitude kinematics on $\mathrm{SO}(3)$ can be expressed as
 
-$$
 \begin{equation}
     \begin{aligned}
         \bm{\dot{R}} = \bm{R} [\bm{\Omega}]_{\times},
     \end{aligned}
 \end{equation}
-$$
 
 where $\bm{R} \in \mathrm{SO}(3)$ is the rotation matrix and
 $\bm{\Omega} \in \mathbb{R}^3$ is the body angular velocity vector.
