@@ -10,7 +10,7 @@ publishDate: "2025-10-24T00:00:00Z"
 # Publication type.
 # Accepts a single type but formatted as a YAML list (for Hugo requirements).
 # Enter a publication type from the CSL standard.
-publication_types: ["article"]
+publication_types: ["article-journal"]
 
 # Publication name and optional abbreviated publication name.
 publication: ""
@@ -77,20 +77,16 @@ slides: ""
 
 This paper introduces a lightweight and interpretable online learning approach called Dimension-Decomposed Learning (DiD-L) for disturbance identification in quadrotor geometric attitude control. As a module instance of DiD-L, we propose the Sliced Adaptive-Neuro Mapping (SANM). Specifically, to address underlying underfitting problems, the high-dimensional mapping for online identification is axially ``sliced" into multiple low-dimensional submappings (slices). In this way, the complex high-dimensional problem is decomposed into a set of simple low-dimensional subtasks addressed by shallow neural networks and adaptive laws. These neural networks and adaptive laws are updated online via Lyapunov-based adaptation without the persistent excitation (PE) condition. To enhance the interpretability of the proposed approach, we prove that the state solution of the rotational error dynamics exponentially converges into an arbitrarily small ball within an almost global attraction domain, despite time-varying disturbances and inertia uncertainties. This result is novel as it demonstrates exponential convergence without requiring pre-training for unseen disturbances and specific knowledge of the model. To our knowledge in the quadrotor control field, DiD-L is the first online learning approach that is lightweight enough to run in real-time at 400 Hz on microcontroller units (MCUs) such as STM32, and has been validated through real-world experiments.
 
-## Appendix A Attitude Kinematics
+## Appendix A Stability Proof
 
-The attitude kinematics on $\mathrm{SO}(3)$ can be expressed as
-
+The subsequent Lyapunov analysis is conducted in the following open domain:
+$$
 \begin{equation}
-    \begin{aligned}
-        \bm{\dot{R}} = \bm{R} [\bm{\Omega}]_{\times},
-    \end{aligned}
+   \begin{aligned}
+    \mathcal{D}\!=&\Big{\{}\Big{(}\bm{e_R}, \bm{e_\Omega},(\widetilde{J}_{j},\bm{\tilde{\mathcal{W}}}_{\bm{\textit{R}} j})_{j=1,2,3}\Big{)}\!\in\mathbb{R}^3\!\times\!\mathbb{R}^3\!\times\!\prod^{3}_{j=1}(\mathbb{R}\!\times\!\mathbb{R}^{l})\big{|}\\[-5pt]
+& \,\,\,\,\,\,\|\bm{e_R}\|\!+\!\|\bm{e_\Omega}\|\!+\!\sum_{j=1}^3(\|\widetilde{J}_{j}\|+\|\bm{\tilde{\mathcal{W}}}_{\bm{\textit{R}} j}\|) < r_d\Big{\}},
+\end{aligned} 
+\label{D}
 \end{equation}
+$$
 
-where $\bm{R} \in \mathrm{SO}(3)$ is the rotation matrix and
-$\bm{\Omega} \in \mathbb{R}^3$ is the body angular velocity vector.
-
-> [!NOTE]
-> Create your slides in Markdown - click the *Slides* button to check out the example.
-
-Add the publication's **full text** or **supplementary notes** here. You can use rich formatting such as including [code, math, and images](https://docs.hugoblox.com/content/writing-markdown-latex/).
