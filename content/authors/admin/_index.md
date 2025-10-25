@@ -144,7 +144,7 @@ languages:
 #   Begin multi-line `summary` with YAML's `|` or `|2-` multi-line prefix and indent 2 spaces below.
 awards:
   - title: University of Tsukuba Fellowship
-    url:  https://acc2025.a2c2.org/
+    url:  https://www.tsukuba.ac.jp/en/
     date: '2023-04-01'
     awarder: University of Tsukuba
     icon: hero/academic-cap
