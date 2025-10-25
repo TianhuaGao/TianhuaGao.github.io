@@ -145,14 +145,14 @@ languages:
 awards:
   - title: University of Tsukuba Fellowship Scholar
     url:  
-    date: "2023–2026"
+    date: '2023'
     awarder: Japan Science and Technology Agency & University of Tsukuba
     icon: hero/academic-cap
     summary: |
       Awarded for groundbreaking work on efficient training of large models.
   - title: SPRING Grant
     url: https://www.jst.go.jp/jisedai/spring/en/index.html
-    date: "2023–2026"
+    date: '2023'
     awarder: Japan Science and Technology Agency (JST)
     icon: hero/currency-dollar
     summary: |
@@ -160,7 +160,7 @@ awards:
   - title: ACC Student Grant
     url: https://acc2025.a2c2.org/
     date: '2025'
-    awarder: AACC, IEEE, ASME, SIAM, and the National Science Foundation
+    awarder: National Science Foundation
     icon: hero/trophy
     summary: |
 
