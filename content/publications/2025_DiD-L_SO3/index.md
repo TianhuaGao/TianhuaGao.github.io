@@ -13,8 +13,8 @@ publishDate: "2025-10-24T00:00:00Z"
 publication_types: ["article-journal"]
 
 # Publication name and optional abbreviated publication name.
-publication: ""
-publication_short: ""
+publication: "11111"
+publication_short: "22222"
 
 abstract: This work introduces a lightweight and interpretable online learning approach called Dimension-Decomposed Learning (DiD-L) for disturbance identification in quadrotor geometric attitude control. To our knowledge in the quadrotor control field, DiD-L is the first online learning approach that is lightweight enough to run in real-time at 400 Hz on microcontroller units (MCUs) such as STM32, and has been validated through real-world experiments.
 
@@ -52,7 +52,7 @@ links:
 # Featured image
 # To use, add an image named `featured.jpg/png` to your page's folder. 
 image:
-  caption: 'Image credit: [**Unsplash**](https://unsplash.com/photos/s9CC2SKySJM)'
+  caption: ''
   focal_point: ""
   preview_only: false
 
@@ -86,7 +86,6 @@ $$
     \mathcal{D}\!=&\Big{\{}\Big{(}\bm{e_R}, \bm{e_\Omega},(\widetilde{J}_{j},\bm{\tilde{\mathcal{W}}}_{\bm{\textit{R}} j})_{j=1,2,3}\Big{)}\!\in\mathbb{R}^3\!\times\!\mathbb{R}^3\!\times\!\prod^{3}_{j=1}(\mathbb{R}\!\times\!\mathbb{R}^{l})\big{|}\\
 & \,\,\,\,\,\,\|\bm{e_R}\|\!+\!\|\bm{e_\Omega}\|\!+\!\sum_{j=1}^3(\|\widetilde{J}_{j}\|+\|\bm{\tilde{\mathcal{W}}}_{\bm{\textit{R}} j}\|) < r_d\Big{\}},
 \end{aligned} 
-\label{D}
 \end{equation}
 $$
 
