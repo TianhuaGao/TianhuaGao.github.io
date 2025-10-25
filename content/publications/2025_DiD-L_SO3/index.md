@@ -30,9 +30,8 @@ hugoblox:
     arxiv: 2508.14422v2 
 
 links:
-- type: preprint
-  provider: arxiv
-  id: 2508.14422v2 
+- type: pdf
+  url: https://arxiv.org/pdf/2508.14422
 #- type: code
 #  url: https://github.com/HugoBlox/hugo-blox-builder
 #- type: slides
@@ -74,18 +73,9 @@ slides: ""
 
 {{< video src="video.mp4" autoplay="yes" muted="yes" loop="yes" controls="no" >}}
 
+{{< button href="https://arxiv.org/pdf/2508.14422v2.pdf" text="Download PDF" icon="download" >}}
 
 This paper introduces a lightweight and interpretable online learning approach called Dimension-Decomposed Learning (DiD-L) for disturbance identification in quadrotor geometric attitude control. As a module instance of DiD-L, we propose the Sliced Adaptive-Neuro Mapping (SANM). Specifically, to address underlying underfitting problems, the high-dimensional mapping for online identification is axially ``sliced" into multiple low-dimensional submappings (slices). In this way, the complex high-dimensional problem is decomposed into a set of simple low-dimensional subtasks addressed by shallow neural networks and adaptive laws. These neural networks and adaptive laws are updated online via Lyapunov-based adaptation without the persistent excitation (PE) condition. To enhance the interpretability of the proposed approach, we prove that the state solution of the rotational error dynamics exponentially converges into an arbitrarily small ball within an almost global attraction domain, despite time-varying disturbances and inertia uncertainties. This result is novel as it demonstrates exponential convergence without requiring pre-training for unseen disturbances and specific knowledge of the model. To our knowledge in the quadrotor control field, DiD-L is the first online learning approach that is lightweight enough to run in real-time at 400 Hz on microcontroller units (MCUs) such as STM32, and has been validated through real-world experiments.
 
-## Appendix A Stability Proof
 
-The subsequent Lyapunov analysis is conducted in the following open domain:
-$$
-\begin{equation}
-   \begin{aligned}
-    \mathcal{D}\!=&\Big{\{}\Big{(}\bm{e_R}, \bm{e_\Omega},(\widetilde{J}_{j},\bm{\tilde{\mathcal{W}}}_{\bm{\textit{R}} j})_{j=1,2,3}\Big{)}\!\in\mathbb{R}^3\!\times\!\mathbb{R}^3\!\times\!\prod^{3}_{j=1}(\mathbb{R}\!\times\!\mathbb{R}^{l})\big{|}\\
-& \,\,\,\,\,\,\|\bm{e_R}\|\!+\!\|\bm{e_\Omega}\|\!+\!\sum_{j=1}^3(\|\widetilde{J}_{j}\|+\|\bm{\tilde{\mathcal{W}}}_{\bm{\textit{R}} j}\|) < r_d\Big{\}},
-\end{aligned} 
-\end{equation}
-$$
 
