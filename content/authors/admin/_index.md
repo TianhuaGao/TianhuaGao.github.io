@@ -156,7 +156,7 @@ awards:
     awarder: Japan Science and Technology Agency (JST)
     icon: hero/currency-dollar
     summary: |
-      ￥2,700,000 grant for PhD research. Support for Pioneering Research Initiated by the Next Generation (SPRING).
+      ¥2,700,000 grant for PhD research. Support for Pioneering Research Initiated by the Next Generation (SPRING).
   - title: ACC Student Grant
     url: https://acc2025.a2c2.org/
     date: '2025'
