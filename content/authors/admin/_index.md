@@ -144,22 +144,22 @@ languages:
 #   Begin multi-line `summary` with YAML's `|` or `|2-` multi-line prefix and indent 2 spaces below.
 awards:
   - title: University of Tsukuba Fellowship Scholar
-    url:  
-    date: '2023'
-    awarder: Japan Science and Technology Agency & University of Tsukuba
+    url:  https://acc2025.a2c2.org/
+    date: '2023-01-01'
+    awarder: Japan Science and Technology Agency  University of Tsukuba
     icon: hero/academic-cap
     summary: |
       Awarded for groundbreaking work on efficient training of large models.
   - title: SPRING Grant
     url: https://www.jst.go.jp/jisedai/spring/en/index.html
-    date: '2023'
+    date: '2023-01-01'
     awarder: Japan Science and Technology Agency (JST)
     icon: hero/currency-dollar
     summary: |
       ¥2,700,000 grant for PhD research. Support for Pioneering Research Initiated by the Next Generation (SPRING).
   - title: ACC Student Grant
     url: https://acc2025.a2c2.org/
-    date: '2025'
+    date: '2025-01-01'
     awarder: National Science Foundation
     icon: hero/trophy
     summary: |
