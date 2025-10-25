@@ -52,7 +52,7 @@ profiles:
     label: My orcid
   
 academic:
-  - PhD Control Engineering (Machine Intelligence & Robotics)
+  - PhD Control Engineering (Machine Intelligence & Robotics)1
 interests:
   - Robotics
   - Control Theory
