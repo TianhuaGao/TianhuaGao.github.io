@@ -86,7 +86,7 @@ work:
   - position: Research Assistant
     company_name: National Institute of Advanced Industrial Science and Technology (AIST)
     company_url: https://www.aist.go.jp/index_en.html
-    company_logo: Tsukuba.png
+    company_logo: images/Tsukuba.png
     date_start: 2022-04-01
     date_end: 2026-03-30
     summary: |2-
