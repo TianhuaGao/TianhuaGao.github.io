@@ -143,16 +143,16 @@ languages:
 #   Only `title`, `awarder`, and `date` are required.
 #   Begin multi-line `summary` with YAML's `|` or `|2-` multi-line prefix and indent 2 spaces below.
 awards:
-  - title: University of Tsukuba Fellowship Scholar
+  - title: University of Tsukuba Fellowship
     url:  https://acc2025.a2c2.org/
-    date: '2023-01-01'
-    awarder: Japan Science and Technology Agency & University of Tsukuba
+    date: '2023-04-01'
+    awarder: University of Tsukuba
     icon: hero/academic-cap
     summary: |
       Awarded for groundbreaking work on efficient training of large models.
-  - title: SPRING Grant
+  - title: SPRING Scholarship
     url: https://www.jst.go.jp/jisedai/spring/en/index.html
-    date: '2023-01-01'
+    date: '2023-05-01'
     awarder: Japan Science and Technology Agency (JST)
     icon: hero/currency-dollar
     summary: |
@@ -160,7 +160,7 @@ awards:
   - title: ACC Student Grant
     url: https://acc2025.a2c2.org/
     date: '2025-01-01'
-    awarder: National Science Foundation
+    awarder: AACC, IEEE, ASME, SIAM, and National Science Foundation
     icon: hero/trophy
     summary: |
 
