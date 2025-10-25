@@ -50,40 +50,7 @@ profiles:
   - icon: academicons/orcid
     url: https://orcid.org/0009-0008-5929-3545
     label: My orcid
-  
-academic_background:
-  heading: 学术经历
-  subtitle: ''
-  items:
-    - degree: Ph.D. Candidate in Intelligent and Mechanical Engineering
-      school: University of Tsukuba
-      program: Intelligent Interaction Technologies, Graduate School of Systems and Information Engineering
-      period: 2023年4月 – 预计 2026年3月
-      location: 筑波，日本
-      affiliation: Intelligent Systems Research Institute, AIST
-      highlights:
-        - 研究方向：多四旋翼协同操作、强化学习控制与安全保障。
-        - 参与 JST Moonshot × AIST 空中机器人平台项目，负责系统集成与实时控制策略。
-      logo: media/tsukuba-logo.png
-    - degree: M.S. in Control Engineering
-      school: University of Tsukuba
-      program: 控制工程（控制与机器人方向）
-      period: 2021年4月 – 2023年3月
-      location: 筑波，日本
-      highlights:
-        - 构建多智能体协调控制框架，在 ICRA 2023 发表论文。
-        - 担任《自动化系统设计》课程助教，协助组织实验课程与项目辅导。
-      logo: media/tsukuba-logo.png
-    - degree: B.Eng. in Automation
-      school: 上海工程技术大学
-      program: 自动化工程（智能制造方向）
-      period: 2016年9月 – 2020年6月
-      location: 上海，中国
-      highlights:
-        - 全国大学生机器人大赛一等奖，负责视觉与控制模块开发。
-        - 毕业设计聚焦于多旋翼平台的自适应控制与状态估计。
-      logo: media/sues-logo.png
-      
+
 interests:
   - Robotics
   - Control Theory
@@ -91,6 +58,18 @@ interests:
   - Neuroscience
 
 education:
+  - area: PhD Control Engineering (Machine Intelligence & Robotics)
+    institution: University of Tsukuba
+    icon: assets/media/Tsukuba.png
+    date_start: 2023-04-01
+    date_end: 2026-03-30
+    summary: |
+      GPA: 3.7/4.0
+
+      Thesis on _Scaling Laws for Neural Language Models_. Supervised by Prof. Andrew Ng. Published 5 papers in NeurIPS and ICML, with 2 best paper awards.
+    button:
+      text: 'Read Thesis'
+      url: 'https://example.com/thesis.pdf'
   - area: PhD Control Engineering (Machine Intelligence & Robotics)
     institution: University of Tsukuba
     icon: assets/media/Tsukuba.png
@@ -111,6 +90,7 @@ education:
       GPA: 3.7/4.0
 
       Specialized in machine learning and robotics.
+    image: Tsukuba.png   # 自定义字段
   - area: BS Automation
     institution: SUES
     date_start: 2016-09-01
