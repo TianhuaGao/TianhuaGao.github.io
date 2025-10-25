@@ -146,7 +146,7 @@ awards:
   - title: University of Tsukuba Fellowship Scholar
     url:  https://acc2025.a2c2.org/
     date: '2023-01-01'
-    awarder: Japan Science and Technology Agency  University of Tsukuba
+    awarder: Japan Science and Technology Agency & University of Tsukuba
     icon: hero/academic-cap
     summary: |
       Awarded for groundbreaking work on efficient training of large models.
