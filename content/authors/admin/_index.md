@@ -77,7 +77,7 @@ education:
       GPA: 3.7/4.0
       Supervised by Prof. Akiya Kamimura.
   - area: BS in Automatic Control
-    institution: SUES
+    institution: SUES 2016-2020
     date_start: 2016-09-01
     date_end: 2020-09-01
     summary: |
