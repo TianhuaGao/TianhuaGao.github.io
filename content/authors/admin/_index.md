@@ -98,10 +98,10 @@ education:
       Minored in Mathematics. President of AI Club.
 
 work:
-  - position: Senior AI Research Scientist
-    company_name: Meta AI
+  - position: Research Assistant
+    company_name: National Institute of Advanced Industrial Science and Technology (AIST)
     company_url: 'https://ai.meta.com/'
-    company_logo: ''
+    company_logo: 'Tsukuba.png'
     date_start: 2020-01-01
     date_end: ''
     summary: |2-
