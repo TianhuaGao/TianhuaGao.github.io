@@ -58,8 +58,8 @@ interests:
   - Neuroscience
 
 education:
-  - area: Visiting PhD
-    institution: University of Tsukuba 2026
+  - area: 2026.02–2026.03  \n Visiting PhD
+    institution: University of Tsukuba
     date_start: 2026-02-01
     date_end: 2026-03-01
     summary: |
@@ -100,21 +100,13 @@ education:
 work:
   - position: Research Assistant
     company_name: National Institute of Advanced Industrial Science and Technology (AIST)
-    company_url: 'https://ai.meta.com/'
-    company_logo: 'bilibili.svg'
-    date_start: 2020-01-01
-    date_end: ''
+    company_url: 'https://www.aist.go.jp/index_en.html'
+    company_logo: ''
+    date_start: 2022-04-01
+    date_end: 2026-03-30
     summary: |2-
-      Leading research on multimodal AI systems. Contributed to Llama 2 and other open-source models. 50+ citations in 3 years.
-  - position: AI Research Intern
-    company_name: OpenAI
-    company_url: 'https://openai.com/'
-    company_logo: 'avatar.jpg'
-    date_start: 2019-06-01
-    date_end: 2019-12-31
-    summary: |
-      Worked on GPT-3 scaling. Co-authored paper on prompt engineering.
-
+      Working on quadrotor control.
+  
 # Skills
 # Add your own SVG icons to `assets/media/icons/`
 skills:
@@ -149,13 +141,13 @@ skills:
         percent: 70
         icon: book-open
 
-#languages:
-#  - name: Chinese
-#    percent: 100
-#  - name: English
-#    percent: 50
-#  - name: Japanese
-#    percent: 50
+languages:
+  - name: Chinese
+    percent: 100
+  - name: English
+    percent: 80
+  - name: Japanese
+    percent: 70
 
 # Awards.
 #   Add/remove as many awards below as you like.
