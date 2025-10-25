@@ -21,7 +21,6 @@ sections:
       headings:
         about: 'About Me'
         education: ''
-        academic: 'Academic Experience'
         interests: 'Research Interests'
     design:
       # Apply a gradient background
