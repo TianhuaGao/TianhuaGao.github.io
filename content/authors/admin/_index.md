@@ -58,20 +58,17 @@ interests:
   - Neuroscience
 
 education:
-  - area: PhD Control Engineering (Machine Intelligence & Robotics)
-    institution: University of Tsukuba
-    icon: assets/media/Tsukuba.png
-    date_start: 2023-04-01
-    date_end: 2026-03-30
+  - area: Visiting PhD
+    institution: University of Tsukuba 2026
+    date_start: 2026-02-01
+    date_end: 2026-03-01
     summary: |
-      GPA: 3.7/4.0
-
-      Thesis on _Scaling Laws for Neural Language Models_. Supervised by Prof. Andrew Ng. Published 5 papers in NeurIPS and ICML, with 2 best paper awards.
+      Visiting scholar supported by JST.
     button:
       text: 'Read Thesis'
       url: 'https://example.com/thesis.pdf'
   - area: PhD Control Engineering (Machine Intelligence & Robotics)
-    institution: University of Tsukuba
+    institution: University of Tsukuba 2023-2026
     icon: assets/media/Tsukuba.png
     date_start: 2023-04-01
     date_end: 2026-03-30
@@ -83,7 +80,7 @@ education:
       text: 'Read Thesis'
       url: 'https://example.com/thesis.pdf'
   - area: MS Control Engineering (Control & Robotics)
-    institution: University of Tsukuba
+    institution: University of Tsukuba 2021-2023
     date_start: 2021-04-01
     date_end: 2023-03-30
     summary: |
@@ -92,7 +89,7 @@ education:
       Specialized in machine learning and robotics.
     image: Tsukuba.png   # 自定义字段
   - area: BS Automation
-    institution: SUES
+    institution: SUES 2016-2020
     date_start: 2016-09-01
     date_end: 2020-09-01
     summary: |
