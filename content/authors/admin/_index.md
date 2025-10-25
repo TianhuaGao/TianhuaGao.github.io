@@ -147,7 +147,7 @@ awards:
     url:  ''
     date: '2023-2026'
     awarder: Japan Science and Technology Agency & University of Tsukuba
-    icon: hero/trophy
+    icon: hero/academic-cap
     summary: |
       Awarded for groundbreaking work on efficient training of large models.
   - title: SPRING Grant
@@ -161,7 +161,7 @@ awards:
     url: https://acc2025.a2c2.org/
     date: '2025'
     awarder: AACC, IEEE, ASME, SIAM, and the National Science Foundation
-    icon: hero/academic-cap
+    icon: hero/trophy
     summary: |
 
 ---
