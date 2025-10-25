@@ -51,7 +51,8 @@ profiles:
     url: https://orcid.org/0009-0008-5929-3545
     label: My orcid
   
-
+academic:
+  - PhD Control Engineering (Machine Intelligence & Robotics)
 interests:
   - Robotics
   - Control Theory
