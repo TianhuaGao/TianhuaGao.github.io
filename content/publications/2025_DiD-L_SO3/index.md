@@ -2,6 +2,9 @@
 title: "Dimension-Decomposed Learning for Quadrotor Geometric Attitude Control with Almost Global Exponential Convergence on SO(3)"
 authors:
 - admin
+- Masashi Izumita
+- Kohji Tomita
+- Akiya Kamimura
 date: "2025-10-25T00:00:00Z"
 
 # Schedule page publish date (NOT publication's date).
