@@ -64,7 +64,8 @@ education:
     date_start: 2023-04-01
     date_end: 2026-03-30
     summary: |
-      GPA: 4.0/4.0
+      GPA: 4.0/4.0 
+      <br>
       Supervised by Prof. Akiya Kamimura. 
     #button:
     #  text: 'Read Thesis'
@@ -74,10 +75,11 @@ education:
     date_start: 2021-04-01
     date_end: 2023-03-30
     summary: |
-      GPA: 3.7/4.0
+      GPA: 3.7/4.0 
+      <br>
       Supervised by Prof. Akiya Kamimura.
   - area: BS in Control Engineering (Automation & Control)
-    institution: SUES 2016-2020
+    institution: Shanghai University of Engineering Science 2016-2020
     date_start: 2016-09-01
     date_end: 2020-09-01
     summary: |
@@ -86,7 +88,7 @@ work:
   - position: Research Assistant
     company_name: National Institute of Advanced Industrial Science and Technology (AIST)
     company_url: https://www.aist.go.jp/index_en.html
-    company_logo: /images/Tsukuba.png
+    company_logo: bilibili.svg
     date_start: 2022-04-01
     date_end: 2026-03-30
     summary: |2-
