@@ -34,6 +34,38 @@ sections:
         shape: circle # Options: circle (default), square, rounded
       spacing:
         padding: [0, 0, 0, 0]
+  - block: markdown
+    content:
+      title: 教育经历
+      text: |-
+        <table class="custom-education" style="width: 100%; border-collapse: separate; border-spacing: 1.5rem 1rem;">
+          <tbody>
+            <tr>
+              <td style="width: 90px; vertical-align: middle;"><img src="/media/Tsukuba.png" alt="University of Tsukuba" width="72" /></td>
+              <td style="vertical-align: middle;">
+                <strong>筑波大学</strong><br />
+                控制工程博士（机器智能与机器人）
+              </td>
+            </tr>
+            <tr>
+              <td style="width: 90px; vertical-align: middle;"><img src="/media/Tsukuba.png" alt="University of Tsukuba" width="72" /></td>
+              <td style="vertical-align: middle;">
+                <strong>筑波大学</strong><br />
+                控制工程硕士（控制与机器人）
+              </td>
+            </tr>
+            <tr>
+              <td style="width: 90px; vertical-align: middle;"></td>
+              <td style="vertical-align: middle;">
+                <strong>上海工程技术大学</strong><br />
+                自动化学士
+              </td>
+            </tr>
+          </tbody>
+        </table>
+    design:
+      spacing:
+        padding: [3rem, 0, 3rem, 0]
   - block: collection
     id: papers
     content:

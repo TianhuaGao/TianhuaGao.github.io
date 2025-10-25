@@ -10,14 +10,14 @@ design:
 
 # Page sections
 sections:
-   - block: markdown
+  - block: resume-experience
     content:
-      title: 教育经历
-      text: |-
-        ![校徽](/media/Tsukuba.png)
-
-        **筑波大学**  
-        计算机科学硕士
+      username: admin
+    design:
+      # Hugo date format
+      date_format: 'January 2006'
+      # Education or Experience section first?
+      is_education_first: false
   - block: resume-skills
     content:
       title: Skills & Hobbies
