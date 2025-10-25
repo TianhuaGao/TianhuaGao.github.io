@@ -101,7 +101,7 @@ work:
   - position: Research Assistant
     company_name: National Institute of Advanced Industrial Science and Technology (AIST)
     company_url: 'https://ai.meta.com/'
-    company_logo: 'Tsukuba.png'
+    company_logo: 'images/Tsukuba.png'
     date_start: 2020-01-01
     date_end: ''
     summary: |2-
