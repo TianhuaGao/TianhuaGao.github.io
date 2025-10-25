@@ -143,27 +143,27 @@ languages:
 #   Only `title`, `awarder`, and `date` are required.
 #   Begin multi-line `summary` with YAML's `|` or `|2-` multi-line prefix and indent 2 spaces below.
 awards:
-  - title: Best Paper Award
-    url: https://neurips.cc/
-    date: '2022-12-01'
-    awarder: NeurIPS
+  - title: University of Tsukuba Fellowship Scholar
+    url:  ''
+    date: '2023-2026'
+    awarder: Japan Science and Technology Agency & University of Tsukuba
     icon: hero/trophy
     summary: |
       Awarded for groundbreaking work on efficient training of large models.
-  - title: AI Innovation Grant
-    url: https://www.nsf.gov/
-    date: '2021-06-15'
-    awarder: National Science Foundation
+  - title: SPRING Grant
+    url: https://www.jst.go.jp/jisedai/spring/en/index.html
+    date: '2023-2026'
+    awarder: Japan Science and Technology Agency (JST)
     icon: hero/currency-dollar
     summary: |
-      $500,000 grant for research in ethical AI development.
-  - title: Outstanding PhD Thesis
-    url: https://www.stanford.edu/
-    date: '2019-06-30'
-    awarder: Stanford University
+      ￥2,700,000 grant for PhD research. Support for Pioneering Research Initiated by the Next Generation (SPRING).
+  - title: ACC Student Grant
+    url: https://acc2025.a2c2.org/
+    date: '2025'
+    awarder: AACC, IEEE, ASME, SIAM, and the National Science Foundation
     icon: hero/academic-cap
     summary: |
-      Recognized for contributions to scaling laws in deep learning.
+
 ---
 
 Tianhua Gao is currently pursuing the Ph.D. degree with the Graduate School of Systems and Information Engineering, University of Tsukuba, Japan. He is also a Research Assistant with the Intelligent Systems Research Institute, National Institute of Advanced Industrial Science and Technology (AIST), Tsukuba. His current research interests include multi-quadrotor manipulation and learning-based control for robotics.
