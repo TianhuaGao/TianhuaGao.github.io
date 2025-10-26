@@ -149,17 +149,17 @@ awards:
     awarder: University of Tsukuba
     icon: hero/academic-cap
     summary: |
-      Awarded for groundbreaking work on efficient training of large models.
+      Awarded for the PhD research in robotics.
   - title: SPRING Scholarship
     url: https://www.jst.go.jp/jisedai/spring/en/index.html
     date: '2023-05-01'
     awarder: Japan Science and Technology Agency (JST)
     icon: hero/currency-dollar
     summary: |
-      ¥2,700,000 grant for PhD research. Support for Pioneering Research Initiated by the Next Generation (SPRING).
+      ¥8,100,000 grant for PhD research. Support for Pioneering Research Initiated by the Next Generation (SPRING).
   - title: ACC Student Grant
     url: https://acc2025.a2c2.org/
-    date: '2025-01-01'
+    date: '2025-07-01'
     awarder: AACC, IEEE, ASME, SIAM, and National Science Foundation
     icon: hero/trophy
     summary: |
