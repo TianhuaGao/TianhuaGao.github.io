@@ -78,12 +78,7 @@ education:
       GPA: 3.7/4.0 
       <br>
       Supervised by Prof. Akiya Kamimura.
-  - area: BS in Control Engineering (Automation & Control)
-    institution: Shanghai University of Engineering Science 2016-2020
-    date_start: 2016-09-01
-    date_end: 2020-09-01
-    summary: |
-      GPA: 3.4/4.0
+
 work:
   - position: Research Assistant
     company_name: National Institute of Advanced Industrial Science and Technology (AIST)
