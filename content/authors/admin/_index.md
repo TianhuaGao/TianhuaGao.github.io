@@ -70,14 +70,20 @@ education:
     #button:
     #  text: 'Read Thesis'
     #  url: 'https://example.com/thesis.pdf'
-  #- area: MS in Control Engineering (Control & Robotics)
-  #  institution: University of Tsukuba 2021-2023
-  #  date_start: 2021-04-01
-  #  date_end: 2023-03-30
-  #  summary: |
-  #    GPA: 3.7/4.0 
-  #    <br>
-  #    Supervised by Prof. Akiya Kamimura.
+  - area: MS in Control Engineering (Control & Robotics)
+    institution: University of Tsukuba 2021-2023
+    date_start: 2021-04-01
+    date_end: 2023-03-30
+    summary: |
+      GPA: 3.7/4.0 
+      <br>
+      Supervised by Prof. Akiya Kamimura.
+  - area: BS in Control Engineering (Automation & Control)
+    institution: Shanghai University of Engineering Science 2016-2020
+    date_start: 2016-09-01
+    date_end: 2020-09-01
+    summary: |
+      GPA: 3.4/4.0
 
 work:
   - position: Research Assistant
