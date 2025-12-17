@@ -5,9 +5,8 @@
 
 # Appearance 
 appearance:
-  mode: light
+  mode: dark
   color: slate
-  allow_user_theme: false
 
 # SEO
 marketing:
