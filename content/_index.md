@@ -10,28 +10,26 @@ design:
 
 sections:
   - block: resume-biography-3
-    content:
-      username: admin
-      text: |
-        <div class="visitor-map">
-          <script type='text/javascript' id='mapmyvisitors'
-            src='https://mapmyvisitors.com/map.js?cl=ffffff&w=210&t=tt&d=8qEclr0ZrJSCsBmLm_UzUi6VHCoFchZ1lngCvTQbj10&co=2d78ad&ct=ffffff&cmo=3acc3a&cmn=ff5353'>
-          </script>
-        </div>
-      button:
-        text: Download CV
-        url: uploads/resume.pdf
-      headings:
-        about: 'About Me'
-        education: ''
-        interests: 'Research Interests'
-    design:
-      css_class: custom-hero-gradient
-      avatar:
-        size: medium
-        shape: circle
-      spacing:
-        padding: [0, 0, 0, 0]
+  content:
+    username: admin
+    text: |
+      <script type='text/javascript' id='mapmyvisitors'
+        src='https://mapmyvisitors.com/map.js?cl=ffffff&w=220&t=tt&d=8qEclr0ZrJSCsBmLm_UzUi6VHCoFchZ1lngCvTQbj10&co=2d78ad&ct=ffffff&cmo=3acc3a&cmn=ff5353'>
+      </script>
+    button:
+      text: Download CV
+      url: uploads/resume.pdf
+    headings:
+      about: 'About Me'
+      education: ''
+      interests: 'Research Interests'
+  design:
+    css_class: custom-hero-gradient
+    avatar:
+      size: medium
+      shape: circle
+    spacing:
+      padding: [0, 0, 0, 0]
   - block: collection
     id: papers
     content:

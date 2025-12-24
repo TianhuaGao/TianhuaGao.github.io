@@ -37,19 +37,3 @@ body[data-bs-theme="dark"] .custom-hero-gradient {
     #334155 100%
   );
 }
-
-
-
-/*加visitor map，固定到左侧 */
-/* 让 hero 区块成为定位参照 */
-.custom-hero-gradient {
-  position: relative;
-}
-
-/* 把访问地图钉在左下角 */
-.custom-hero-gradient .visitor-map {
-  position: absolute;
-  left: 1.6rem;
-  bottom: 1.6rem;
-  z-index: 5;
-}
