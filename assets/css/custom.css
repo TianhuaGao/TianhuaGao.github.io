@@ -47,7 +47,7 @@ body[data-bs-theme="dark"] .custom-hero-gradient {
 /* 把访问地图固定在左下角 */
 .custom-hero-gradient .visitor-map {
   position: absolute;
-  left: 10.0rem;    /* 左边距，可微调 */
-  bottom: 10.0rem;  /* 下边距，可微调 */
+  left: 20.0rem;    /* 左边距，可微调 */
+  bottom: 20.0rem;  /* 下边距，可微调 */
   z-index: 10;
 }
