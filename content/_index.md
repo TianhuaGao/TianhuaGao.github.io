@@ -18,7 +18,7 @@ sections:
         </p>
         <div class="visitor-map">
           <script type='text/javascript' id='mapmyvisitors'
-            src='https://mapmyvisitors.com/map.js?cl=ffffff&w=300&t=tt&d=8qEclr0ZrJSCsBmLm_UzUi6VHCoFchZ1lngCvTQbj10&co=2d78ad&ct=ffffff&cmo=3acc3a&cmn=ff5353'>
+            src='https://mapmyvisitors.com/map.js?cl=ffffff&w=300&t=tt&d=8qEclr0ZrJSCsBmLm_UzUi6VHCoFchZ1lngCvTQbj10&co=4d5a72&ct=ffffff&cmo=3acc3a&cmn=ff5353'>
           </script>
         </div>
       button:
