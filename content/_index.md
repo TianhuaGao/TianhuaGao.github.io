@@ -28,18 +28,19 @@ sections:
       spacing:
         padding: [0, 0, 0, 0]
   - block: markdown
-    id: visitors
-    content:
-      title: 'Visitors'
-      text: |
-        <div class="visitors-map-block">
-          <script type='text/javascript' id='mapmyvisitors'
-            src='https://mapmyvisitors.com/map.js?cl=ffffff&w=320&t=tt&d=8qEclr0ZrJSCsBmLm_UzUi6VHCoFchZ1lngCvTQbj10&co=4d5a72&ct=ffffff&cmo=3acc3a&cmn=ff5353'>
-          </script>
-        </div>
-    design:
-      spacing:
-        padding: [1.5rem, 0, 0, 0]      
+  id: visitors
+  content:
+    title: 'Visitors'
+    text: |
+      <div class="visitors-map-block">
+        <script type='text/javascript' id='mapmyvisitors'
+          src='https://mapmyvisitors.com/map.js?cl=ffffff&w=450&t=tt&d=8qEclr0ZrJSCsBmLm_UzUi6VHCoFchZ1lngCvTQbj10&co=4d5a72&ct=ffffff&cmo=3acc3a&cmn=ff5353'>
+        </script>
+      </div>
+  design:
+    css_class: custom-hero-gradient
+    spacing:
+      padding: [1.5rem, 0, 2rem, 0]   
   - block: collection
     id: papers
     content:
