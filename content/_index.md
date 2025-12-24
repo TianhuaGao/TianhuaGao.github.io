@@ -16,7 +16,7 @@ sections:
         <p>
           Tianhua Gao is currently pursuing the Ph.D. degree with the Graduate School of Systems and Information Engineering, University of Tsukuba, Japan. During his doctoral study, he has been awarded the University of Tsukuba Fellowship and the SPRING Next-Generation Researcher Scholarship (funded by the Japan Science and Technology Agency (JST)). He is also a Research Assistant with the Intelligent Systems Research Institute, National Institute of Advanced Industrial Science and Technology (AIST), Japan. His research objective is to integrate control theory and neuroscience to advance the field of machine intelligence &amp; control.
         </p>
-        <div style="margin-top:1rem;">
+        <div class="visitor-map">
           <script type='text/javascript' id='mapmyvisitors'
             src='https://mapmyvisitors.com/map.js?cl=ffffff&w=210&t=tt&d=8qEclr0ZrJSCsBmLm_UzUi6VHCoFchZ1lngCvTQbj10&co=2d78ad&ct=ffffff&cmo=3acc3a&cmn=ff5353'>
           </script>
