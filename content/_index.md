@@ -12,15 +12,7 @@ sections:
   - block: resume-biography-3
     content:
       username: admin
-      text: |
-        <p>
-          Tianhua Gao is currently pursuing the Ph.D. degree with the Graduate School of Systems and Information Engineering, University of Tsukuba, Japan. During his doctoral study, he has been awarded the University of Tsukuba Fellowship and the SPRING Next-Generation Researcher Scholarship (funded by the Japan Science and Technology Agency (JST)). He is also a Research Assistant with the Intelligent Systems Research Institute, National Institute of Advanced Industrial Science and Technology (AIST), Japan. His research objective is to integrate control theory and neuroscience to advance the field of machine intelligence &amp; control.
-        </p>
-        <div class="visitor-map">
-          <script type='text/javascript' id='mapmyvisitors'
-            src='https://mapmyvisitors.com/map.js?cl=ffffff&w=300&t=tt&d=8qEclr0ZrJSCsBmLm_UzUi6VHCoFchZ1lngCvTQbj10&co=4d5a72&ct=ffffff&cmo=3acc3a&cmn=ff5353'>
-          </script>
-        </div>
+      text: ''
       button:
         text: Download CV
         url: uploads/resume.pdf
@@ -35,6 +27,19 @@ sections:
         shape: circle
       spacing:
         padding: [0, 0, 0, 0]
+  - block: markdown
+    id: visitors
+    content:
+      title: 'Visitors'
+      text: |
+        <div class="visitors-map-block">
+          <script type='text/javascript' id='mapmyvisitors'
+            src='https://mapmyvisitors.com/map.js?cl=ffffff&w=320&t=tt&d=8qEclr0ZrJSCsBmLm_UzUi6VHCoFchZ1lngCvTQbj10&co=4d5a72&ct=ffffff&cmo=3acc3a&cmn=ff5353'>
+          </script>
+        </div>
+    design:
+      spacing:
+        padding: [1.5rem, 0, 0, 0]      
   - block: collection
     id: papers
     content:
