@@ -14,7 +14,7 @@ sections:
       # Choose a user profile to display (a folder name within `content/authors/`)
       username: admin
       text: |
-      <div style="margin-top:1rem; display:flex; justify-content:center;">
+      <div class="visitor-map">
         <script type='text/javascript' id='mapmyvisitors'
           src='https://mapmyvisitors.com/map.js?cl=ffffff&w=210&t=tt&d=8qEclr0ZrJSCsBmLm_UzUi6VHCoFchZ1lngCvTQbj10&co=2d78ad&ct=ffffff&cmo=3acc3a&cmn=ff5353'>
         </script>
