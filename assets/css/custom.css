@@ -39,15 +39,44 @@ body[data-bs-theme="dark"] .custom-hero-gradient {
 }
 
 
+/* ===============================
+   Visitor map: responsive position
+   =============================== */
+
 /* 让 hero 区块成为定位参考 */
 .custom-hero-gradient {
   position: relative;
 }
 
-/* 把访问地图固定在左下角 */
+/* 默认：桌面端放左下区域（你想要的那块空白） */
 .custom-hero-gradient .visitor-map {
   position: absolute;
-  left: 20.0rem;    /* 左边距，可微调 */
-  bottom: 20.0rem;  /* 下边距，可微调 */
+  left: 2.4rem;      /* 向右一点，避免贴边 */
+  bottom: 3.0rem;    /* 向上一点，避免贴底 */
   z-index: 10;
+
+  /* 让地图更“克制”一些（可删） */
+  opacity: 0.85;
+
+  /* 轻微缩小，避免占位太大（可调） */
+  transform: scale(0.85);
+  transform-origin: left bottom;
+}
+
+/* 平板/小屏：改为底部居中（避免和左栏拥挤/错位） */
+@media (max-width: 1024px) {
+  .custom-hero-gradient .visitor-map {
+    left: 50%;
+    bottom: 1.2rem;
+    transform: translateX(-50%) scale(0.80);
+    transform-origin: center bottom;
+  }
+}
+
+/* 手机：再小一点，并留出空间 */
+@media (max-width: 640px) {
+  .custom-hero-gradient .visitor-map {
+    bottom: 0.8rem;
+    transform: translateX(-50%) scale(0.72);
+  }
 }
