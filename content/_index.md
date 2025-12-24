@@ -24,7 +24,8 @@ sections:
         interests: 'Research Interests'
     design:
       # Apply a gradient background
-      css_class: hbx-bg-gradient
+      #css_class: hbx-bg-gradient
+      css_class: custom-hero-gradient
       background:
         #image:
         #  filename: gravitywell_steelblue_highcontrast.jpg
