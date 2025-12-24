@@ -48,19 +48,20 @@ body[data-bs-theme="dark"] .custom-hero-gradient {
   position: relative;
 }
 
-/* 默认：桌面端放左下区域（你想要的那块空白） */
+/* 桌面端：居中放在 icon 区域下方（近似） */
 .custom-hero-gradient .visitor-map {
   position: absolute;
-  left: 2.4rem;      /* 向右一点，避免贴边 */
-  bottom: 3.0rem;    /* 向上一点，避免贴底 */
+
+  /* 水平居中 */
+  left: 50%;
+  transform: translateX(-50%) scale(0.85);
+  transform-origin: center top;
+
+  /* 垂直位置：不是底部，而是靠上 */
+  top: 58%;   /* 👈 这个数你可以微调 */
+
   z-index: 10;
-
-  /* 让地图更“克制”一些（可删） */
   opacity: 0.85;
-
-  /* 轻微缩小，避免占位太大（可调） */
-  transform: scale(0.85);
-  transform-origin: left bottom;
 }
 
 /* 平板/小屏：改为底部居中（避免和左栏拥挤/错位） */
@@ -73,10 +74,9 @@ body[data-bs-theme="dark"] .custom-hero-gradient {
   }
 }
 
-/* 手机：再小一点，并留出空间 */
+/* 手机端隐藏访问地图 */
 @media (max-width: 640px) {
-  .custom-hero-gradient .visitor-map {
-    bottom: 0.8rem;
-    transform: translateX(-50%) scale(0.72);
+  .visitor-map {
+    display: none !important;
   }
 }
