@@ -11,15 +11,13 @@ design:
 sections:
   - block: resume-biography-3
     content:
-      # Choose a user profile to display (a folder name within `content/authors/`)
       username: admin
       text: |
-      <div class="visitor-map">
-        <script type='text/javascript' id='mapmyvisitors'
-          src='https://mapmyvisitors.com/map.js?cl=ffffff&w=210&t=tt&d=8qEclr0ZrJSCsBmLm_UzUi6VHCoFchZ1lngCvTQbj10&co=2d78ad&ct=ffffff&cmo=3acc3a&cmn=ff5353'>
-        </script>
-      </div>
-      # Show a call-to-action button under your biography? (optional)
+        <div class="visitor-map">
+          <script type='text/javascript' id='mapmyvisitors'
+            src='https://mapmyvisitors.com/map.js?cl=ffffff&w=210&t=tt&d=8qEclr0ZrJSCsBmLm_UzUi6VHCoFchZ1lngCvTQbj10&co=2d78ad&ct=ffffff&cmo=3acc3a&cmn=ff5353'>
+          </script>
+        </div>
       button:
         text: Download CV
         url: uploads/resume.pdf
@@ -28,16 +26,10 @@ sections:
         education: ''
         interests: 'Research Interests'
     design:
-      # Apply a gradient background
-      #css_class: hbx-bg-gradient
       css_class: custom-hero-gradient
-      background:
-        #image:
-        #  filename: gravitywell_steelblue_highcontrast.jpg
-      # Avatar customization
       avatar:
-        size: medium # Options: small (150px), medium (200px, default), large (320px), xl (400px), xxl (500px)
-        shape: circle # Options: circle (default), square, rounded
+        size: medium
+        shape: circle
       spacing:
         padding: [0, 0, 0, 0]
   - block: collection
