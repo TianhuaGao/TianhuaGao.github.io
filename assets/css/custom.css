@@ -37,3 +37,17 @@ body[data-bs-theme="dark"] .custom-hero-gradient {
     #334155 100%
   );
 }
+
+
+/* 让 hero 区块成为定位参考 */
+.custom-hero-gradient {
+  position: relative;
+}
+
+/* 把访问地图固定在左下角 */
+.custom-hero-gradient .visitor-map {
+  position: absolute;
+  left: 2.4rem;    /* 左边距，可微调 */
+  bottom: 3.0rem;  /* 下边距，可微调 */
+  z-index: 10;
+}
