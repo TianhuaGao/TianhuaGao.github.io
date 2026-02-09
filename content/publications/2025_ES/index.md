@@ -16,7 +16,7 @@ publication_types: ["article-journal"]
 
 # Publication name and optional abbreviated publication name.
 publication: "Engineered Science"
-publication_short: "ES"
+publication_short: "Engineered Science"
 
 abstract: This paper introduces an adaptive-neuro identification method that enhances the robustness of a centralized multi-quadrotor transportation system. This method leverages online tuning and learning on decomposed error subspaces, enabling efficient real-time compensation to time-varying disturbances and model uncertainties acting on the payload. The strategy is to decompose the high-dimensional error space into a set of low-dimensional subspaces. In this way, the identification problem for unseen features is naturally transformed into submappings (“slices”) addressed by multiple adaptive laws and shallow neural networks, which are updated online via Lyapunov-based adaptation without requiring persistent excitation (PE) and offline training.  Due to the model-free nature of neural networks, this approach can be well adapted to highly coupled and nonlinear centralized transportation systems. It serves as a feedforward compensator for the payload controller without explicitly relying on the dynamics coupled with the payload, such as cables and quadrotors. The proposed control system has been proven to be stable in the sense of Lyapunov, and its enhanced robustness under time-varying disturbances and model uncertainties was demonstrated by numerical simulations.
 

@@ -16,7 +16,7 @@ publication_types: ["paper-conference"]
 
 # Publication name and optional abbreviated publication name.
 publication: "American Control Conference"
-publication_short: "ACC"
+publication_short: "American Control Conference (ACC)"
 
 abstract: This paper introduces an adaptive-neuro geometric control for a centralized multi-quadrotor cooperative transportation system, which enhances both adaptivity and disturbance rejection. Our strategy is to coactively tune the model parameters and learn the external disturbances in real-time. To realize this, we augmented the existing geometric control with multiple neural networks and adaptive laws, where the estimated model parameters and the weights of the neural networks are simultaneously tuned and adjusted online. The Lyapunov-based adaptation guarantees bounded estimation errors without requiring either pre-training or the persistent excitation (PE) condition. The proposed control system has been proven to be stable in the sense of Lyapunov under certain preconditions, and its enhanced robustness under scenarios of disturbed environment and model-unmatched plant was demonstrated by numerical simulations.
 # Summary. An optional shortened abstract.
