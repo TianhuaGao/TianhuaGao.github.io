@@ -5,10 +5,10 @@ authors:
 - Masashi Izumita
 - Kohji Tomita
 - Akiya Kamimura
-date: "2025-10-25T00:00:00Z"
+date: "2026-02-06T00:00:00Z"
 
 # Schedule page publish date (NOT publication's date).
-publishDate: "2025-10-24T00:00:00Z"
+publishDate: "2026-02-05T00:00:00Z"
 
 # Publication type.
 # Accepts a single type but formatted as a YAML list (for Hugo requirements).
@@ -24,7 +24,7 @@ abstract: This work introduces a dimension-decomposed geometric learning framewo
 # Summary. An optional shortened abstract.
 summary: To our knowledge, Sliced Learning is among the first frameworks to demonstrate lightweight online neural adaptation at 400 Hz on resource-constrained microcontroller units (MCUs), such as STM32, with real-world experimental validation.
 tags:
-- arXiv preprint
+- 2026 arXiv preprint
 
 featured: true
 
