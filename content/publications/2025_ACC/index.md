@@ -23,7 +23,7 @@ abstract: This paper introduces an adaptive-neuro geometric control for a centra
 summary: This paper introduces an adaptive-neuro geometric control for a centralized multi-quadrotor cooperative transportation system, which enhances both adaptivity and disturbance rejection. Our strategy is to coactively tune the model parameters and learn the external disturbances in real-time.
 
 tags:
-- American Control Conference (ACC)
+- 2025 American Control Conference (ACC)
 
 featured: true
 
