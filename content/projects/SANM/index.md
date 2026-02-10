@@ -1,5 +1,5 @@
 ---
-title: SANM
+title: SANM-augmented Geometric Control
 date: 2026-02-01
 #links:
 #  - type: site
