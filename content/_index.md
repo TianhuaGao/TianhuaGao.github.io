@@ -53,9 +53,9 @@ sections:
       spacing:
         padding: [5rem, 0, 2rem, 0]
   - block: collection
-    id: talks
+    id: events
     content:
-      title: Recent & Upcoming Talks
+      title: Recent & Upcoming Events
       filters:
         folders:
           - events
