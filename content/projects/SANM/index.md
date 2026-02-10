@@ -1,5 +1,5 @@
 ---
-title: SANM-augmented Geometric Control
+title: SANM
 date: 2026-02-01
 #links:
 #  - type: site
@@ -7,7 +7,7 @@ date: 2026-02-01
 tags: [Flight Control Project]
 
 ---
-
+SANM-augmented Geometric Control
 Work in Progress. This project is currently under active development.
 
 <!--more-->
