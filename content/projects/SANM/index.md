@@ -8,6 +8,6 @@ tags: [Flight Control Project]
 
 ---
 
-Work in Progress.
+Work in Progress. This project is currently under active development.
 
 <!--more-->
