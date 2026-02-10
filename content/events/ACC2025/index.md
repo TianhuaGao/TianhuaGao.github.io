@@ -48,8 +48,8 @@ links:
 #    url: https://slideshare.net
   - type: video
     url: https://www.youtube.com/watch?v=PLDXPQzdZd4
-  - type: poster
-     url: RI_session.pdf
+#  - type: poster
+#     url: RI_session.pdf
 
 # Markdown Slides (optional).
 #   Associate this talk with Markdown slides.
