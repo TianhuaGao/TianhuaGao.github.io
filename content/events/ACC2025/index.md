@@ -1,5 +1,5 @@
 ---
-title: ACC2025
+title: American Control Conference (ACC) 2025
 
 event: American Control Conference
 event_url: https://acc2025.a2c2.org/
