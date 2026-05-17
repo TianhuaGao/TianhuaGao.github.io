@@ -24,7 +24,7 @@ abstract: This work introduces a dimension-decomposed geometric learning framewo
 # Summary. An optional shortened abstract.
 summary: To our knowledge, Sliced Learning is among the first frameworks to demonstrate lightweight online neural adaptation at 400 Hz on resource-constrained microcontroller units (MCUs), such as STM32, with real-world experimental validation.
 tags:
-- IEEE/ASME Transactions on Mechatronics (TMECH)
+- 2026 IEEE/ASME Transactions on Mechatronics (TMECH)
 
 featured: true
 
