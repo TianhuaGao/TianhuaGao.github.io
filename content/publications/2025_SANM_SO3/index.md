@@ -16,15 +16,15 @@ publishDate: "2026-02-05T00:00:00Z"
 publication_types: ["article-journal"]
 
 # Publication name and optional abbreviated publication name.
-publication: "IEEE/ASME Transactions on Mechatronics (Under Review)"
-publication_short: "IEEE/ASME Transactions on Mechatronics (Under Review)"
+publication: "IEEE/ASME Transactions on Mechatronics"
+publication_short: "IEEE/ASME Transactions on Mechatronics"
 
 abstract: This work introduces a dimension-decomposed geometric learning framework called Sliced Learning for disturbance identification in quadrotor geometric attitude control. Instead of conventional learning-from-states, this framework adopts a learning-from-error strategy by using the Lie-algebraic error representation as the input feature, enabling axis-wise space decomposition ("slicing") while preserving the SO(3) structure. This is highly consistent with the geometric mechanism of cognitive control observed in neuroscience, where neural systems organize adaptive representations within structured subspaces to enable cognitive flexibility and efficiency. Based on this framework, we develop a lightweight and structurally interpretable Sliced Adaptive-Neuro Mapping (SANM) module. The high-dimensional mapping for online identification is axially "sliced" into multiple low-dimensional submappings ( "slices"), implemented by shallow neural networks and adaptive laws. These neural networks and adaptive laws are updated online via Lyapunov-based adaptation within their respective shared subspaces. To enhance interpretability, we prove exponential convergence despite time-varying disturbances and inertia uncertainties. 
 
 # Summary. An optional shortened abstract.
 summary: To our knowledge, Sliced Learning is among the first frameworks to demonstrate lightweight online neural adaptation at 400 Hz on resource-constrained microcontroller units (MCUs), such as STM32, with real-world experimental validation.
 tags:
-- 2026 arXiv preprint
+- IEEE/ASME Transactions on Mechatronics (TMECH)
 
 featured: true
 
@@ -78,5 +78,11 @@ slides: ""
 
 This work introduces a dimension-decomposed geometric learning framework called Sliced Learning for disturbance identification in quadrotor geometric attitude control. Instead of conventional learning-from-states, this framework adopts a learning-from-error strategy by using the Lie-algebraic error representation as the input feature, enabling axis-wise space decomposition ("slicing") while preserving the SO(3) structure. This is highly consistent with the geometric mechanism of cognitive control observed in neuroscience, where neural systems organize adaptive representations within structured subspaces to enable cognitive flexibility and efficiency. Based on this framework, we develop a lightweight and structurally interpretable Sliced Adaptive-Neuro Mapping (SANM) module. The high-dimensional mapping for online identification is axially "sliced" into multiple low-dimensional submappings ( "slices"), implemented by shallow neural networks and adaptive laws. These neural networks and adaptive laws are updated online via Lyapunov-based adaptation within their respective shared subspaces. To enhance interpretability, we prove exponential convergence despite time-varying disturbances and inertia uncertainties.  To our knowledge, Sliced Learning is among the first frameworks to demonstrate lightweight online neural adaptation at 400 Hz on resource-constrained microcontroller units (MCUs), such as STM32, with real-world experimental validation.
 
+Introduction Video:
 
+{{< youtube wadR-C_ZXIU >}}
+
+For testbed experiment video:
+
+{{< youtube kDE5079TgCI >}}
 
