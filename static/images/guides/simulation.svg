@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 270" role="img" aria-labelledby="title">
+  <title id="title">Simulation cover</title>
+  <rect width="480" height="270" rx="24" fill="#eff6ff"/>
+  <path d="M72 190h336" stroke="#2563eb" stroke-width="10" stroke-linecap="round" opacity=".18"/>
+  <rect x="92" y="70" width="296" height="132" rx="18" fill="#ffffff" stroke="#bfdbfe" stroke-width="4"/>
+  <path d="M128 112h88M128 140h154M128 168h112" stroke="#2563eb" stroke-width="10" stroke-linecap="round"/>
+  <circle cx="338" cy="136" r="32" fill="#dbeafe"/>
+  <path d="M322 136h32M338 120v32" stroke="#1d4ed8" stroke-width="10" stroke-linecap="round"/>
+</svg>

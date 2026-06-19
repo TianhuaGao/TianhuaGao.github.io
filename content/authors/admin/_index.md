@@ -58,8 +58,16 @@ interests:
   - Neuroscience
 
 education:
+  - area: Associated Researcher
+    institution: University of Tokyo
+    date_start: 2026-04-01
+    current: true
+  - area: Postdoctoral Fellow
+    institution: University of Tsukuba
+    date_start: 2026-04-01
+    current: true
   - area: PhD in Control Engineering (Machine Intelligence & Robotics)
-    institution: University of Tsukuba 2023-2026
+    institution: University of Tsukuba
     icon: assets/media/Tsukuba.png
     date_start: 2023-04-01
     date_end: 2026-03-30
@@ -70,15 +78,7 @@ education:
     #button:
     #  text: 'Read Thesis'
     #  url: 'https://example.com/thesis.pdf'
-  - area: MS in Control Engineering (Control & Robotics)
-    institution: University of Tsukuba 2021-2023
-    date_start: 2021-04-01
-    date_end: 2023-03-30
-    summary: |
-      GPA: 3.7/4.0 
-      <br>
-      Supervised by Prof. Akiya Kamimura.
-  - area: Research Assistant (PhD)
+  - area: Research Assistant
     institution: National Institute of Advanced Industrial Science and Technology (AIST)
     date_start: 2022-03-31
     date_end: 2026-03-31
@@ -172,4 +172,3 @@ awards:
 ---
 
 Tianhua Gao received the Ph.D. degree from the Graduate School of Systems and Information Engineering, University of Tsukuba, Japan, in March 2026. He was awarded the University of Tsukuba Fellowship and the JST SPRING Scholarship. He was also a Research Assistant at the Intelligent Systems Research Institute, National Institute of Advanced Industrial Science and Technology (AIST), Japan. His research interests focus on integrating control theory and neuroscience to advance the field of machine intelligence and control.
-

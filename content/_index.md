@@ -17,8 +17,8 @@ sections:
         title: News
         items:
           - date: 2026-06-19
-            text: Added a new Courses section to the website.
-            url: /courses/
+            text: Added new Guides and Tutorials sections to the website.
+            url: /guides/
       visitors:
         title: Visitors
         html: |
@@ -75,35 +75,6 @@ sections:
           - events
     design:
       view: card
-  - block: collection
-    id: news
-    content:
-      title: Recent News
-      subtitle: ''
-      text: ''
-      # Page type to display. E.g. post, talk, publication...
-      page_type: blog
-      # Choose how many pages you would like to display (0 = all pages)
-      count: 5
-      # Filter on criteria
-      filters:
-        author: ''
-        category: ''
-        tag: ''
-        exclude_featured: false
-        exclude_future: false
-        exclude_past: false
-        publication_type: ''
-      # Choose how many pages you would like to offset by
-      offset: 0
-      # Page order: descending (desc) or ascending (asc) date.
-      order: desc
-    design:
-      # Choose a layout view
-      view: card
-      # Reduce spacing
-      spacing:
-        padding: [0, 0, 0, 0]
   - block: cta-card
     demo: true # Only display this section in the Hugo Blox Builder demo site
     content:
@@ -115,7 +86,7 @@ sections:
 
         Easily build anything with blocks - no-code required!
 
-        From landing pages, second brains, and courses to academic resumés, conferences, and tech blogs.
+        From landing pages, second brains, and guides to academic resumés, conferences, and tech blogs.
       button:
         text: Get Started
         url: https://hugoblox.com/templates/

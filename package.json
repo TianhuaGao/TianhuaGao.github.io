@@ -8,13 +8,17 @@
     "dev": "./scripts/hugo.sh server --disableFastRender --baseURL http://localhost:1313/",
     "dev:1314": "./scripts/hugo.sh server --disableFastRender --port 1314 --baseURL http://localhost:1314/",
     "dev:lan": "./scripts/hugo.sh server --disableFastRender --bind 0.0.0.0 --baseURL http://localhost:1313/",
-    "build": "./scripts/hugo.sh --gc --minify",
-    "check": "./scripts/hugo.sh --gc --minify --printI18nWarnings --printPathWarnings"
+    "index:search": "./scripts/pagefind.sh",
+    "build": "./scripts/hugo.sh --gc --minify && pnpm run index:search",
+    "check": "./scripts/hugo.sh --gc --minify --printI18nWarnings --printPathWarnings && pnpm run index:search"
   },
   "dependencies": {
     "@tailwindcss/cli": "^4.1.12",
     "@tailwindcss/typography": "^0.5.10",
     "preact": "^10.27.2",
     "tailwindcss": "^4.1.12"
+  },
+  "devDependencies": {
+    "pagefind": "^1.5.2"
   }
 }

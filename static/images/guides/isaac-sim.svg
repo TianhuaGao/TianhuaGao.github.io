@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 270" role="img" aria-labelledby="title">
+  <title id="title">Isaac Sim cover</title>
+  <rect width="480" height="270" rx="24" fill="#f0fdf4"/>
+  <path d="M148 92h184l46 80-46 80H148l-46-80z" fill="#dcfce7" stroke="#16a34a" stroke-width="6"/>
+  <path d="M164 172h152M198 132h84M214 212h52" stroke="#15803d" stroke-width="10" stroke-linecap="round"/>
+  <circle cx="356" cy="104" r="22" fill="#bbf7d0" stroke="#16a34a" stroke-width="5"/>
+  <text x="240" y="74" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="800" fill="#166534">Isaac Sim</text>
+</svg>

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 270" role="img" aria-labelledby="title">
+  <title id="title">Sliced Learning cover</title>
+  <rect width="480" height="270" rx="24" fill="#f5f3ff"/>
+  <path d="M128 196 240 62l112 134" fill="#ede9fe" stroke="#7c3aed" stroke-width="6" stroke-linejoin="round"/>
+  <path d="M170 150h140M190 122h100M210 94h60" stroke="#7c3aed" stroke-width="9" stroke-linecap="round"/>
+  <circle cx="336" cy="84" r="34" fill="#ddd6fe" stroke="#8b5cf6" stroke-width="5"/>
+  <text x="336" y="92" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="800" fill="#5b21b6">SANM</text>
+</svg>
