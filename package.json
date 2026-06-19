@@ -5,8 +5,11 @@
   "packageManager": "pnpm@10.14.0",
   "description": "Academic CV starter template for Hugo Blox with Tailwind CSS v4",
   "scripts": {
-    "dev": "hugo server --disableFastRender",
-    "build": "hugo --minify"
+    "dev": "./scripts/hugo.sh server --disableFastRender --baseURL http://localhost:1313/",
+    "dev:1314": "./scripts/hugo.sh server --disableFastRender --port 1314 --baseURL http://localhost:1314/",
+    "dev:lan": "./scripts/hugo.sh server --disableFastRender --bind 0.0.0.0 --baseURL http://localhost:1313/",
+    "build": "./scripts/hugo.sh --gc --minify",
+    "check": "./scripts/hugo.sh --gc --minify --printI18nWarnings --printPathWarnings"
   },
   "dependencies": {
     "@tailwindcss/cli": "^4.1.12",

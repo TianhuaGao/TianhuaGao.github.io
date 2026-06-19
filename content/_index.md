@@ -13,12 +13,26 @@ sections:
     content:
       username: admin
       text: ''
+      news:
+        title: News
+        items:
+          - date: 2026-06-19
+            text: Added a new Courses section to the website.
+            url: /courses/
+      visitors:
+        title: Visitors
+        html: |
+          <div class="visitors-map-block">
+            <script type='text/javascript' id='mapmyvisitors'
+              src='https://mapmyvisitors.com/map.js?cl=ffffff&w=320&t=tt&d=8qEclr0ZrJSCsBmLm_UzUi6VHCoFchZ1lngCvTQbj10&co=4d5a72&ct=ffffff&cmo=3acc3a&cmn=ff5353'>
+            </script>
+          </div>
       button:
         text: Download CV
         url: uploads/resume.pdf
       headings:
         about: 'About Me'
-        education: ''
+        education: 'Academic Experience'
         interests: 'Research Interests'
     design:
       css_class: custom-hero-gradient
@@ -90,19 +104,6 @@ sections:
       # Reduce spacing
       spacing:
         padding: [0, 0, 0, 0]
-  - block: markdown
-    id: visitors
-    content:
-      title: 'Visitors'
-      text: |
-        <div class="visitors-map-block">
-          <script type='text/javascript' id='mapmyvisitors'
-            src='https://mapmyvisitors.com/map.js?cl=ffffff&w=600&t=tt&d=8qEclr0ZrJSCsBmLm_UzUi6VHCoFchZ1lngCvTQbj10&co=4d5a72&ct=ffffff&cmo=3acc3a&cmn=ff5353'>
-          </script>
-        </div>
-    design:
-      spacing:
-        padding: [1.5rem, 0, 0, 0]       
   - block: cta-card
     demo: true # Only display this section in the Hugo Blox Builder demo site
     content:
