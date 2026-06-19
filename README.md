@@ -1,125 +1,85 @@
-# [The Academic CV That Gets You Hired](https://github.com/HugoBlox/theme-academic-cv)
+# Tianhua Gao Personal Website
 
-[![Screenshot](.github/preview.webp)](https://hugoblox.com/templates/academic-cv/start/?utm_source=github&utm_medium=readme)
+This repository contains the source for Tianhua Gao's personal academic website. It is built with Hugo and HugoBlox.
 
-<h1 align="center">Build an Academic CV and Resumé That Stands Out</h1>
+## Local Preview
 
-<p align="center">
-  <strong>Your unfair advantage in academia and tech.</strong><br/>
-  Showcase your work, boost your citations, and land your dream job at places like <strong>Meta, Google, and Stanford</strong>.
-</p>
+Install the required tools first:
 
-<p align="center">
-  <a href="https://hugoblox.com/templates/academic-cv/start?utm_source=github&utm_medium=readme"><b>🚀 Deploy Your Free CV in 60s</b></a>
-  &nbsp;•&nbsp;
-  <a href="https://hugoblox.com/templates/?open=academic-cv&loading=true&utm_source=github&utm_medium=readme">Live Demo</a>
-  &nbsp;•&nbsp;
-  <a href="https://hugoblox.com/pro?utm_source=github&utm_medium=readme"><b>✨ Upgrade to Pro</b></a>
-</p>
+- Hugo Extended, preferably matching the deployed version in `netlify.toml`: `0.150.1`
+- Node.js, matching the deployed major version in `netlify.toml`: `22`
+- pnpm, matching `package.json`: `10.14.0`
 
-<p align="center">
-  Trusted by 250,000+ researchers, students, and educators worldwide.
-</p>
-
-<p align="center">
-  <a href="https://discord.gg/z8wNYzb">
-    <img src="https://img.shields.io/discord/722225264733716590?label=Join%20Discord&style=social" alt="Discord">
-  </a>
-  <a href="https://github.com/HugoBlox/theme-academic-cv">
-    <img src="https://img.shields.io/github/stars/HugoBlox/theme-academic-cv?label=Star%20Academic%20CV&style=social" alt="GitHub Stars">
-  </a>
-</p>
-
----
-
-## Your Career Starts Here
-
-The Academic CV template is designed for impact. Whether you're an AI researcher, a recent graduate, or a seasoned professor, this is the last resumé you'll ever need.
-
-- **✍️ Showcase Your Expertise:** Easily write content with Markdown, Jupyter, or RStudio. Display your publications, talks, and projects in a stunning, professional layout.
-- **📈 Boost Your Citations:** Automatic BibTeX import and SEO-optimized pages mean your work gets discovered more easily, increasing your research impact.
-- **💼 Land Your Dream Job:** Create a memorable online presence that impresses recruiters from top tech firms and prestigious universities.
-- **🚀 Launch in Minutes:** No coding required. The Hugo Blox Builder lets you customize everything with drag-and-drop sections.
-
-<p align="center">
-  <a href="https://hugoblox.com/templates/academic-cv/start?utm_source=github&utm_medium=readme">
-    <img src="https://img.shields.io/badge/⚡️%20Get%20Your%20CV%20in%2060s-ff4655?style=for-the-badge" alt="Deploy this template" width="400">
-  </a>
-</p>
-
----
-
-## Level Up with Pro Templates
-
-Ready to take your career to the next level? Our Pro templates offer exclusive designs and features to help you stand out even more.
-
-<!-- <p align="center">
-  <img src="" alt="Free vs Pro templates">
-</p>-->
-
-| Feature              | Academic CV (Free)       | Academic CV Pro & Resumé Pro     |
-| -------------------- | ------------------------ | -------------------------------- |
-| **Design**           | Professional & clean     | **Exclusive premium designs**    |
-| **Layouts**          | Standard resumé sections | **Advanced layouts & timelines** |
-| **Call to Action**   | Simple contact link      | **Prominent CTA buttons**        |
-| **First Impression** | Strong                   | **Unforgettable**                |
-
-<br/>
-<p align="center">
-  <a href="https://hugoblox.com/pro?utm_source=github&utm_medium=readme"><b>💎 Get the Pro Pass</b></a> — Includes all Pro templates for a one-time price.<br/>
-  <a href="https://hugoblox.com/templates/academic-cv-pro/start?utm_source=github&utm_medium=readme">✨ Deploy Academic CV Pro</a>
-  &nbsp;•&nbsp;
-  <a href="https://hugoblox.com/templates/resume-pro/start?utm_source=github&utm_medium=readme">📄 Deploy Resumé Pro</a>
-</p>
-
----
-
-## What Researchers Say
-
-> “Hugo Blox saved me 40+ hours on my lab site. BibTeX integration auto-updates publications — **our citations are up 3×**.”
-> — **Dr. Sarah Yang**, AI Researcher
-
----
-
-## Get Started in Minutes
-
-### Recommended (Fastest)
-
-Deploy your site to GitHub Pages in just 60 seconds with our browser-based starter.
-
-👉 <a href="https://hugoblox.com/templates/academic-cv/start?utm_source=github&utm_medium=readme"><b>Start with the Academic CV Template</b></a>
-
-### Prefer the Command Line?
-
-Use the local quickstart:
+Then run:
 
 ```bash
-# 1. Install Hugo Extended → https://docs.hugoblox.com/getting-started/install-hugo/
-# 2. Clone this starter
-git clone https://github.com/HugoBlox/theme-academic-cv my-site
-cd my-site
-
-# 3. Run locally
-pnpm install && hugo server
+corepack enable
+corepack prepare pnpm@10.14.0 --activate
+pnpm install
+pnpm dev
 ```
 
-For more guides, visit our documentation at **https://docs.hugoblox.com/**.
+Open:
 
----
+```text
+http://localhost:1313/
+```
 
-## Join the Community
+The preview server reloads automatically when you edit content, configuration, or assets.
 
-Join thousands of creators in our vibrant community to ask questions, share your work, and help us improve.
+If the project-local toolchain has been installed under `.tools/`, you can also run:
 
-- 💬 <a href="https://discord.gg/z8wNYzb">Discord</a>
-- 📚 <a href="https://docs.hugoblox.com/?utm_source=github&utm_medium=readme">Docs & Guides</a>
-- 🐦 <a href="https://x.com/BuildLore">X / Twitter</a>
-- ⭐ <a href="https://github.com/HugoBlox/hugo-blox-builder">Star on GitHub</a>
+```bash
+./scripts/dev.sh
+```
 
----
+or call pnpm through:
 
-MIT © 2016-Present [George Cushen](https://georgecushen.com)
+```bash
+./scripts/pnpm.sh check
+```
 
-<!--START_SECTION:news-->
-<!--Updated at 2025-10-19T02:02:33.365Z-->
-<!--END_SECTION:news-->
+## Useful Commands
+
+```bash
+pnpm dev
+```
+
+Start a local preview at `http://localhost:1313/`.
+
+```bash
+pnpm dev:1314
+```
+
+Start a local preview at `http://localhost:1314/` if port `1313` is already occupied.
+
+```bash
+pnpm dev:lan
+```
+
+Start a preview server bound to `0.0.0.0`, useful when previewing from another device on the same network.
+
+```bash
+pnpm build
+```
+
+Build the production site into `public/`.
+
+```bash
+pnpm check
+```
+
+Run a stricter local build with Hugo path and i18n warnings enabled.
+
+## Repository Layout
+
+- `content/`: public website content, including publications, projects, events, and profile pages
+- `config/_default/`: Hugo and HugoBlox configuration
+- `assets/`: source media and custom CSS
+- `static/`: static files copied directly into the published site
+- `layouts/`: local layout overrides and partials
+- `AGENTS.md`: durable notes for AI coding agents working in this repository
+
+## Deployment
+
+Netlify deployment is configured in `netlify.toml`. The production build runs Hugo, then builds a Pagefind search index from the generated `public/` directory.
