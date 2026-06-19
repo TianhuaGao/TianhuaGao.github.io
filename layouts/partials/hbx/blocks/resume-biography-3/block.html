@@ -17,6 +17,7 @@
 {{ $avatar := ($person_page.Resources.ByType "image").GetMatch "*avatar*" }}
 {{ $tsukuba_logo := resources.Get "media/Tsukuba-transparent.png" }}
 {{ $aist_logo := resources.Get "media/AIST-logo.png" }}
+{{ $utokyo_logo := resources.Get "media/UTokyo-logo.svg" }}
 
 {{/* Avatar customization parameters */}}
 {{ $avatar_size := $block.design.avatar.size | default "large" }}
@@ -83,8 +84,8 @@
         {{ end }}
 
         {{/* Name and Role - Centered */}}
-        <div class="space-y-3">
-          <h1 class="text-5xl lg:text-6xl font-black text-gray-900 dark:text-white leading-tight">
+        <div class="bio-profile-copy space-y-3">
+          <h1 class="bio-profile-name text-5xl lg:text-6xl font-black text-gray-900 dark:text-white leading-tight">
             {{- if $person.name_pronunciation -}}
               <ruby>
                 <rb>{{ $person_page.Title }}</rb>
@@ -113,7 +114,7 @@
         </div>
 
         {{/* Social Icons */}}
-        <div class="flex flex-wrap justify-center gap-4">
+        <div class="bio-social-links flex flex-wrap justify-center gap-4">
           {{ range $person.profiles }}
           {{ $pack := or .icon_pack "fas" }}
           {{ $pack_prefix := $pack }}
@@ -161,7 +162,7 @@
 
         {{/* News Section */}}
         {{ with $block.content.news }}
-        <div class="home-news-card mb-10">
+        <div id="news" class="home-news-card mb-10" tabindex="0" aria-label="Website update history">
           <div class="home-news-header">
             <div class="home-news-icon">
               {{ partial "functions/get_icon" (dict "name" "newspaper" "attributes" "class='w-5 h-5'") }}
@@ -192,7 +193,7 @@
         {{/* Bio Section */}}
         {{ with ($block.content.text | emojify | $page.RenderString) | default $person_page.Content }}
         <div class="about-card-section mb-12">
-          <div class="flex items-center gap-4 mb-8">
+          <div class="bio-section-heading flex items-center gap-4 mb-8">
             <div class="flex-shrink-0 w-12 h-12 bg-primary-100 dark:bg-primary-900/50 rounded-full flex items-center justify-center">
               {{ partial "functions/get_icon" (dict "name" "identification" "attributes" "class='w-6 h-6 text-primary-600 dark:text-primary-400'") }}
             </div>
@@ -211,21 +212,10 @@
         </div>
         {{ end }}
 
-        {{/* CV Download Button */}}
-        {{ with $block.content.button }}
-        <div class="mb-16">
-          <a href="{{.url}}" target="_blank" 
-             class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-primary-600 to-secondary-600 hover:from-primary-700 hover:to-secondary-700 text-white font-bold text-lg rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300">
-            {{ partial "functions/get_icon" (dict "name" "document-arrow-down" "attributes" "class='w-5 h-5 mr-3'") }}
-            {{.text}}
-          </a>
-        </div>
-        {{ end }}
-
         {{/* Education Section */}}
         {{ with $person.education }}
         <div class="education-list-section mb-16">
-          <div class="flex items-center gap-4 mb-8">
+          <div class="bio-section-heading flex items-center gap-4 mb-8">
             <div class="flex-shrink-0 w-12 h-12 bg-primary-100 dark:bg-primary-900/50 rounded-full flex items-center justify-center">
               {{ partial "functions/get_icon" (dict "name" "academic-cap" "attributes" "class='w-6 h-6 text-primary-600 dark:text-primary-400'") }}
             </div>
@@ -235,11 +225,15 @@
           <div class="education-list">
             {{ range . }}
             {{ $is_aist := in .institution "AIST" }}
+            {{ $is_tsukuba := in .institution "Tsukuba" }}
+            {{ $is_utokyo := or (in .institution "UTokyo") (in .institution "Tokyo") }}
             <div class="education-list-item group">
-              <div class="education-list-icon{{ if $is_aist }} is-wide{{ end }}">
+              <div class="education-list-icon{{ if $is_aist }} is-wide{{ end }}{{ if $is_utokyo }} is-utokyo{{ end }}">
                 {{ if and $is_aist $aist_logo }}
                   <img src="{{ $aist_logo.RelPermalink }}" alt="AIST" class="education-list-logo education-list-logo-wide">
-                {{ else if $tsukuba_logo }}
+                {{ else if and $is_utokyo $utokyo_logo }}
+                  <img src="{{ $utokyo_logo.RelPermalink }}" alt="The University of Tokyo" class="education-list-logo education-list-logo-utokyo">
+                {{ else if and $is_tsukuba $tsukuba_logo }}
                   <img src="{{ $tsukuba_logo.RelPermalink }}" alt="University of Tsukuba" class="education-list-logo">
                 {{ else }}
                   {{ partial "functions/get_icon" (dict "name" "academic-cap" "attributes" "class='w-5 h-5'") }}
@@ -253,7 +247,17 @@
               </div>
               {{ if or .date_start .date_end }}
               <div class="education-list-date">
-                {{ with .date_start }}{{ time.Format "2006" . }}{{ end }}{{ if and .date_start .date_end }}-{{ end }}{{ with .date_end }}{{ time.Format "2006" . }}{{ end }}
+                {{ $start_year := "" }}
+                {{ $end_year := "" }}
+                {{ with .date_start }}{{ $start_year = time.Format "2006" . }}{{ end }}
+                {{ with .date_end }}{{ $end_year = time.Format "2006" . }}{{ end }}
+                {{ if .current }}
+                  {{ $start_year }}-Present
+                {{ else if and $start_year $end_year }}
+                  {{ if eq $start_year $end_year }}{{ $start_year }}{{ else }}{{ $start_year }}-{{ $end_year }}{{ end }}
+                {{ else }}
+                  {{ $start_year }}{{ $end_year }}
+                {{ end }}
               </div>
               {{ end }}
             </div>
@@ -265,7 +269,7 @@
         {{/* Interests Section */}}
         {{ with $person.interests }}
         <div>
-          <div class="flex items-center gap-4 mb-8">
+          <div class="bio-section-heading flex items-center gap-4 mb-8">
             <div class="flex-shrink-0 w-12 h-12 bg-primary-100 dark:bg-primary-900/50 rounded-full flex items-center justify-center">
               {{ partial "functions/get_icon" (dict "name" "sparkles" "attributes" "class='w-6 h-6 text-primary-600 dark:text-primary-400'") }}
             </div>

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 270" role="img" aria-labelledby="title">
+  <title id="title">Physical Simulation cover</title>
+  <rect width="480" height="270" rx="24" fill="#ecfeff"/>
+  <path d="M88 190h304" stroke="#0891b2" stroke-width="10" stroke-linecap="round" opacity=".18"/>
+  <circle cx="170" cy="124" r="44" fill="#cffafe" stroke="#06b6d4" stroke-width="5"/>
+  <circle cx="310" cy="124" r="44" fill="#cffafe" stroke="#06b6d4" stroke-width="5"/>
+  <path d="M214 124h52" stroke="#0e7490" stroke-width="10" stroke-linecap="round"/>
+  <path d="M154 124h32M170 108v32M294 124h32M310 108v32" stroke="#0e7490" stroke-width="8" stroke-linecap="round"/>
+</svg>
