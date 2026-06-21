@@ -1,0 +1,82 @@
+---
+title: Documentation
+date: 2026-06-19
+type: landing
+aliases:
+  - /tutorials/
+
+sections:
+  - block: markdown
+    content:
+      title: Documentation
+      text: |-
+        <aside class="documentation-side-nav" aria-label="Documentation navigation">
+          <span>Documentation</span>
+          <a href="#environment-configuration">Environment Configuration</a>
+          <a href="#simulation-workflow">Simulation Workflow</a>
+          <a href="#reproduction-notes">Reproduction Notes</a>
+        </aside>
+    design:
+      spacing:
+        padding: [5rem, 0, 0, 0]
+  - block: markdown
+    id: environment-configuration
+    content:
+      title: Environment Configuration
+      text: |-
+        <div class="documentation-doc-grid">
+          <article class="documentation-doc-card">
+            <a class="documentation-doc-cover" href="/documentation/ardupilot-ros2-gazebo/">
+              <img src="/documentation/ardupilot-ros2-gazebo/featured.png" alt="ArduPilot SITL simulation with ROS 2 and Gazebo">
+            </a>
+            <div class="documentation-doc-body">
+              <span class="documentation-doc-kicker">Documentation</span>
+              <h3><a href="/documentation/ardupilot-ros2-gazebo/">Ubuntu 24.04 + ROS 2 Jazzy + Gazebo Harmonic + ArduPilot SITL</a></h3>
+              <p>A 2026 setup record for running ArduPilot SITL with ROS 2 Jazzy and Gazebo Harmonic on Ubuntu 24.04.</p>
+              <div class="documentation-doc-meta">
+                <span>Jun 21, 2026</span>
+                <span>11 min read</span>
+                <a href="/documentation/ardupilot-ros2-gazebo/">Read more</a>
+              </div>
+            </div>
+          </article>
+        </div>
+    design:
+      spacing:
+        padding: [2rem, 0, 3rem, 0]
+  - block: markdown
+    id: simulation-workflow
+    content:
+      title: Simulation Workflow
+      text: |-
+        <div class="documentation-placeholder-grid">
+          <article class="documentation-placeholder-card">
+            <span>Coming Soon</span>
+            <strong>Gazebo Runtime Workflow</strong>
+            <p>Launch, inspect, and debug simulation runs once the environment is ready.</p>
+          </article>
+          <article class="documentation-placeholder-card">
+            <span>Coming Soon</span>
+            <strong>MATLAB Simulink Workflow</strong>
+            <p>Simulation and controller prototyping notes for numerical experiments.</p>
+          </article>
+        </div>
+    design:
+      spacing:
+        padding: [2rem, 0, 2rem, 0]
+  - block: markdown
+    id: reproduction-notes
+    content:
+      title: Reproduction Notes
+      text: |-
+        <div class="documentation-placeholder-grid">
+          <article class="documentation-placeholder-card">
+            <span>Coming Soon</span>
+            <strong>Experiment Reproduction Records</strong>
+            <p>Step-by-step logs for reproducing papers, demos, and research artifacts.</p>
+          </article>
+        </div>
+    design:
+      spacing:
+        padding: [2rem, 0, 4rem, 0]
+---

@@ -16,8 +16,11 @@ sections:
       news:
         title: News
         items:
+          - date: 2026-06-22
+            text: Added SITL simulation documentation for Ubuntu 24.04, ROS 2 Jazzy, Gazebo Harmonic, and ArduPilot.
+            url: /documentation/ardupilot-ros2-gazebo/
           - date: 2026-06-19
-            text: Added new Guides and Tutorials sections to the website.
+            text: Added new Guides and Documentation sections to the website.
             url: /guides/
       visitors:
         title: Visitors
