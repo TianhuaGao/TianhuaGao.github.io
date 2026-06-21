@@ -40,8 +40,8 @@ sections:
           <a class="guide-node guide-node-category" data-node="numerical-simulation" data-preview-title="Numerical Simulation" data-preview-kicker="" data-preview-summary="Numerical modeling and simulation workflows for control and system analysis." data-preview-cover="/images/guides/numerical-simulation.svg" href="/guides/numerical-simulation/" style="--x: 69.5%; --y: 56%;">
             <strong>Numerical Simulation</strong>
           </a>
-          <a class="guide-node" data-node="gazebo" data-preview-title="Gazebo" data-preview-kicker="Physical Simulation" data-preview-summary="Build and run Gazebo-based physical simulation workflows for UAV experiments." data-preview-cover="/images/guides/gazebo.svg" href="/guides/gazebo/" style="--x: 14.5%; --y: 82%;">
-            <span class="guide-node-kicker">Tutorial</span>
+          <a class="guide-node" data-node="gazebo" data-preview-title="Gazebo" data-preview-kicker="Physical Simulation" data-preview-summary="Build and run Gazebo-based physical simulation workflows for UAV experiments." data-preview-cover="/images/guides/gazebo-logo-official.png" href="/guides/gazebo/" style="--x: 14.5%; --y: 82%;">
+            <span class="guide-node-kicker">DOC</span>
             <strong>Gazebo</strong>
           </a>
           <a class="guide-node guide-node-coming" data-node="mujoco" data-preview-title="MuJoCo Simulation" data-preview-kicker="Developing" data-preview-summary="Future MuJoCo simulation guides for robotics and contact-rich experiments." data-preview-cover="/images/guides/mujoco-simulation.svg" href="/guides/mujoco-simulation/" style="--x: 30.5%; --y: 84%;">
@@ -53,7 +53,7 @@ sections:
             <strong>Isaac Sim</strong>
           </a>
           <a class="guide-node" data-node="simulink" data-preview-title="MATLAB Simulink" data-preview-kicker="Numerical Simulation" data-preview-summary="Build numerical simulation and control prototypes with MATLAB and Simulink models." data-preview-cover="/images/guides/matlab-simulink.svg" href="/guides/matlab-simulink/" style="--x: 79%; --y: 83.5%;">
-            <span class="guide-node-kicker">Tutorial</span>
+            <span class="guide-node-kicker">DOC</span>
             <strong>MATLAB Simulink</strong>
           </a>
         </nav>

@@ -1,0 +1,50 @@
+<script>
+  (() => {
+    const themeKey = 'wc-color-theme';
+    const sourceKey = 'tg-theme-source';
+    const autoSource = 'local-time';
+    const manualSource = 'manual';
+    const root = document.documentElement;
+
+    const getTimeTheme = () => {
+      const hour = new Date().getHours();
+      return hour >= 18 || hour < 7 ? 'dark' : 'light';
+    };
+
+    const applyTheme = (theme) => {
+      if (theme === 'dark') {
+        root.classList.add('dark');
+        root.style.colorScheme = 'dark';
+      } else {
+        root.classList.remove('dark');
+        root.style.colorScheme = 'light';
+      }
+    };
+
+    try {
+      const storedTheme = localStorage.getItem(themeKey);
+      const storedSource = localStorage.getItem(sourceKey);
+      const shouldUseTime = !storedTheme || storedSource === autoSource;
+
+      if (shouldUseTime) {
+        const theme = getTimeTheme();
+        localStorage.setItem(themeKey, theme);
+        localStorage.setItem(sourceKey, autoSource);
+        applyTheme(theme);
+      } else {
+        localStorage.setItem(sourceKey, manualSource);
+        applyTheme(storedTheme === 'dark' ? 'dark' : 'light');
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.theme-toggle').forEach((button) => {
+          button.addEventListener('click', () => {
+            localStorage.setItem(sourceKey, manualSource);
+          });
+        });
+      });
+    } catch (_) {
+      applyTheme(getTimeTheme());
+    }
+  })();
+</script>

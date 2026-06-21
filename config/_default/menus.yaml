@@ -19,6 +19,6 @@ main:
   - name: Guides
     url: guides/
     weight: 40
-  - name: Tutorials
-    url: tutorials/
+  - name: Documentation
+    url: documentation/
     weight: 50
