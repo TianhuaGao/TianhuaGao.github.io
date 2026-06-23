@@ -3,6 +3,389 @@ body {
   font-family: "DejaVu Sans", "DejaVu Sans Condensed", Arial, Helvetica, sans-serif;
 }
 
+.hb-attachment-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2.35rem;
+  margin-right: 1.35rem;
+  margin-bottom: 0.55rem;
+  padding: 0.1rem 0.15rem;
+  border-radius: 6px;
+  color: #111827;
+  font-weight: 850;
+  letter-spacing: 0;
+  line-height: 1.2;
+  text-transform: none;
+  transform: translateY(0);
+  transition:
+    color 180ms ease,
+    filter 180ms ease,
+    transform 180ms ease;
+}
+
+.hb-attachment-link:hover,
+.hb-attachment-link:focus-visible {
+  text-decoration: none;
+  transform: translateY(-2px);
+}
+
+.hb-attachment-link:focus-visible {
+  outline: 2px solid rgba(191, 23, 31, 0.34);
+  outline-offset: 4px;
+}
+
+.hb-attachment-link-large {
+  font-size: 1.32rem;
+}
+
+.hb-attachment-link-small {
+  font-size: 1rem;
+}
+
+.hb-attachment-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.2em;
+  height: 1.2em;
+  flex: 0 0 auto;
+  transform: scale(1);
+  transition: transform 180ms ease;
+}
+
+.hb-attachment-icon svg {
+  width: 1.2em;
+  height: 1.2em !important;
+  stroke-width: 2.15;
+}
+
+.hb-pdf-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.08em;
+  height: 1.35em;
+  flex: 0 0 auto;
+  transform: scale(1);
+  transition:
+    filter 180ms ease,
+    transform 180ms ease;
+}
+
+.hb-pdf-logo svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.hb-pdf-page {
+  fill: #ffffff;
+  stroke: #ff1f14;
+  stroke-width: 8;
+  stroke-linejoin: round;
+  transition:
+    fill 180ms ease,
+    stroke 180ms ease;
+}
+
+.hb-pdf-fold {
+  fill: none;
+  stroke: #ff1f14;
+  stroke-width: 8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: stroke 180ms ease;
+}
+
+.hb-pdf-acrobat {
+  stroke: #ff1f14;
+  stroke-width: 6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: stroke 180ms ease;
+}
+
+.hb-pdf-text {
+  fill: #2b2f33;
+  font-family: "DejaVu Sans", "DejaVu Sans Condensed", Arial, Helvetica, sans-serif;
+  font-size: 34px;
+  font-weight: 850;
+  letter-spacing: 0;
+  transition: fill 180ms ease;
+}
+
+.hb-arxiv-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 0.96em;
+  height: 1.36em;
+  flex: 0 0 auto;
+  transform: scale(1);
+  transition:
+    filter 180ms ease,
+    transform 180ms ease;
+}
+
+.hb-arxiv-logo svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.hb-arxiv-mark-gray {
+  stroke: #b9b6b0;
+  stroke-width: 24;
+  transition: stroke 180ms ease;
+}
+
+.hb-arxiv-mark-red-main,
+.hb-arxiv-mark-red-lower {
+  stroke: #bf171f;
+  stroke-width: 24;
+  transition: stroke 180ms ease;
+}
+
+.hb-attachment-link:hover .hb-attachment-icon,
+.hb-attachment-link:focus-visible .hb-attachment-icon,
+.hb-attachment-link:hover .hb-pdf-logo,
+.hb-attachment-link:focus-visible .hb-pdf-logo,
+.hb-attachment-link:hover .hb-arxiv-logo,
+.hb-attachment-link:focus-visible .hb-arxiv-logo {
+  transform: scale(1.08);
+}
+
+.hb-attachment-link:hover .hb-pdf-logo,
+.hb-attachment-link:focus-visible .hb-pdf-logo,
+.hb-attachment-link:hover .hb-arxiv-logo,
+.hb-attachment-link:focus-visible .hb-arxiv-logo {
+  filter: drop-shadow(0 5px 8px rgba(191, 23, 31, 0.22));
+}
+
+.hb-attachment-link:hover .hb-pdf-page,
+.hb-attachment-link:focus-visible .hb-pdf-page {
+  fill: #fff7f6;
+  stroke: #e6332a;
+}
+
+.hb-attachment-link:hover .hb-pdf-fold,
+.hb-attachment-link:focus-visible .hb-pdf-fold,
+.hb-attachment-link:hover .hb-pdf-acrobat,
+.hb-attachment-link:focus-visible .hb-pdf-acrobat {
+  stroke: #e6332a;
+}
+
+.hb-attachment-link:hover .hb-pdf-text,
+.hb-attachment-link:focus-visible .hb-pdf-text {
+  fill: #111827;
+}
+
+.hb-attachment-link:hover .hb-arxiv-mark-red-main,
+.hb-attachment-link:focus-visible .hb-arxiv-mark-red-main,
+.hb-attachment-link:hover .hb-arxiv-mark-red-lower,
+.hb-attachment-link:focus-visible .hb-arxiv-mark-red-lower {
+  stroke: #d6222a;
+}
+
+.hb-attachment-link:hover .hb-arxiv-mark-gray,
+.hb-attachment-link:focus-visible .hb-arxiv-mark-gray {
+  stroke: #9f9c96;
+}
+
+.dark .hb-attachment-link,
+html.dark .hb-attachment-link,
+body.dark .hb-attachment-link {
+  color: #f8fafc;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hb-attachment-link,
+  .hb-attachment-icon,
+  .hb-pdf-logo,
+  .hb-arxiv-logo,
+  .hb-pdf-page,
+  .hb-pdf-fold,
+  .hb-pdf-acrobat,
+  .hb-pdf-text,
+  .hb-arxiv-mark-gray,
+  .hb-arxiv-mark-red-main,
+  .hb-arxiv-mark-red-lower {
+    transition: none;
+  }
+
+  .hb-attachment-link:hover,
+  .hb-attachment-link:focus-visible,
+  .hb-attachment-link:hover .hb-attachment-icon,
+  .hb-attachment-link:focus-visible .hb-attachment-icon,
+  .hb-attachment-link:hover .hb-pdf-logo,
+  .hb-attachment-link:focus-visible .hb-pdf-logo,
+  .hb-attachment-link:hover .hb-arxiv-logo,
+  .hb-attachment-link:focus-visible .hb-arxiv-logo {
+    transform: none;
+  }
+}
+
+.view-citation {
+  position: relative;
+}
+
+.view-citation .publication-venue {
+  font-style: italic;
+}
+
+.publication-hover-card {
+  position: absolute;
+  top: -0.65rem;
+  left: calc(100% + 1.75rem);
+  z-index: 30;
+  width: min(22rem, calc(100vw - 2rem));
+  opacity: 0;
+  pointer-events: none;
+  transform: translate3d(-0.5rem, 0.5rem, 0) scale(0.97);
+  transform-origin: left top;
+  transition:
+    opacity 180ms ease,
+    transform 200ms ease;
+}
+
+.view-citation:hover .publication-hover-card,
+.view-citation:focus-within .publication-hover-card {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+.publication-hover-card-link {
+  display: block;
+  overflow: hidden;
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow:
+    0 18px 42px rgba(15, 23, 42, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  color: inherit;
+  text-decoration: none !important;
+  backdrop-filter: blur(14px);
+}
+
+.publication-hover-card-cover {
+  display: block;
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: linear-gradient(135deg, #eff6ff, #e2e8f0);
+}
+
+.publication-hover-card-cover img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.publication-hover-card-fallback {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background:
+    radial-gradient(circle at 24% 28%, rgba(59, 130, 246, 0.24), transparent 34%),
+    linear-gradient(135deg, rgba(248, 250, 252, 0.95), rgba(226, 232, 240, 0.86));
+}
+
+.publication-hover-card-body {
+  display: grid;
+  gap: 0.45rem;
+  padding: 0.95rem 1rem 1.05rem;
+}
+
+.publication-hover-card-kicker {
+  color: #64748b;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  line-height: 1.25;
+  text-transform: uppercase;
+}
+
+.publication-hover-card-body strong {
+  color: #0f172a;
+  font-size: 0.98rem;
+  font-weight: 850;
+  line-height: 1.28;
+}
+
+.publication-hover-card-summary {
+  color: #475569;
+  font-size: 0.84rem;
+  line-height: 1.48;
+}
+
+html.dark .publication-hover-card-link,
+body.dark .publication-hover-card-link,
+html.theme-dark .publication-hover-card-link,
+body.theme-dark .publication-hover-card-link,
+html[data-bs-theme="dark"] .publication-hover-card-link,
+body[data-bs-theme="dark"] .publication-hover-card-link {
+  border-color: rgba(148, 163, 184, 0.24);
+  background: rgba(15, 23, 42, 0.94);
+  box-shadow:
+    0 18px 42px rgba(0, 0, 0, 0.32),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+html.dark .publication-hover-card-cover,
+body.dark .publication-hover-card-cover,
+html.theme-dark .publication-hover-card-cover,
+body.theme-dark .publication-hover-card-cover,
+html[data-bs-theme="dark"] .publication-hover-card-cover,
+body[data-bs-theme="dark"] .publication-hover-card-cover {
+  background: linear-gradient(135deg, #1e293b, #020617);
+}
+
+html.dark .publication-hover-card-kicker,
+body.dark .publication-hover-card-kicker,
+html.theme-dark .publication-hover-card-kicker,
+body.theme-dark .publication-hover-card-kicker,
+html[data-bs-theme="dark"] .publication-hover-card-kicker,
+body[data-bs-theme="dark"] .publication-hover-card-kicker {
+  color: #93c5fd;
+}
+
+html.dark .publication-hover-card-body strong,
+body.dark .publication-hover-card-body strong,
+html.theme-dark .publication-hover-card-body strong,
+body.theme-dark .publication-hover-card-body strong,
+html[data-bs-theme="dark"] .publication-hover-card-body strong,
+body[data-bs-theme="dark"] .publication-hover-card-body strong {
+  color: #f8fafc;
+}
+
+html.dark .publication-hover-card-summary,
+body.dark .publication-hover-card-summary,
+html.theme-dark .publication-hover-card-summary,
+body.theme-dark .publication-hover-card-summary,
+html[data-bs-theme="dark"] .publication-hover-card-summary,
+body[data-bs-theme="dark"] .publication-hover-card-summary {
+  color: #cbd5e1;
+}
+
+@media (max-width: 1180px) {
+  .publication-hover-card {
+    left: auto;
+    right: 0;
+    top: calc(100% - 0.35rem);
+    transform-origin: right top;
+  }
+}
+
+@media (max-width: 760px) {
+  .publication-hover-card {
+    display: none;
+  }
+}
+
 html {
   scroll-behavior: smooth;
 }

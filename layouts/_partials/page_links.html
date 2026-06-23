@@ -1,0 +1,104 @@
+{{ $is_list := .is_list }}
+{{ $page := .page }}
+
+{{ $built := partial "functions/build_links" (dict "page" $page "is_list" $is_list) }}
+{{ $ctx := cond $is_list "list" "page" }}
+
+{{ $fallbackByKey := dict
+  "btn_pdf" "PDF"
+  "btn_preprint" "Preprint"
+  "btn_doi" "DOI"
+  "btn_code" "Code"
+  "btn_dataset" "Dataset"
+  "btn_model" "Model"
+  "btn_slides" "Slides"
+  "btn_video" "Video"
+  "btn_poster" "Poster"
+  "btn_project" "Project"
+  "btn_site" "Site"
+  "btn_source" "Source Document"
+  "btn_canonical" "Canonical"
+  "btn_crosspost" "Crosspost"
+  "btn_discussion" "Discussion"
+  "btn_event" "Event"
+  "btn_calendar" "Calendar"
+  "btn_registration" "Registration"
+  "btn_demo" "Demo"
+  "btn_cite" "Cite"
+}}
+
+{{ range $built }}
+  {{ if in .contexts $ctx }}
+    {{ $url := .url | default "" }}
+    {{ $scheme := (urls.Parse $url).Scheme }}
+    {{ $target := "" }}
+    {{ $rel := slice }}
+    {{ with .rel }}{{ $rel = . }}{{ end }}
+    {{ if not $scheme }}
+      {{ with ($page.Resources.GetMatch $url) }}
+        {{ $url = .RelPermalink }}
+      {{ else }}
+        {{ $url = $url | relURL }}
+      {{ end }}
+    {{ else if in (slice "http" "https") $scheme }}
+      {{ $target = "target=\"_blank\"" }}
+      {{ $rel = $rel | append "noopener" }}
+    {{ end }}
+
+    {{ $classes := printf "hb-attachment-link %s" (cond $is_list "hb-attachment-link-small" "hb-attachment-link-large") }}
+    {{ $label := .label }}
+    {{ with .labelKey }}
+      {{ if not $label }}
+        {{ $label = (i18n .) | default (index $fallbackByKey .) | default "Link" }}
+      {{ end }}
+    {{ end }}
+    {{ if not $label }}
+      {{ $label = "Link" }}
+    {{ end }}
+
+    {{ $isPdf := eq .type "pdf" }}
+    {{ $isArxiv := and (in $url "arxiv.org") (eq .type "preprint") }}
+    {{ if $isPdf }}
+      {{ $classes = printf "%s hb-attachment-link-pdf" $classes }}
+    {{ end }}
+    {{ if $isArxiv }}
+      {{ $classes = printf "%s hb-attachment-link-arxiv" $classes }}
+      {{ $label = "arXiv" }}
+    {{ end }}
+
+    {{ if eq .type "bibtex" }}
+      <button class="{{ $classes }} js-cite-clipboard cursor-pointer" type="button" data-filename="{{ $url }}">
+        <span class="hb-attachment-icon" aria-hidden="true">
+          {{ partial "functions/get_icon" (dict "name" (.icon | default "hero/document-duplicate") "attributes" "style=\"height: 1em\" class='inline-block'") }}
+        </span>
+        <span>{{ $label }}</span>
+      </button>
+    {{ else }}
+      <a class="{{ $classes }}" href="{{ $url | safeURL }}" {{ $target | safeHTMLAttr }} {{ with $rel }}rel="{{ delimit . " " }}"{{ end }}>
+        {{ if $isArxiv }}
+          <span class="hb-arxiv-logo" aria-hidden="true">
+            <svg viewBox="0 0 190 270" role="img">
+              <path class="hb-arxiv-mark-gray" d="M162 32L70 124c-13 13-13 34 0 47l96 96" fill="none" stroke-linecap="round"/>
+              <path class="hb-arxiv-mark-red-main" d="M12 12l104 104c13 13 13 34 0 47L36 243" fill="none" stroke-linecap="round"/>
+              <path class="hb-arxiv-mark-red-lower" d="M37 243l79-80" fill="none" stroke-linecap="round"/>
+            </svg>
+          </span>
+        {{ else if $isPdf }}
+          <span class="hb-pdf-logo" aria-hidden="true">
+            <svg viewBox="0 0 128 160" role="img">
+              <path class="hb-pdf-page" d="M8 4h78l34 34v114H8z"/>
+              <path class="hb-pdf-fold" d="M86 4v34h34"/>
+              <path class="hb-pdf-acrobat" d="M41 96c14-20 25-47 24-68-.1-8-5-11-9-8-8 6 0 41 19 61 15 16 34 23 39 16 4-7-10-12-31-8-28 5-55 18-61 29-4 7 2 11 9 7 9-5 17-16 24-29" fill="none"/>
+              <text class="hb-pdf-text" x="64" y="134" text-anchor="middle">PDF</text>
+            </svg>
+          </span>
+        {{ else }}
+          <span class="hb-attachment-icon" aria-hidden="true">
+            {{ partial "functions/get_icon" (dict "name" (.icon | default "hero/link") "attributes" "style=\"height: 1em\" class='inline-block'") }}
+          </span>
+        {{ end }}
+        <span>{{ $label }}</span>
+      </a>
+    {{ end }}
+  {{ end }}
+{{ end }}
