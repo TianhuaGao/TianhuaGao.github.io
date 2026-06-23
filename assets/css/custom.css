@@ -3,6 +3,229 @@ body {
   font-family: "DejaVu Sans", "DejaVu Sans Condensed", Arial, Helvetica, sans-serif;
 }
 
+.hb-attachment-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2.35rem;
+  margin-right: 1.35rem;
+  margin-bottom: 0.55rem;
+  padding: 0.1rem 0.15rem;
+  border-radius: 6px;
+  color: #111827;
+  font-weight: 850;
+  letter-spacing: 0;
+  line-height: 1.2;
+  text-transform: none;
+  transform: translateY(0);
+  transition:
+    color 180ms ease,
+    filter 180ms ease,
+    transform 180ms ease;
+}
+
+.hb-attachment-link:hover,
+.hb-attachment-link:focus-visible {
+  text-decoration: none;
+  transform: translateY(-2px);
+}
+
+.hb-attachment-link:focus-visible {
+  outline: 2px solid rgba(191, 23, 31, 0.34);
+  outline-offset: 4px;
+}
+
+.hb-attachment-link-large {
+  font-size: 1.32rem;
+}
+
+.hb-attachment-link-small {
+  font-size: 1rem;
+}
+
+.hb-attachment-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.2em;
+  height: 1.2em;
+  flex: 0 0 auto;
+  transform: scale(1);
+  transition: transform 180ms ease;
+}
+
+.hb-attachment-icon svg {
+  width: 1.2em;
+  height: 1.2em !important;
+  stroke-width: 2.15;
+}
+
+.hb-pdf-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.08em;
+  height: 1.35em;
+  flex: 0 0 auto;
+  transform: scale(1);
+  transition:
+    filter 180ms ease,
+    transform 180ms ease;
+}
+
+.hb-pdf-logo svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.hb-pdf-page {
+  fill: #ffffff;
+  stroke: #ff1f14;
+  stroke-width: 8;
+  stroke-linejoin: round;
+  transition:
+    fill 180ms ease,
+    stroke 180ms ease;
+}
+
+.hb-pdf-fold {
+  fill: none;
+  stroke: #ff1f14;
+  stroke-width: 8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: stroke 180ms ease;
+}
+
+.hb-pdf-acrobat {
+  stroke: #ff1f14;
+  stroke-width: 6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: stroke 180ms ease;
+}
+
+.hb-pdf-text {
+  fill: #2b2f33;
+  font-family: "DejaVu Sans", "DejaVu Sans Condensed", Arial, Helvetica, sans-serif;
+  font-size: 34px;
+  font-weight: 850;
+  letter-spacing: 0;
+  transition: fill 180ms ease;
+}
+
+.hb-arxiv-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 0.96em;
+  height: 1.36em;
+  flex: 0 0 auto;
+  transform: scale(1);
+  transition:
+    filter 180ms ease,
+    transform 180ms ease;
+}
+
+.hb-arxiv-logo svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.hb-arxiv-mark-gray {
+  stroke: #b9b6b0;
+  stroke-width: 24;
+  transition: stroke 180ms ease;
+}
+
+.hb-arxiv-mark-red-main,
+.hb-arxiv-mark-red-lower {
+  stroke: #bf171f;
+  stroke-width: 24;
+  transition: stroke 180ms ease;
+}
+
+.hb-attachment-link:hover .hb-attachment-icon,
+.hb-attachment-link:focus-visible .hb-attachment-icon,
+.hb-attachment-link:hover .hb-pdf-logo,
+.hb-attachment-link:focus-visible .hb-pdf-logo,
+.hb-attachment-link:hover .hb-arxiv-logo,
+.hb-attachment-link:focus-visible .hb-arxiv-logo {
+  transform: scale(1.08);
+}
+
+.hb-attachment-link:hover .hb-pdf-logo,
+.hb-attachment-link:focus-visible .hb-pdf-logo,
+.hb-attachment-link:hover .hb-arxiv-logo,
+.hb-attachment-link:focus-visible .hb-arxiv-logo {
+  filter: drop-shadow(0 5px 8px rgba(191, 23, 31, 0.22));
+}
+
+.hb-attachment-link:hover .hb-pdf-page,
+.hb-attachment-link:focus-visible .hb-pdf-page {
+  fill: #fff7f6;
+  stroke: #e6332a;
+}
+
+.hb-attachment-link:hover .hb-pdf-fold,
+.hb-attachment-link:focus-visible .hb-pdf-fold,
+.hb-attachment-link:hover .hb-pdf-acrobat,
+.hb-attachment-link:focus-visible .hb-pdf-acrobat {
+  stroke: #e6332a;
+}
+
+.hb-attachment-link:hover .hb-pdf-text,
+.hb-attachment-link:focus-visible .hb-pdf-text {
+  fill: #111827;
+}
+
+.hb-attachment-link:hover .hb-arxiv-mark-red-main,
+.hb-attachment-link:focus-visible .hb-arxiv-mark-red-main,
+.hb-attachment-link:hover .hb-arxiv-mark-red-lower,
+.hb-attachment-link:focus-visible .hb-arxiv-mark-red-lower {
+  stroke: #d6222a;
+}
+
+.hb-attachment-link:hover .hb-arxiv-mark-gray,
+.hb-attachment-link:focus-visible .hb-arxiv-mark-gray {
+  stroke: #9f9c96;
+}
+
+.dark .hb-attachment-link,
+html.dark .hb-attachment-link,
+body.dark .hb-attachment-link {
+  color: #f8fafc;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hb-attachment-link,
+  .hb-attachment-icon,
+  .hb-pdf-logo,
+  .hb-arxiv-logo,
+  .hb-pdf-page,
+  .hb-pdf-fold,
+  .hb-pdf-acrobat,
+  .hb-pdf-text,
+  .hb-arxiv-mark-gray,
+  .hb-arxiv-mark-red-main,
+  .hb-arxiv-mark-red-lower {
+    transition: none;
+  }
+
+  .hb-attachment-link:hover,
+  .hb-attachment-link:focus-visible,
+  .hb-attachment-link:hover .hb-attachment-icon,
+  .hb-attachment-link:focus-visible .hb-attachment-icon,
+  .hb-attachment-link:hover .hb-pdf-logo,
+  .hb-attachment-link:focus-visible .hb-pdf-logo,
+  .hb-attachment-link:hover .hb-arxiv-logo,
+  .hb-attachment-link:focus-visible .hb-arxiv-logo {
+    transform: none;
+  }
+}
+
 html {
   scroll-behavior: smooth;
 }

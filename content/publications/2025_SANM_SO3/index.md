@@ -30,6 +30,7 @@ featured: true
 
 hugoblox:
   ids:
+    doi: 10.1109/TMECH.2026.3689054
     arxiv: 2508.14422v3 
 
 links:
@@ -85,4 +86,3 @@ Introduction Video:
 For testbed experiment video:
 
 {{< youtube kDE5079TgCI >}}
-
