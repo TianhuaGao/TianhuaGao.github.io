@@ -16,6 +16,9 @@ sections:
       news:
         title: News
         items:
+          - date: 2026-06-24
+            text: Added PX4 SITL simulation documentation for Ubuntu 24.04, ROS 2 Jazzy, and Gazebo Harmonic.
+            url: /documentation/px4-ros2-gazebo/
           - date: 2026-06-22
             text: Added SITL simulation documentation for Ubuntu 24.04, ROS 2 Jazzy, Gazebo Harmonic, and ArduPilot.
             url: /documentation/ardupilot-ros2-gazebo/

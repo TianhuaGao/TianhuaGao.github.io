@@ -40,6 +40,21 @@ sections:
               </div>
             </div>
           </article>
+          <article class="documentation-doc-card">
+            <a class="documentation-doc-cover" href="/documentation/px4-ros2-gazebo/">
+              <img src="/documentation/px4-ros2-gazebo/featured.png" alt="PX4 SITL simulation with ROS 2 and Gazebo">
+            </a>
+            <div class="documentation-doc-body">
+              <span class="documentation-doc-kicker">Documentation</span>
+              <h3><a href="/documentation/px4-ros2-gazebo/">Ubuntu 24.04 + ROS 2 Jazzy + Gazebo Harmonic + PX4 SITL</a></h3>
+              <p>A 2026 setup record for running PX4 SITL with ROS 2 Jazzy and Gazebo Harmonic on Ubuntu 24.04.</p>
+              <div class="documentation-doc-meta">
+                <span>Jun 24, 2026</span>
+                <span>10 min read</span>
+                <a href="/documentation/px4-ros2-gazebo/">Read more</a>
+              </div>
+            </div>
+          </article>
         </div>
     design:
       spacing:

@@ -1235,24 +1235,25 @@ body[data-bs-theme="dark"] #nav-menu .nav-link.active {
 
 .documentation-side-nav {
   position: fixed;
-  left: max(1.25rem, calc(50vw - 42rem));
+  left: max(0.35rem, calc(50vw - 54rem));
   top: 12rem;
   z-index: 20;
   display: grid;
-  gap: 0.35rem;
-  width: 14rem;
-  padding: 0.8rem;
-  border: 1px solid rgba(148, 163, 184, 0.26);
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.86);
-  box-shadow: 0 16px 34px rgba(15, 23, 42, 0.08);
-  backdrop-filter: blur(14px);
+  gap: 0.25rem;
+  width: 12.5rem;
+  padding: 0.2rem 0 0.2rem 0.85rem;
+  border: 0 !important;
+  border-left: 1px solid rgba(148, 163, 184, 0.34) !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
 }
 
 .documentation-side-nav span {
-  padding: 0.25rem 0.45rem 0.45rem;
+  padding: 0.1rem 0 0.55rem;
   color: #64748b;
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   font-weight: 850;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -1260,10 +1261,10 @@ body[data-bs-theme="dark"] #nav-menu .nav-link.active {
 
 .documentation-side-nav a {
   position: relative;
-  padding: 0.55rem 0.65rem 0.55rem 0.9rem;
+  padding: 0.48rem 0 0.48rem 0.35rem;
   border-radius: 7px;
   color: #334155;
-  font-size: 0.86rem;
+  font-size: 0.82rem;
   font-weight: 760;
   line-height: 1.25;
   text-decoration: none;
@@ -1275,9 +1276,9 @@ body[data-bs-theme="dark"] #nav-menu .nav-link.active {
 
 .documentation-side-nav a::before {
   position: absolute;
-  left: 0.38rem;
+  left: -0.91rem;
   top: 50%;
-  width: 0.18rem;
+  width: 0.16rem;
   height: 0;
   border-radius: 999px;
   background: #2563eb;
@@ -1288,9 +1289,9 @@ body[data-bs-theme="dark"] #nav-menu .nav-link.active {
 
 .documentation-side-nav a:hover,
 .documentation-side-nav a:focus-visible {
-  background: rgba(37, 99, 235, 0.09);
+  background: transparent;
   color: #1d4ed8;
-  transform: translateX(0.18rem);
+  transform: translateX(0.12rem);
 }
 
 .documentation-side-nav a:hover::before,
