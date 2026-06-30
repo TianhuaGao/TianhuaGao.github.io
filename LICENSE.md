@@ -1,21 +1,22 @@
-MIT License
+# Repository Notice: All Rights Reserved
 
-Copyright (c) 2023-present George Cushen (https://georgecushen.com/)
+Copyright (c) 2026-present Tianhua Gao. All rights reserved.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+This repository is published only for viewing and deploying Tianhua Gao's personal academic website.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+Except as required by GitHub's Terms of Service for normal repository hosting, or with explicit written permission from Tianhua Gao, no permission is granted to:
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+- copy, reproduce, or redistribute this repository or substantial portions of it;
+- modify, adapt, translate, or create derivative works from it;
+- sublicense, sell, or otherwise use it for commercial or public redistribution;
+- use Tianhua Gao's name, likeness, biography, publications, images, designs, or other personal website content in another product, website, dataset, or service.
+
+The repository is provided "as is", without warranty of any kind.
+
+## Third-party materials
+
+This notice applies to Tianhua Gao's original website content, site-specific configuration, assets, text, images, and custom code.
+
+This repository may include or be derived from third-party templates, themes, libraries, workflows, or dependencies. Those third-party materials remain governed by their own license terms. In particular, portions of the original Hugo Blox starter/template are copyright George Cushen and licensed under the MIT License.
+
+Nothing in this notice changes the rights granted by third-party licenses or by earlier versions of this repository that were published under a different license.
