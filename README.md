@@ -83,3 +83,11 @@ Run a stricter local build with Hugo path and i18n warnings enabled.
 ## Deployment
 
 Netlify deployment is configured in `netlify.toml`. The production build runs Hugo, then builds a Pagefind search index from the generated `public/` directory.
+
+## License
+
+This repository is source-available for viewing and deploying Tianhua Gao's personal academic website. Tianhua Gao's original content, assets, site-specific configuration, and custom code are all rights reserved unless explicit written permission is granted.
+
+Copying, modification, redistribution, sublicensing, or derivative development from this repository is not permitted.
+
+Third-party templates, themes, libraries, workflows, and dependencies remain under their respective licenses. See `LICENSE.md` for details.
