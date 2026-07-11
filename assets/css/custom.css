@@ -3360,7 +3360,7 @@ body[data-bs-theme="dark"] .about-card-body .bio-text p {
 }
 
 .space-home-hero #mapmyvisitors-widget .jvectormap-marker {
-  fill: #ffffff !important;
+  fill: #ff5353 !important;
   stroke: #06090d !important;
   stroke-width: 0.8 !important;
 }
@@ -3615,4 +3615,210 @@ body[data-bs-theme="dark"] .about-card-body .bio-text p {
 #site-header .theme-toggle svg {
   fill: none !important;
   stroke: currentColor !important;
+}
+
+/* Daylight treatment for the manifold homepage. */
+html:not(.dark) .space-home-hero {
+  color: #17212a;
+  background: #f4f6f5 !important;
+}
+
+html:not(.dark) .space-home-hero::before {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.14), transparent 30%, rgba(218, 227, 233, 0.7));
+}
+
+html:not(.dark) .space-home-hero .resume-biography {
+  background:
+    linear-gradient(90deg, rgba(250, 250, 247, 0.97) 0%, rgba(247, 248, 247, 0.82) 48%, rgba(236, 242, 246, 0.14) 100%),
+    var(--space-hero-bg-light) center / cover no-repeat fixed;
+}
+
+html:not(.dark) .space-home-hero .avatar {
+  border-color: rgba(22, 33, 42, 0.52) !important;
+  box-shadow: 0 22px 58px rgba(48, 62, 73, 0.2) !important;
+}
+
+html:not(.dark) .space-home-hero .bio-profile-name,
+html:not(.dark) .space-home-hero .bio-profile-copy > p,
+html:not(.dark) .space-home-hero .bio-profile-copy a,
+html:not(.dark) .space-home-hero :is(h2, h3, p, span, time, .bio-text, .education-list-title) {
+  color: #111a22 !important;
+}
+
+html:not(.dark) .space-home-hero .space-memberships {
+  border-top-color: rgba(24, 38, 49, 0.24);
+}
+
+html:not(.dark) .space-home-hero .space-memberships .space-memberships-title {
+  color: rgba(26, 42, 54, 0.58) !important;
+}
+
+html:not(.dark) .space-home-hero .space-memberships-list li {
+  color: rgba(24, 37, 47, 0.78) !important;
+}
+
+html:not(.dark) .space-home-hero .space-memberships-list li::before {
+  color: rgba(35, 53, 66, 0.42);
+}
+
+html:not(.dark) .space-home-hero .space-outline-button {
+  border-color: #17232c;
+  color: #17232c !important;
+}
+
+html:not(.dark) .space-home-hero .space-outline-button::before {
+  background: #17232c;
+}
+
+html:not(.dark) .space-home-hero .space-outline-button:hover,
+html:not(.dark) .space-home-hero .space-outline-button:hover span {
+  color: #ffffff !important;
+}
+
+html:not(.dark) .space-home-hero .space-text-link {
+  color: #263845 !important;
+}
+
+html:not(.dark) .space-home-hero .home-news-header,
+html:not(.dark) .space-home-hero .bio-section-heading,
+html:not(.dark) .space-home-hero .home-visitors-header {
+  border-top-color: rgba(24, 38, 49, 0.42);
+  border-bottom-color: rgba(24, 38, 49, 0.14);
+}
+
+html:not(.dark) .space-home-hero .home-news-header::before,
+html:not(.dark) .space-home-hero .about-card-section .bio-section-heading::before,
+html:not(.dark) .space-home-hero .education-list-section .bio-section-heading::before,
+html:not(.dark) .space-home-hero .space-content-rail > div:last-child .bio-section-heading::before {
+  color: rgba(28, 43, 54, 0.5);
+}
+
+html:not(.dark) .space-home-hero .home-news-list,
+html:not(.dark) .space-home-hero .education-list-item,
+html:not(.dark) .space-home-hero .education-list-item:hover {
+  border-color: rgba(25, 39, 50, 0.16) !important;
+}
+
+html:not(.dark) .space-home-hero .education-list-institution,
+html:not(.dark) .space-home-hero .education-list-date {
+  color: rgba(28, 43, 54, 0.62) !important;
+}
+
+html:not(.dark) .space-home-hero .education-list-icon.is-tsukuba::before {
+  background: #7255c9;
+}
+
+html:not(.dark) .space-home-hero .flex.flex-wrap.gap-3 > span {
+  border-bottom-color: rgba(28, 43, 54, 0.34) !important;
+  color: #263845 !important;
+}
+
+html:not(.dark) .space-home-hero .bio-social-links a {
+  border-bottom-color: rgba(24, 38, 49, 0.42) !important;
+  color: #1b2a35 !important;
+}
+
+html:not(.dark) .space-home-hero .visitors-map-block #mapmyvisitors-widget {
+  border-top-color: rgba(24, 38, 49, 0.26) !important;
+  border-bottom-color: rgba(24, 38, 49, 0.26) !important;
+  color: #17232c !important;
+}
+
+html:not(.dark) .space-home-hero #mapmyvisitors-widget .mapmyvisitors-visitors {
+  color: rgba(24, 38, 49, 0.68) !important;
+}
+
+html:not(.dark) .space-home-hero #mapmyvisitors-widget .mapmyvisitors-map {
+  isolation: isolate;
+  background-image: none !important;
+  filter: none;
+}
+
+html:not(.dark) .space-home-hero #mapmyvisitors-widget .mapmyvisitors-map::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  background: transparent url("/images/visitor-world-map-transparent.svg") center / 100% 100% no-repeat;
+  filter: brightness(0.76) contrast(0.9);
+  opacity: 0.82;
+  pointer-events: none;
+}
+
+html:not(.dark) .space-home-hero #mapmyvisitors-widget .jvectormap-container {
+  position: relative;
+  z-index: 1;
+}
+
+html:not(.dark) .space-home-hero #mapmyvisitors-widget .jvectormap-marker {
+  r: 2.5px;
+  fill: #ff5353 !important;
+  fill-opacity: 0.94 !important;
+  stroke: #f8fafb !important;
+  stroke-opacity: 1 !important;
+  stroke-width: 1 !important;
+}
+
+html:not(.dark) .space-home-hero #mapmyvisitors-widget .jvectormap-marker[data-index="0"] {
+  r: 4.5px;
+  fill: #ff5353 !important;
+  stroke-width: 1.2 !important;
+}
+
+html:not(.dark) .space-home-hero #mapmyvisitors-widget::after {
+  color: rgba(24, 38, 49, 0.46);
+}
+
+html:not(.dark) .page-header {
+  border-bottom-color: rgba(24, 38, 49, 0.16) !important;
+  background: rgba(248, 249, 247, 0.94) !important;
+  color: #17232c !important;
+}
+
+html:not(.dark) #site-header,
+html:not(.dark) #site-header .navbar,
+html:not(.dark) #nav-menu {
+  background: transparent !important;
+}
+
+html:not(.dark) #nav-menu .nav-link {
+  border-color: rgba(24, 38, 49, 0.14) !important;
+  color: rgba(20, 32, 41, 0.7) !important;
+}
+
+html:not(.dark) #nav-menu .nav-link:hover,
+html:not(.dark) #nav-menu .nav-link:focus-visible,
+html:not(.dark) #nav-menu .nav-link.active {
+  color: #0d151b !important;
+}
+
+html:not(.dark) #nav-menu .nav-link::after {
+  background: #17232c;
+}
+
+html:not(.dark) #site-header [data-search-toggle],
+html:not(.dark) #site-header .theme-toggle,
+html:not(.dark) #site-header label[for="nav-toggle"] {
+  color: rgba(20, 32, 41, 0.72) !important;
+}
+
+html:not(.dark) #site-header [data-search-toggle]:hover,
+html:not(.dark) #site-header [data-search-toggle]:focus-visible,
+html:not(.dark) #site-header .theme-toggle:hover,
+html:not(.dark) #site-header .theme-toggle:focus-visible,
+html:not(.dark) #site-header label[for="nav-toggle"]:hover {
+  color: #0d151b !important;
+}
+
+@media (max-width: 1023px) {
+  html:not(.dark) #nav-menu {
+    background: #f8f9f7 !important;
+  }
+}
+
+@media (max-width: 767px) {
+  html:not(.dark) .space-home-hero .resume-biography {
+    background-attachment: scroll;
+    background-position: 62% center;
+  }
 }

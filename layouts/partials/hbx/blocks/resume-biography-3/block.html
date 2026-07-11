@@ -19,6 +19,7 @@
 {{ $aist_logo := resources.Get "media/AIST-logo.png" }}
 {{ $utokyo_logo := resources.Get "media/UTokyo-logo.svg" }}
 {{ $space_bg := resources.Get "media/hero-options/hero-manifold-lines.svg" }}
+{{ $space_bg_light := resources.Get "media/hero-options/hero-manifold-lines-light.svg" }}
 
 {{/* Avatar customization parameters */}}
 {{ $avatar_size := $block.design.avatar.size | default "large" }}
@@ -34,7 +35,7 @@
 {{ $shape_classes := dict "circle" "rounded-full" "square" "rounded-none" "rounded" "rounded-lg" }}
 {{ $shape_class := index $shape_classes $avatar_shape | default "rounded-full" }}
 
-<div class="resume-biography py-6 px-4 sm:py-8 md:py-10 lg:py-12 xl:py-14 relative overflow-hidden"{{ with $space_bg }} style="--space-hero-bg: url('{{ .RelPermalink }}')"{{ end }}>
+<div class="resume-biography py-6 px-4 sm:py-8 md:py-10 lg:py-12 xl:py-14 relative overflow-hidden"{{ with $space_bg }} style="--space-hero-bg: url('{{ .RelPermalink }}');{{ with $space_bg_light }} --space-hero-bg-light: url('{{ .RelPermalink }}');{{ end }}"{{ end }}>
   {{/* Add subtle top gradient for navbar transition */}}
   <div class="bio-layout-container mx-auto">
     <div class="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-10 lg:gap-12 items-start">
@@ -171,6 +172,23 @@
           </div>
           <div class="home-visitors-body">
             {{ .html | safeHTML }}
+            <script>
+              (() => {
+                const card = document.currentScript.closest('.home-visitors-card');
+                const promoteCurrentVisitor = () => {
+                  const currentVisitor = card?.querySelector('.jvectormap-marker[data-index="0"]');
+                  const markerLayer = currentVisitor?.parentElement;
+
+                  if (markerLayer && markerLayer.lastElementChild !== currentVisitor) {
+                    markerLayer.appendChild(currentVisitor);
+                  }
+                };
+
+                const markerObserver = new MutationObserver(promoteCurrentVisitor);
+                markerObserver.observe(card, { childList: true, subtree: true });
+                promoteCurrentVisitor();
+              })();
+            </script>
           </div>
         </div>
         {{ end }}

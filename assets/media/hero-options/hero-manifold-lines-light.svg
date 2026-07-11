@@ -1,14 +1,14 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#020406"/>
-      <stop offset="0.52" stop-color="#090e14"/>
-      <stop offset="1" stop-color="#172431"/>
+      <stop offset="0" stop-color="#f8f8f5"/>
+      <stop offset="0.52" stop-color="#edf1f3"/>
+      <stop offset="1" stop-color="#d5e0e8"/>
     </linearGradient>
     <linearGradient id="line" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="#5d6d7c" stop-opacity="0.08"/>
-      <stop offset="0.48" stop-color="#9aabba" stop-opacity="0.34"/>
-      <stop offset="1" stop-color="#6f8294" stop-opacity="0.16"/>
+      <stop offset="0" stop-color="#71818d" stop-opacity="0.1"/>
+      <stop offset="0.48" stop-color="#506474" stop-opacity="0.38"/>
+      <stop offset="1" stop-color="#6e8495" stop-opacity="0.2"/>
     </linearGradient>
   </defs>
   <rect width="1920" height="1080" fill="url(#bg)"/>
@@ -33,6 +33,6 @@
       <path d="M1580 410 C1575 535 1590 650 1625 735"/>
     </g>
     <path d="M245 690 C530 555 735 430 930 468 C1135 508 1280 700 1510 662 C1645 640 1745 575 1845 520"
-          fill="none" stroke="#b2c0cc" stroke-opacity="0.38" stroke-width="3"/>
+          fill="none" stroke="#41596a" stroke-opacity="0.48" stroke-width="3"/>
   </g>
 </svg>
