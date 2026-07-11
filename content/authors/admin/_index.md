@@ -27,8 +27,7 @@ role: Ph.D. in Engineering
 
 # Organizations/Affiliations to display in Biography blox
 organizations:
-  - name: University of Tsukuba
-    url: https://www.tsukuba.ac.jp/en/
+  - name: University of Tokyo, University of Tsukuba
 
 # Social network links
 # Need to use another icon? Simply download the SVG icon to your `assets/media/icons/` folder.
@@ -171,4 +170,4 @@ awards:
 
 ---
 
-Tianhua Gao received the Ph.D. degree from the Graduate School of Systems and Information Engineering, University of Tsukuba, Japan, in March 2026. He was awarded the University of Tsukuba Fellowship and the JST SPRING Scholarship. He was also a Research Assistant at the Intelligent Systems Research Institute, National Institute of Advanced Industrial Science and Technology (AIST), Japan. His research interests focus on integrating control theory and neuroscience to advance the field of machine intelligence and control.
+I received my Ph.D. degree from the Graduate School of Systems and Information Engineering at the University of Tsukuba, Japan, in March 2026. Since July 2026, I have been an Associated Researcher at the University of Tokyo, Japan. From 2022 to 2026, I was a Research Assistant at the Intelligent Systems Research Institute, National Institute of Advanced Industrial Science and Technology (AIST), Japan. From 2023 to 2026, I was supported by the University of Tsukuba Fellowship and the JST SPRING Scholarship. My research interests include learning-based control, aerial robotics, unmanned systems, and the integration of control theory and neuroscience for machine intelligence and control.

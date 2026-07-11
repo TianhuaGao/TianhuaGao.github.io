@@ -18,6 +18,7 @@
 {{ $tsukuba_logo := resources.Get "media/Tsukuba-transparent.png" }}
 {{ $aist_logo := resources.Get "media/AIST-logo.png" }}
 {{ $utokyo_logo := resources.Get "media/UTokyo-logo.svg" }}
+{{ $space_bg := resources.Get "media/gravitywell_steelblue_highcontrast.jpg" }}
 
 {{/* Avatar customization parameters */}}
 {{ $avatar_size := $block.design.avatar.size | default "large" }}
@@ -33,13 +34,14 @@
 {{ $shape_classes := dict "circle" "rounded-full" "square" "rounded-none" "rounded" "rounded-lg" }}
 {{ $shape_class := index $shape_classes $avatar_shape | default "rounded-full" }}
 
-<div class="resume-biography py-6 px-4 sm:py-8 md:py-10 lg:py-12 xl:py-14 relative overflow-hidden">
+<div class="resume-biography py-6 px-4 sm:py-8 md:py-10 lg:py-12 xl:py-14 relative overflow-hidden"{{ with $space_bg }} style="--space-hero-bg: url('{{ .RelPermalink }}')"{{ end }}>
+  <div class="space-hero-orbit" aria-hidden="true"></div>
   {{/* Add subtle top gradient for navbar transition */}}
   <div class="bio-layout-container mx-auto">
     <div class="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-10 lg:gap-12 items-start">
       
       {{/* Left Column: Flexible span */}}
-      <div class="md:col-span-4 lg:col-span-4 flex flex-col items-center text-center space-y-6 md:space-y-8">
+      <div class="md:col-span-4 lg:col-span-4 flex flex-col items-center text-center space-y-6 md:space-y-8 space-profile-rail">
         
         {{/* Banner Image */}}
         {{ $img := "" }}
@@ -111,6 +113,24 @@
               {{ if .url }}</a>{{ end }}
             </p>
           {{ end }}
+
+          {{ with $block.content.memberships }}
+          <div class="space-memberships">
+            <p class="space-memberships-title">{{ .title | default "Professional Memberships" }}</p>
+            <ul class="space-memberships-list">
+              {{ range .items }}<li>{{ . }}</li>{{ end }}
+            </ul>
+          </div>
+          {{ end }}
+          <div class="space-hero-actions">
+            <a class="space-outline-button" href="#papers"><span>Explore research</span></a>
+            {{ with $block.content.button }}
+            {{ $action_target := "" }}
+            {{ $action_scheme := (urls.Parse .url).Scheme }}
+            {{ if in (slice "http" "https") $action_scheme }}{{ $action_target = "target=\"_blank\" rel=\"noopener\"" }}{{ end }}
+            <a class="space-text-link" href="{{ .url | safeURL }}" {{ $action_target | safeHTMLAttr }}>{{ .text }} <span aria-hidden="true">↗</span></a>
+            {{ end }}
+          </div>
         </div>
 
         {{/* Social Icons */}}
@@ -143,7 +163,7 @@
 
         {{/* Visitors */}}
         {{ with $block.content.visitors }}
-        <div class="home-visitors-card">
+        <div id="visitors" class="home-visitors-card">
           <div class="home-visitors-header">
             <div class="home-visitors-icon">
               {{ partial "functions/get_icon" (dict "name" "globe-alt" "attributes" "class='w-5 h-5'") }}
@@ -158,7 +178,7 @@
       </div>
 
       {{/* Right Column: Flexible span */}}
-      <div class="md:col-span-8 lg:col-span-8">
+      <div class="md:col-span-8 lg:col-span-8 space-content-rail">
 
         {{/* News Section */}}
         {{ with $block.content.news }}
@@ -228,13 +248,13 @@
             {{ $is_tsukuba := in .institution "Tsukuba" }}
             {{ $is_utokyo := or (in .institution "UTokyo") (in .institution "Tokyo") }}
             <div class="education-list-item group">
-              <div class="education-list-icon{{ if $is_aist }} is-wide{{ end }}{{ if $is_utokyo }} is-utokyo{{ end }}">
+              <div class="education-list-icon{{ if $is_aist }} is-wide{{ end }}{{ if $is_utokyo }} is-utokyo{{ end }}{{ if $is_tsukuba }} is-tsukuba{{ end }}">
                 {{ if and $is_aist $aist_logo }}
                   <img src="{{ $aist_logo.RelPermalink }}" alt="AIST" class="education-list-logo education-list-logo-wide">
                 {{ else if and $is_utokyo $utokyo_logo }}
                   <img src="{{ $utokyo_logo.RelPermalink }}" alt="The University of Tokyo" class="education-list-logo education-list-logo-utokyo">
                 {{ else if and $is_tsukuba $tsukuba_logo }}
-                  <img src="{{ $tsukuba_logo.RelPermalink }}" alt="University of Tsukuba" class="education-list-logo">
+                  <img src="{{ $tsukuba_logo.RelPermalink }}" alt="University of Tsukuba" class="education-list-logo education-list-logo-tsukuba">
                 {{ else }}
                   {{ partial "functions/get_icon" (dict "name" "academic-cap" "attributes" "class='w-5 h-5'") }}
                 {{ end }}
