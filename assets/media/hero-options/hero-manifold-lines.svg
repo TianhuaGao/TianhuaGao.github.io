@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#020406"/>
+      <stop offset="0.52" stop-color="#090e14"/>
+      <stop offset="1" stop-color="#172431"/>
+    </linearGradient>
+    <linearGradient id="line" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#5d6d7c" stop-opacity="0.08"/>
+      <stop offset="0.48" stop-color="#9aabba" stop-opacity="0.34"/>
+      <stop offset="1" stop-color="#6f8294" stop-opacity="0.16"/>
+    </linearGradient>
+  </defs>
+  <rect width="1920" height="1080" fill="url(#bg)"/>
+  <g fill="none" stroke="url(#line)" stroke-width="2">
+    <path d="M190 795 C430 665 650 535 865 555 C1105 578 1260 825 1515 780 C1640 758 1740 690 1855 620"/>
+    <path d="M190 748 C425 620 650 500 872 525 C1100 551 1270 772 1510 735 C1630 716 1740 650 1855 585"/>
+    <path d="M195 700 C430 580 655 465 885 495 C1110 526 1280 719 1510 690 C1635 675 1745 613 1850 555"/>
+    <path d="M205 651 C435 540 665 431 895 466 C1112 500 1290 666 1510 646 C1630 635 1738 580 1840 526"/>
+    <path d="M220 602 C450 495 675 398 910 439 C1115 475 1300 615 1510 604 C1630 598 1730 548 1825 500"/>
+    <path d="M240 552 C470 453 690 367 925 414 C1120 453 1315 565 1510 564 C1625 564 1720 521 1810 478"/>
+    <path d="M265 502 C490 414 710 338 940 391 C1125 433 1320 518 1510 526 C1620 531 1712 495 1790 458"/>
+    <path d="M300 452 C515 375 730 312 958 370 C1130 414 1330 474 1510 491 C1615 500 1700 470 1770 440"/>
+    <path d="M365 306 C375 475 430 635 545 842"/>
+    <path d="M505 265 C515 450 575 632 675 875"/>
+    <path d="M650 238 C660 430 720 630 810 900"/>
+    <path d="M805 228 C810 420 855 635 945 916"/>
+    <path d="M970 235 C970 430 1000 640 1080 914"/>
+    <path d="M1135 258 C1130 450 1150 652 1215 892"/>
+    <path d="M1295 300 C1285 480 1300 665 1355 850"/>
+    <path d="M1445 355 C1435 512 1450 666 1498 795"/>
+    <path d="M1580 410 C1575 535 1590 650 1625 735"/>
+  </g>
+  <path d="M245 690 C530 555 735 430 930 468 C1135 508 1280 700 1510 662 C1645 640 1745 575 1845 520"
+        fill="none" stroke="#b2c0cc" stroke-opacity="0.38" stroke-width="3"/>
+</svg>

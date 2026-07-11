@@ -18,7 +18,7 @@
 {{ $tsukuba_logo := resources.Get "media/Tsukuba-transparent.png" }}
 {{ $aist_logo := resources.Get "media/AIST-logo.png" }}
 {{ $utokyo_logo := resources.Get "media/UTokyo-logo.svg" }}
-{{ $space_bg := resources.Get "media/gravitywell_steelblue_highcontrast.jpg" }}
+{{ $space_bg := resources.Get "media/hero-options/hero-manifold-lines.svg" }}
 
 {{/* Avatar customization parameters */}}
 {{ $avatar_size := $block.design.avatar.size | default "large" }}
@@ -35,7 +35,6 @@
 {{ $shape_class := index $shape_classes $avatar_shape | default "rounded-full" }}
 
 <div class="resume-biography py-6 px-4 sm:py-8 md:py-10 lg:py-12 xl:py-14 relative overflow-hidden"{{ with $space_bg }} style="--space-hero-bg: url('{{ .RelPermalink }}')"{{ end }}>
-  <div class="space-hero-orbit" aria-hidden="true"></div>
   {{/* Add subtle top gradient for navbar transition */}}
   <div class="bio-layout-container mx-auto">
     <div class="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-10 lg:gap-12 items-start">
