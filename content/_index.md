@@ -30,7 +30,7 @@ sections:
         html: |
           <div class="visitors-map-block">
             <script type='text/javascript' id='mapmyvisitors'
-              src='https://mapmyvisitors.com/map.js?cl=78828d&w=320&t=tt&d=8qEclr0ZrJSCsBmLm_UzUi6VHCoFchZ1lngCvTQbj10&co=000000&ct=b9c0c8&cmo=ffffff&cmn=ffffff'>
+              src='https://mapmyvisitors.com/map.js?cl=78828d&w=320&t=tt&d=8qEclr0ZrJSCsBmLm_UzUi6VHCoFchZ1lngCvTQbj10&co=000000&ct=b9c0c8&cmo=ff5353&cmn=ff5353'>
             </script>
           </div>
       button:
