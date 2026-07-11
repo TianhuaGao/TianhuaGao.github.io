@@ -30,18 +30,27 @@ sections:
         html: |
           <div class="visitors-map-block">
             <script type='text/javascript' id='mapmyvisitors'
-              src='https://mapmyvisitors.com/map.js?cl=ffffff&w=320&t=tt&d=8qEclr0ZrJSCsBmLm_UzUi6VHCoFchZ1lngCvTQbj10&co=4d5a72&ct=ffffff&cmo=3acc3a&cmn=ff5353'>
+              src='https://mapmyvisitors.com/map.js?cl=78828d&w=320&t=tt&d=8qEclr0ZrJSCsBmLm_UzUi6VHCoFchZ1lngCvTQbj10&co=000000&ct=b9c0c8&cmo=ffffff&cmn=ffffff'>
             </script>
           </div>
       button:
-        text: Download CV
-        url: uploads/resume.pdf
+        text: Contact Me
+        url: mailto:gao.tianhua.tkb_gb@u.tsukuba.ac.jp
+      memberships:
+        title: Professional Memberships
+        items:
+          - Member, Institute of Electrical and Electronics Engineers (IEEE)
+          - Member, IEEE Control Systems Society (CSS)
+          - Member, IEEE Robotics and Automation Society (RAS)
+          - Member, IEEE Industrial Electronics Society (IES)
+          - Member, American Society of Mechanical Engineers (ASME)
+          - Member, American Mathematical Society (AMS)
       headings:
         about: 'About Me'
         education: 'Academic Experience'
         interests: 'Research Interests'
     design:
-      css_class: custom-hero-gradient
+      css_class: custom-hero-gradient space-home-hero
       avatar:
         size: medium
         shape: circle
