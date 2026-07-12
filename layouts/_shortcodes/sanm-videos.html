@@ -1,0 +1,22 @@
+{{- $primary := .Get "primary" -}}
+{{- $secondary := .Get "secondary" -}}
+<div class="sanm-video-grid">
+  <article class="sanm-video-card">
+    <div class="sanm-video-card-head">
+      <span>01</span>
+      <p>Framework &amp; flight</p>
+    </div>
+    <div class="sanm-video-frame">
+      <iframe src="https://www.youtube-nocookie.com/embed/{{ $primary }}?rel=0" title="Sliced Learning framework and flight experiments" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+  </article>
+  <article class="sanm-video-card">
+    <div class="sanm-video-card-head">
+      <span>02</span>
+      <p>Wind &amp; impact testbed</p>
+    </div>
+    <div class="sanm-video-frame">
+      <iframe src="https://www.youtube-nocookie.com/embed/{{ $secondary }}?rel=0" title="Wind and impact disturbance testbed experiments" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+  </article>
+</div>

@@ -1,0 +1,104 @@
+{{ $item := .item }}
+{{ $video := $item.Resources.GetMatch "hero-loop.mp4" }}
+{{ $poster := $item.Resources.GetMatch "hero-poster.webp" }}
+
+{{ if and (eq .index 0) $video }}
+  {{ $title_id := printf "featured-research-title-%s" $item.File.UniqueID }}
+
+  <article class="featured-research-hero" aria-labelledby="{{ $title_id }}">
+    <div class="featured-research-media" aria-hidden="true">
+      {{ with $poster }}
+        <img class="featured-research-poster" src="{{ .RelPermalink }}" alt="" width="1280" height="720">
+      {{ end }}
+      {{ with $video }}
+        <video class="featured-research-video" muted loop playsinline preload="metadata" disablepictureinpicture disableremoteplayback tabindex="-1"{{ with $poster }} poster="{{ .RelPermalink }}"{{ end }}>
+          <source src="{{ .RelPermalink }}" type="{{ .MediaType.Type }}">
+        </video>
+      {{ end }}
+    </div>
+
+    <div class="featured-research-shade" aria-hidden="true"></div>
+
+    <div class="featured-research-content">
+      <div class="featured-research-copy">
+        <p class="featured-research-kicker">Featured Research · {{ $item.Date.Format "2006" }}</p>
+        <p class="featured-research-venue">{{ $item.Params.publication_short | default $item.Params.publication }}</p>
+        <h2 id="{{ $title_id }}" class="featured-research-title">{{ $item.Title }}</h2>
+        {{ with $item.Params.summary }}
+          <p class="featured-research-summary">{{ . | plainify | htmlUnescape | truncate 220 }}</p>
+        {{ end }}
+        <a class="featured-research-link" href="{{ $item.RelPermalink }}">
+          <span>Explore the research</span>
+          <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </div>
+
+    {{ with $video }}
+      <button class="featured-research-motion" type="button" aria-label="Pause background video" aria-pressed="false">
+        <span class="featured-research-motion-mark" aria-hidden="true"></span>
+        <span data-motion-label>Pause motion</span>
+      </button>
+    {{ end }}
+  </article>
+
+  {{ with $video }}
+    <script>
+      (() => {
+        const script = document.currentScript;
+        const hero = script.previousElementSibling;
+        const video = hero?.querySelector('.featured-research-video');
+        const button = hero?.querySelector('.featured-research-motion');
+        const label = button?.querySelector('[data-motion-label]');
+
+        if (!video || !button || !label) return;
+
+        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+        let isVisible = false;
+        let isPaused = reducedMotion.matches;
+
+        const renderState = () => {
+          const shouldPlay = isVisible && !isPaused && !reducedMotion.matches;
+
+          if (shouldPlay) {
+            video.play().catch(() => {});
+          } else {
+            video.pause();
+          }
+
+          button.setAttribute('aria-pressed', String(!shouldPlay));
+          button.setAttribute('aria-label', shouldPlay ? 'Pause background video' : 'Play background video');
+          label.textContent = shouldPlay ? 'Pause motion' : 'Play motion';
+          button.classList.toggle('is-paused', !shouldPlay);
+        };
+
+        button.addEventListener('click', () => {
+          isPaused = !video.paused;
+          renderState();
+        });
+
+        const observer = new IntersectionObserver(([entry]) => {
+          isVisible = entry.isIntersecting && entry.intersectionRatio >= 0.25;
+          renderState();
+        }, { threshold: [0, 0.25, 0.6] });
+
+        observer.observe(hero);
+
+        const handleMotionPreference = () => {
+          isPaused = reducedMotion.matches;
+          renderState();
+        };
+
+        if (reducedMotion.addEventListener) {
+          reducedMotion.addEventListener('change', handleMotionPreference);
+        } else {
+          reducedMotion.addListener(handleMotionPreference);
+        }
+
+        renderState();
+      })();
+    </script>
+  {{ end }}
+{{ else }}
+  {{ partial "views/card.html" . }}
+{{ end }}

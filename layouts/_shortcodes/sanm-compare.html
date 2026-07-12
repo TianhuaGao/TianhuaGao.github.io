@@ -1,0 +1,33 @@
+{{- $leftSrc := .Get "left" -}}
+{{- $rightSrc := .Get "right" -}}
+{{- $left := .Page.Resources.GetMatch $leftSrc -}}
+{{- $right := .Page.Resources.GetMatch $rightSrc -}}
+{{- if not $left -}}{{- errorf "SANM comparison image %q was not found" $leftSrc -}}{{- end -}}
+{{- if not $right -}}{{- errorf "SANM comparison image %q was not found" $rightSrc -}}{{- end -}}
+{{- $leftImage := $left.Fit "1100x900 webp q87" -}}
+{{- $rightImage := $right.Fit "1100x900 webp q87" -}}
+{{- $number := .Get "number" | default "CMP" -}}
+{{- $label := .Get "label" | default "Controlled comparison" -}}
+{{- $leftLabel := .Get "left_label" | default "Baseline · SANM off" -}}
+{{- $rightLabel := .Get "right_label" | default "Proposed · SANM on" -}}
+{{- $size := .Get "size" | default "wide" -}}
+
+<figure class="sanm-tech-figure sanm-comparison-figure sanm-tech-figure--size-{{ $size }}">
+  <div class="sanm-tech-figure-rail" aria-hidden="true">
+    <span>{{ $number }}</span>
+    <span>{{ $label }}</span>
+  </div>
+  <div class="sanm-comparison-grid">
+    <div class="sanm-comparison-item">
+      <span>{{ $leftLabel }}</span>
+      <img src="{{ $leftImage.RelPermalink }}" width="{{ $leftImage.Width }}" height="{{ $leftImage.Height }}" alt="{{ $leftLabel }}" loading="lazy" decoding="async" data-zoomable>
+    </div>
+    <div class="sanm-comparison-item sanm-comparison-item--active">
+      <span>{{ $rightLabel }}</span>
+      <img src="{{ $rightImage.RelPermalink }}" width="{{ $rightImage.Width }}" height="{{ $rightImage.Height }}" alt="{{ $rightLabel }}" loading="lazy" decoding="async" data-zoomable>
+    </div>
+  </div>
+  {{- with .Inner -}}
+    <figcaption>{{ . | $.Page.RenderString }}</figcaption>
+  {{- end -}}
+</figure>

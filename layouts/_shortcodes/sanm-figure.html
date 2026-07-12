@@ -1,0 +1,49 @@
+{{- $src := .Get "src" -}}
+{{- $image := .Page.Resources.GetMatch $src -}}
+{{- if not $image -}}
+  {{- errorf "SANM figure %q was not found in %s" $src .Page.File.Path -}}
+{{- end -}}
+{{- $number := .Get "number" | default "FIG" -}}
+{{- $label := .Get "label" | default "Research figure" -}}
+{{- $alt := .Get "alt" | default $label -}}
+{{- $kind := .Get "kind" | default "diagram" -}}
+{{- $size := .Get "size" | default "medium" -}}
+{{- $sizes := "(max-width: 720px) 100vw, (max-width: 1280px) 82vw, 980px" -}}
+{{- if eq $size "compact" -}}
+  {{- $sizes = "(max-width: 720px) 100vw, 760px" -}}
+{{- else if eq $size "wide" -}}
+  {{- $sizes = "(max-width: 720px) 100vw, (max-width: 1280px) 90vw, 1140px" -}}
+{{- end -}}
+{{- $small := $image.Fit "720x900 webp q84" -}}
+{{- $medium := $image.Fit "1200x1200 webp q87" -}}
+{{- $large := $image.Fit "1800x1600 webp q89" -}}
+{{- $srcset := printf "%s %dw" $small.RelPermalink $small.Width -}}
+{{- if gt $medium.Width $small.Width -}}
+  {{- $srcset = printf "%s, %s %dw" $srcset $medium.RelPermalink $medium.Width -}}
+{{- end -}}
+{{- if gt $large.Width $medium.Width -}}
+  {{- $srcset = printf "%s, %s %dw" $srcset $large.RelPermalink $large.Width -}}
+{{- end -}}
+
+<figure class="sanm-tech-figure sanm-tech-figure--{{ $kind }} sanm-tech-figure--size-{{ $size }}">
+  <div class="sanm-tech-figure-rail" aria-hidden="true">
+    <span>{{ $number }}</span>
+    <span>{{ $label }}</span>
+  </div>
+  <div class="sanm-tech-figure-canvas">
+    <img
+      src="{{ $large.RelPermalink }}"
+      srcset="{{ $srcset }}"
+      sizes="{{ $sizes }}"
+      width="{{ $large.Width }}"
+      height="{{ $large.Height }}"
+      alt="{{ $alt }}"
+      loading="lazy"
+      decoding="async"
+      data-zoomable
+    >
+  </div>
+  {{- with .Inner -}}
+    <figcaption>{{ . | $.Page.RenderString }}</figcaption>
+  {{- end -}}
+</figure>

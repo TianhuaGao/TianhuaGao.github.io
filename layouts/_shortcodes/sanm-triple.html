@@ -1,0 +1,22 @@
+{{- $first := .Page.Resources.GetMatch (.Get "first") -}}
+{{- $second := .Page.Resources.GetMatch (.Get "second") -}}
+{{- $third := .Page.Resources.GetMatch (.Get "third") -}}
+{{- if not $first -}}{{- errorf "SANM triple figure first image was not found" -}}{{- end -}}
+{{- if not $second -}}{{- errorf "SANM triple figure second image was not found" -}}{{- end -}}
+{{- if not $third -}}{{- errorf "SANM triple figure third image was not found" -}}{{- end -}}
+{{- $firstImage := $first.Fit "900x800 webp q87" -}}
+{{- $secondImage := $second.Fit "900x800 webp q87" -}}
+{{- $thirdImage := $third.Fit "900x800 webp q87" -}}
+{{- $size := .Get "size" | default "wide" -}}
+<figure class="sanm-tech-figure sanm-triple-figure sanm-tech-figure--size-{{ $size }}">
+  <div class="sanm-tech-figure-rail" aria-hidden="true">
+    <span>{{ .Get "number" | default "SET" }}</span>
+    <span>{{ .Get "label" | default "Parameter study" }}</span>
+  </div>
+  <div class="sanm-triple-grid">
+    <div><span>{{ .Get "first_label" }}</span><img src="{{ $firstImage.RelPermalink }}" width="{{ $firstImage.Width }}" height="{{ $firstImage.Height }}" alt="{{ .Get "first_label" }}" loading="lazy" decoding="async" data-zoomable></div>
+    <div><span>{{ .Get "second_label" }}</span><img src="{{ $secondImage.RelPermalink }}" width="{{ $secondImage.Width }}" height="{{ $secondImage.Height }}" alt="{{ .Get "second_label" }}" loading="lazy" decoding="async" data-zoomable></div>
+    <div class="is-highlighted"><span>{{ .Get "third_label" }}</span><img src="{{ $thirdImage.RelPermalink }}" width="{{ $thirdImage.Width }}" height="{{ $thirdImage.Height }}" alt="{{ .Get "third_label" }}" loading="lazy" decoding="async" data-zoomable></div>
+  </div>
+  {{- with .Inner -}}<figcaption>{{ . | $.Page.RenderString }}</figcaption>{{- end -}}
+</figure>
