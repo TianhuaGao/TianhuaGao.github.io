@@ -59,16 +59,17 @@ sections:
   - block: collection
     id: papers
     content:
-      title: Featured Publications
+      title: ''
       filters:
         folders:
           - publications
         featured_only: true
     design:
-      view: article-grid
+      view: featured-publications
       columns: 2
+      css_class: featured-publications-section
       spacing:
-        padding: [5rem, 0, 2rem, 0]
+        padding: [0, 0, 2rem, 0]
   - block: collection
     content:
       title: Recent Publications

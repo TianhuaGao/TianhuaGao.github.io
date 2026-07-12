@@ -1,0 +1,62 @@
+<div
+  id="search-wrapper"
+  class="hidden fixed inset-0 z-50"
+  aria-hidden="true"
+  data-pagefind-ignore
+>
+  <div class="site-search-backdrop" data-search-dismiss aria-hidden="true"></div>
+
+  <section
+    class="site-search-dialog"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="site-search-title"
+  >
+    <header class="site-search-header">
+      <div class="site-search-heading">
+        <span class="site-search-eyebrow">Site search</span>
+        <h2 id="site-search-title">Explore the archive</h2>
+      </div>
+
+      <button
+        type="button"
+        aria-label="Close search"
+        class="search-close"
+        data-search-toggle
+      >
+        <span>Close</span>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </header>
+
+    <div class="site-search-content">
+      <div id="search">
+        <!-- Pagefind renders the search form and results here. -->
+      </div>
+
+      <div class="site-search-intro">
+        <div class="site-search-intro-copy">
+          <span class="site-search-index">00</span>
+          <p>Search publications, projects, events, guides, and documentation.</p>
+        </div>
+
+        <div class="site-search-suggestions" aria-label="Suggested searches">
+          <span class="site-search-suggestions-label">Suggested</span>
+          <div class="site-search-suggestions-list">
+            <button type="button" data-search-suggestion="Quadrotor">Quadrotor</button>
+            <button type="button" data-search-suggestion="Machine learning">Machine learning</button>
+            <button type="button" data-search-suggestion="Control">Control</button>
+            <button type="button" data-search-suggestion="Robotics">Robotics</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="site-search-footer" aria-hidden="true">
+      <span><kbd>Esc</kbd> to close</span>
+      <span>Type to search</span>
+    </footer>
+  </section>
+</div>
