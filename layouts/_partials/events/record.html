@@ -1,0 +1,35 @@
+{{- $event := .event -}}
+{{- $index := .index -}}
+{{- $image := $event.Resources.GetMatch "featured*" -}}
+{{- $cover := $image -}}
+{{- with $image -}}
+  {{- $anchor := $event.Params.image.focal_point | default "Center" -}}
+  {{- $cover = .Fill (printf "1400x875 webp q86 %s" $anchor) -}}
+{{- end -}}
+<article class="events-record">
+  <a class="events-record-cover" href="{{ $event.RelPermalink }}" aria-label="Open {{ $event.Title }}">
+    {{- with $cover -}}
+      <img src="{{ .RelPermalink }}" width="{{ .Width }}" height="{{ .Height }}" alt="{{ $event.Title }} conference presentation" loading="lazy" decoding="async">
+    {{- end -}}
+  </a>
+
+  <div class="events-record-body">
+    <div class="events-record-label">
+      <span>{{ with $event.Params.tags }}{{ index . 0 }}{{ else }}Academic event{{ end }}</span>
+      <b>{{ printf "%02d" (add $index 1) }} / {{ $event.Date.Format "2006" }}</b>
+    </div>
+
+    <h3><a href="{{ $event.RelPermalink }}">{{ $event.Title }}</a></h3>
+    <p>{{ $event.Params.summary | default $event.Summary }}</p>
+
+    <dl class="events-record-facts">
+      <div><dt>Date</dt><dd>{{ $event.Date.Format "Jan 02, 2006" }}{{ with $event.Params.date_end }} — {{ (time.AsTime .).Format "Jan 02, 2006" }}{{ end }}</dd></div>
+      {{- with $event.Params.location -}}<div><dt>Location</dt><dd>{{ . }}</dd></div>{{- end -}}
+    </dl>
+
+    <div class="events-record-actions">
+      <a href="{{ $event.RelPermalink }}">View event <i aria-hidden="true">→</i></a>
+      {{- with $event.Params.event_url -}}<a href="{{ . }}" target="_blank" rel="noopener">Official event <i aria-hidden="true">↗</i></a>{{- end -}}
+    </div>
+  </div>
+</article>
