@@ -85,12 +85,14 @@ sections:
   - block: collection
     id: events
     content:
-      title: Recent & Upcoming Events
+      title: ''
       filters:
         folders:
           - events
     design:
-      view: card
+      view: events-home
+      spacing:
+        padding: [6rem, 0, 7rem, 0]
   - block: cta-card
     demo: true # Only display this section in the Hugo Blox Builder demo site
     content:

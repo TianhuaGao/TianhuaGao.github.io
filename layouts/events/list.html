@@ -1,0 +1,28 @@
+{{ define "main" }}
+{{- $events := .RegularPages.ByDate.Reverse -}}
+<section class="events-landing">
+  <header class="events-landing-hero">
+    <span class="events-landing-eyebrow">Conference archive · Presentations / Exchange</span>
+    <h1>Events</h1>
+    <p>Conference participation, research presentations, and academic exchanges across control, robotics, and machine intelligence.</p>
+  </header>
+
+  <div class="events-landing-content">
+    <header class="events-landing-section-head">
+      <span>01</span>
+      <div>
+        <h2>Conference &amp; Research Events</h2>
+        <p>A chronological record of meetings, presentations, and technical discussions.</p>
+      </div>
+    </header>
+
+    <div class="events-record-list">
+      {{- range $index, $event := $events -}}
+        {{- partial "events/record.html" (dict "event" $event "index" $index) -}}
+      {{- else -}}
+        <p class="events-record-empty">New event records will appear here.</p>
+      {{- end -}}
+    </div>
+  </div>
+</section>
+{{ end }}
