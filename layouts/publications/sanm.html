@@ -3,6 +3,17 @@
 {{- $poster := .Resources.GetMatch "hero-poster.webp" -}}
 {{- $doi := .Params.hugoblox.ids.doi -}}
 {{- $arxiv := .Params.hugoblox.ids.arxiv -}}
+{{- $researchPage := .Params.research_page | default dict -}}
+{{- $actions := index $researchPage "actions" -}}
+{{- $metrics := index $researchPage "metrics" -}}
+{{- $navItems := index $researchPage "nav" -}}
+{{- $kicker := printf "Featured research · %s" (.Date.Format "2006") -}}
+{{- with .Params.accepted -}}
+  {{- $kicker = printf "Featured research · Accepted %s" ($.Date.Format "2006") -}}
+{{- end -}}
+{{- with (index $researchPage "kicker") -}}
+  {{- $kicker = . -}}
+{{- end -}}
 
 <article class="sanm-paper-page">
   <header class="sanm-paper-hero" aria-labelledby="sanm-paper-title">
@@ -18,7 +29,7 @@
 
     <div class="sanm-paper-hero-inner">
       <div class="sanm-paper-hero-copy">
-        <p class="sanm-paper-kicker">Featured research · Accepted 2026</p>
+        <p class="sanm-paper-kicker">{{ $kicker }}</p>
         <p class="sanm-paper-venue">{{ .Params.publication_short | default .Params.publication }}</p>
         <h1 id="sanm-paper-title">{{ .Title }}</h1>
         <p class="sanm-paper-deck">{{ .Params.hero_summary | default .Params.summary }}</p>
@@ -31,18 +42,26 @@
         </div>
 
         <div class="sanm-paper-actions">
-          <a class="sanm-paper-action sanm-paper-action--primary" href="https://arxiv.org/pdf/2508.14422" target="_blank" rel="noopener">
-            <span>Read the paper</span><span aria-hidden="true">↗</span>
-          </a>
-          {{ with $doi }}
-            <a class="sanm-paper-action" href="https://doi.org/{{ . }}" target="_blank" rel="noopener">
-              <span>DOI</span><span aria-hidden="true">↗</span>
+          {{ with $actions }}
+            {{ range . }}
+              <a class="sanm-paper-action{{ if .primary }} sanm-paper-action--primary{{ end }}" href="{{ .url }}" target="_blank" rel="noopener">
+                <span>{{ .label }}</span><span aria-hidden="true">↗</span>
+              </a>
+            {{ end }}
+          {{ else }}
+            <a class="sanm-paper-action sanm-paper-action--primary" href="https://arxiv.org/pdf/2508.14422" target="_blank" rel="noopener">
+              <span>Read the paper</span><span aria-hidden="true">↗</span>
             </a>
-          {{ end }}
-          {{ with $arxiv }}
-            <a class="sanm-paper-action" href="https://arxiv.org/abs/{{ strings.TrimSuffix "v4" (strings.TrimSuffix "v3" .) }}" target="_blank" rel="noopener">
-              <span>arXiv</span><span aria-hidden="true">↗</span>
-            </a>
+            {{ with $doi }}
+              <a class="sanm-paper-action" href="https://doi.org/{{ . }}" target="_blank" rel="noopener">
+                <span>DOI</span><span aria-hidden="true">↗</span>
+              </a>
+            {{ end }}
+            {{ with $arxiv }}
+              <a class="sanm-paper-action" href="https://arxiv.org/abs/{{ strings.TrimSuffix "v4" (strings.TrimSuffix "v3" .) }}" target="_blank" rel="noopener">
+                <span>arXiv</span><span aria-hidden="true">↗</span>
+              </a>
+            {{ end }}
           {{ end }}
         </div>
       </div>
@@ -56,27 +75,37 @@
     {{ end }}
   </header>
 
-  <section class="sanm-paper-metrics" aria-label="Research highlights">
-    <div><strong>03</strong><span>Axis-wise slices</span></div>
-    <div><strong>400 Hz</strong><span>Online adaptation</span></div>
-    <div><strong>15</strong><span>RBF evaluations / cycle</span></div>
-    <div><strong>255.2 kB</strong><span>Measured memory use</span></div>
-    <div><strong>STM32H750</strong><span>Onboard deployment</span></div>
-  </section>
+  {{ with $metrics }}
+    <section class="sanm-paper-metrics" aria-label="Research highlights">
+      {{ range . }}<div><strong>{{ .value }}</strong><span>{{ .label }}</span></div>{{ end }}
+    </section>
+  {{ else }}
+    <section class="sanm-paper-metrics" aria-label="Research highlights">
+      <div><strong>03</strong><span>Axis-wise slices</span></div>
+      <div><strong>400 Hz</strong><span>Online adaptation</span></div>
+      <div><strong>15</strong><span>RBF evaluations / cycle</span></div>
+      <div><strong>255.2 kB</strong><span>Measured memory use</span></div>
+      <div><strong>STM32H750</strong><span>Onboard deployment</span></div>
+    </section>
+  {{ end }}
 
   <nav class="sanm-paper-nav" aria-label="On this page">
     <div class="sanm-paper-progress" aria-hidden="true"><span></span></div>
     <div class="sanm-paper-nav-inner">
       <span class="sanm-paper-nav-label">Research brief</span>
       <div class="sanm-paper-nav-links">
-        <a href="#idea">Idea</a>
-        <a href="#videos">Videos</a>
-        <a href="#geometry">Geometry</a>
-        <a href="#framework">SANM</a>
-        <a href="#controller">Control</a>
-        <a href="#stability">Theory</a>
-        <a href="#experiments">Experiments</a>
-        <a href="#deployment">Deployment</a>
+        {{ with $navItems }}
+          {{ range . }}<a href="#{{ .id }}">{{ .label }}</a>{{ end }}
+        {{ else }}
+          <a href="#idea">Idea</a>
+          <a href="#videos">Videos</a>
+          <a href="#geometry">Geometry</a>
+          <a href="#framework">SANM</a>
+          <a href="#controller">Control</a>
+          <a href="#stability">Theory</a>
+          <a href="#experiments">Experiments</a>
+          <a href="#deployment">Deployment</a>
+        {{ end }}
       </div>
     </div>
   </nav>
