@@ -26,7 +26,7 @@ tags:
 - 2025 American Control Conference (ACC)
 
 featured: true
-featured_rank: 4
+featured_rank: 5
 
 hugoblox:
   ids:
@@ -85,5 +85,4 @@ A key feature of the proposed method is that no pre-training or persistent excit
 The effectiveness of the proposed control strategy is validated through numerical simulations of a three-quadrotor transportation system. Comparative studies demonstrate that, relative to conventional geometric control, the proposed adaptive–neuro approach significantly improves robustness in scenarios involving large payload mass mismatch, inertia uncertainty, and strong external disturbance forces or moments.
 
 Overall, this work contributes a lightweight, theoretically grounded, and practically implementable solution for robust centralized aerial transportation, with clear potential for extension to real-world experimental validation and more comprehensive stability analysis in future work.
-
 

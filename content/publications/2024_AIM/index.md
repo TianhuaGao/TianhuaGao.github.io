@@ -27,7 +27,7 @@ tags:
 - 2024 IEEE International Conference on Advanced Intelligent Mechatronics (AIM)
 
 featured: true
-featured_rank: 5
+featured_rank: 6
 
 hugoblox:
   ids:
