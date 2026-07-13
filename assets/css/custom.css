@@ -5083,6 +5083,11 @@ html:not(.dark) #site-header label[for="nav-toggle"]:hover {
   padding-bottom: 3rem;
 }
 
+/* Keep consecutive full-screen research stories visually continuous. */
+.featured-publications-view > .featured-research-hero + script + .featured-research-hero {
+  margin-top: -2.5rem;
+}
+
 .featured-research-hero {
   position: relative;
   isolation: isolate;
@@ -5273,6 +5278,10 @@ html:not(.dark) #site-header label[for="nav-toggle"]:hover {
     grid-template-columns: minmax(0, 1fr);
     gap: 1.5rem;
     padding-bottom: 1.5rem;
+  }
+
+  .featured-publications-view > .featured-research-hero + script + .featured-research-hero {
+    margin-top: -1.5rem;
   }
 
   .featured-research-poster,

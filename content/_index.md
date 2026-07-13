@@ -64,6 +64,8 @@ sections:
         folders:
           - publications
         featured_only: true
+      sort_by: Params.featured_rank
+      sort_ascending: true
     design:
       view: featured-publications
       columns: 2

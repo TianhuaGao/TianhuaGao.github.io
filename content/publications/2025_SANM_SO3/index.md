@@ -31,6 +31,7 @@ tags:
 - 2026 IEEE/ASME Transactions on Mechatronics (TMECH)
 
 featured: true
+featured_rank: 1
 
 hugoblox:
   ids:

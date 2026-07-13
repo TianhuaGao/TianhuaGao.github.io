@@ -26,6 +26,7 @@ tags:
 - 2025 Engineered Science 
 
 featured: true
+featured_rank: 3
 
 hugoblox:
   ids:
@@ -79,6 +80,5 @@ The core idea is to decompose the high-dimensional payload error space into mult
 The SANM module is integrated as a feedforward compensator into a payload-centric geometric control architecture. By learning directly from Lie-algebra–based error representations, the proposed framework avoids explicit modeling of complex cable–quadrotor couplings and improves disturbance rejection for both translational and rotational payload dynamics. Stability of the overall closed-loop system is rigorously analyzed using Lyapunov theory, and uniform ultimate boundedness of tracking and estimation errors is established under unknown payload parameters and time-varying disturbances.
 
 Numerical simulations demonstrate that the proposed method significantly enhances tracking performance and robustness compared with conventional centralized control approaches. The results indicate that dimension-decomposed adaptive–neuro learning provides an effective, lightweight, and theoretically grounded solution for robust aerial cooperative transportation.
-
 
 

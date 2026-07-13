@@ -1,8 +1,10 @@
 {{ $item := .item }}
 {{ $video := $item.Resources.GetMatch "hero-loop.mp4" }}
-{{ $poster := $item.Resources.GetMatch "hero-poster.webp" }}
+{{ $poster := $item.Resources.GetMatch "hero-poster.*" }}
+{{ $hero_title := $item.Params.hero_title | default $item.Title }}
+{{ $hero_summary := $item.Params.hero_summary | default $item.Params.summary }}
 
-{{ if and (eq .index 0) $video }}
+{{ if $video }}
   {{ $title_id := printf "featured-research-title-%s" $item.File.UniqueID }}
 
   <article class="featured-research-hero" aria-labelledby="{{ $title_id }}">
@@ -23,8 +25,8 @@
       <div class="featured-research-copy">
         <p class="featured-research-kicker">Featured Research · {{ $item.Date.Format "2006" }}</p>
         <p class="featured-research-venue">{{ $item.Params.publication_short | default $item.Params.publication }}</p>
-        <h2 id="{{ $title_id }}" class="featured-research-title">{{ $item.Title }}</h2>
-        {{ with $item.Params.summary }}
+        <h2 id="{{ $title_id }}" class="featured-research-title">{{ $hero_title }}</h2>
+        {{ with $hero_summary }}
           <p class="featured-research-summary">{{ . | plainify | htmlUnescape | truncate 220 }}</p>
         {{ end }}
         <a class="featured-research-link" href="{{ $item.RelPermalink }}">
