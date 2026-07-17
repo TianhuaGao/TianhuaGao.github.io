@@ -1,0 +1,240 @@
+{{ define "main" }}
+{{- $codeMap := site.Data.ardugeo_code_map -}}
+{{- $modules := $codeMap.modules -}}
+<article class="code-lab" data-ardugeo-code>
+  <header class="code-lab-hero">
+    <div class="code-lab-hero-grid" aria-hidden="true"></div>
+    <div class="code-lab-hero-inner">
+      <div class="code-lab-hero-copy">
+        <p class="code-lab-eyebrow"><span>Code</span> Flight control / source atlas</p>
+        <h1>ArduGeo, from control block to source line.</h1>
+        <p class="code-lab-deck">
+          Explore the PID-only geometric-control path inside ArduPilot. Focus a subsystem,
+          select any block, and jump to the exact implementation boundary behind it.
+        </p>
+        <div class="code-lab-actions">
+          <a class="code-lab-action code-lab-action--primary" href="#architecture" data-scroll-architecture>
+            Explore the architecture <span aria-hidden="true">↓</span>
+          </a>
+          <a class="code-lab-action" href="{{ $codeMap.repository_url }}" target="_blank" rel="noopener">
+            Repository <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </div>
+      <aside class="code-lab-release" aria-label="Source snapshot">
+        <span class="code-lab-release-status"><i aria-hidden="true"></i> Release candidate</span>
+        <dl>
+          <div>
+            <dt>Current implementation</dt>
+            <dd><code>{{ substr $codeMap.current_commit 0 12 }}</code></dd>
+          </div>
+          <div>
+            <dt>Paper evidence baseline</dt>
+            <dd><code>{{ substr $codeMap.paper_commit 0 12 }}</code></dd>
+          </div>
+          <div>
+            <dt>Controller</dt>
+            <dd>SE(3) / SO(3) PID</dd>
+          </div>
+        </dl>
+      </aside>
+    </div>
+  </header>
+
+  <section class="code-lab-metrics" aria-label="Architecture summary">
+    <div><strong>{{ len $modules }}</strong><span>Source-linked blocks</span></div>
+    <div><strong>02</strong><span>Mode-owned front ends</span></div>
+    <div><strong>01</strong><span>Writer per rate frame</span></div>
+    <div><strong>81 / 81</strong><span>PID-only unit tests</span></div>
+  </section>
+
+  <main class="code-lab-main">
+    <section class="code-lab-architecture" id="architecture" aria-labelledby="architecture-heading">
+      <header class="code-lab-section-head">
+        <div>
+          <span class="code-lab-section-index">01 / Interactive architecture</span>
+          <h2 id="architecture-heading">Trace the active control path</h2>
+          <p>Use a subsystem view to make the diagram readable at any screen size. Every outlined block is keyboard accessible.</p>
+        </div>
+        <p class="code-lab-instruction">
+          <span><kbd>Tab</kbd> focus</span><i aria-hidden="true">·</i>
+          <span><kbd>Enter</kbd> source</span><i aria-hidden="true">·</i>
+          <span><kbd>Esc</kbd> overview</span>
+        </p>
+      </header>
+
+      <div class="code-lab-viewbar" role="group" aria-label="Focus architecture subsystem">
+        <button type="button" class="is-active" data-code-view="all" data-viewbox="0 0 1600 930" aria-pressed="true">
+          <span>00</span> Overview
+        </button>
+        <button type="button" data-code-view="guided" data-viewbox="35 120 580 310" aria-pressed="false">
+          <span>01</span> Guided
+        </button>
+        <button type="button" data-code-view="loiter" data-viewbox="35 315 580 340" aria-pressed="false">
+          <span>02</span> Loiter
+        </button>
+        <button type="button" data-code-view="cascade" data-viewbox="625 85 430 630" aria-pressed="false">
+          <span>03</span> PID cascade
+        </button>
+        <button type="button" data-code-view="safety" data-viewbox="1035 85 550 630" aria-pressed="false">
+          <span>04</span> Safety + output
+        </button>
+        <button type="button" data-code-view="evidence" data-viewbox="20 720 1560 185" aria-pressed="false">
+          <span>05</span> Evidence
+        </button>
+      </div>
+
+      <div class="code-lab-diagram-grid">
+        <div class="code-lab-diagram-frame">
+          <svg
+            class="code-lab-diagram"
+            data-code-diagram
+            viewBox="0 0 1600 930"
+            preserveAspectRatio="xMidYMid meet"
+            role="img"
+            aria-labelledby="interactive-architecture-title interactive-architecture-desc"
+          >
+            <title id="interactive-architecture-title">Interactive ArduGeo PID-only control architecture</title>
+            <desc id="interactive-architecture-desc">Select any highlighted control block to open its exact source mapping.</desc>
+            <image
+              href="{{ "images/ardugeo-pid-architecture.svg" | relURL }}"
+              x="0"
+              y="0"
+              width="1600"
+              height="930"
+              aria-hidden="true"
+              pointer-events="none"
+            />
+            <g class="code-lab-hotspots">
+              {{- range $modules }}
+              <a
+                class="code-lab-hotspot"
+                href="#source-{{ .id }}"
+                data-code-node="{{ .id }}"
+                data-group="{{ .group }}"
+                aria-label="{{ .label }} — open source mapping"
+              >
+                <title>{{ .label }} — {{ .file }} lines {{ .line_start }}–{{ .line_end }}</title>
+                <rect
+                  x="{{ index .bbox 0 }}"
+                  y="{{ index .bbox 1 }}"
+                  width="{{ index .bbox 2 }}"
+                  height="{{ index .bbox 3 }}"
+                  rx="{{ .rx }}"
+                  vector-effect="non-scaling-stroke"
+                />
+              </a>
+              {{- end }}
+            </g>
+          </svg>
+          <div class="code-lab-diagram-status" aria-live="polite" data-code-status>
+            Overview · {{ len $modules }} source-linked blocks
+          </div>
+        </div>
+
+        <aside class="code-lab-inspector" data-code-inspector aria-live="polite" aria-label="Selected source module">
+          <div class="code-lab-inspector-topline">
+            <span data-inspector-index>17</span>
+            <em data-inspector-group>Safety + output</em>
+          </div>
+          <h3 data-inspector-label>Frame-exclusive ownership arbiter</h3>
+          <p data-inspector-description>Select a block in the architecture to inspect its implementation boundary.</p>
+          <div class="code-lab-inspector-path">
+            <span>Primary source</span>
+            <code data-inspector-file>ArduCopter/Attitude.cpp:25–92</code>
+          </div>
+          <a class="code-lab-inspector-link" data-inspector-link href="#source-selector">
+            Open source mapping <span aria-hidden="true">↓</span>
+          </a>
+        </aside>
+      </div>
+
+      <div class="code-lab-release-note" role="note">
+        <strong>Source-link status.</strong>
+        The paths and excerpts below are pinned to <code>{{ substr $codeMap.current_commit 0 12 }}</code>.
+        That snapshot has not yet been published to the public remote, so this page uses exact on-page
+        anchors instead of broken GitHub permalinks. External commit links can be enabled after release.
+      </div>
+    </section>
+
+    <section class="code-lab-source-map" id="source-map" aria-labelledby="source-map-heading">
+      <header class="code-lab-section-head">
+        <div>
+          <span class="code-lab-section-index">02 / Source map</span>
+          <h2 id="source-map-heading">Implementation boundaries</h2>
+          <p>Each entry records the primary file, exact line range, owning symbol, and a short excerpt from the current PID-only snapshot.</p>
+        </div>
+      </header>
+
+      <div class="code-lab-source-list">
+        {{- range $modules }}
+        {{- $sourceRef := printf "%s:%d–%d" .file .line_start .line_end -}}
+        <details
+          class="code-lab-source-card"
+          id="source-{{ .id }}"
+          data-source-card="{{ .id }}"
+          data-group="{{ .group }}"
+          data-index="{{ .index }}"
+          data-label="{{ .label }}"
+          data-description="{{ .description }}"
+          data-source-ref="{{ $sourceRef }}"
+          tabindex="-1"
+        >
+          <summary>
+            <span class="code-lab-source-number">{{ .index }}</span>
+            <span class="code-lab-source-title">
+              <em>{{ .group }}</em>
+              <strong>{{ .label }}</strong>
+              <small>{{ .description }}</small>
+            </span>
+            <code>{{ .file }}<b> L{{ .line_start }}–{{ .line_end }}</b></code>
+            <span class="code-lab-source-toggle" aria-hidden="true"></span>
+          </summary>
+          <div class="code-lab-source-body">
+            <div class="code-lab-source-symbol">
+              <span>Owning symbol</span>
+              <code>{{ .symbol }}</code>
+            </div>
+            <div class="code-lab-source-excerpt">
+              <span>Condensed source excerpt · whitespace may be normalized · “…” marks omitted lines</span>
+              <pre aria-label="Condensed source excerpt"><code>{{ .excerpt }}</code></pre>
+            </div>
+            <div class="code-lab-source-actions">
+              <button type="button" data-copy-source="{{ $sourceRef }}">
+                Copy source path
+              </button>
+              <a href="#architecture" data-back-to-node="{{ .id }}">
+                Back to block <span aria-hidden="true">↑</span>
+              </a>
+            </div>
+          </div>
+        </details>
+        {{- end }}
+      </div>
+    </section>
+
+    <section class="code-lab-boundary" aria-labelledby="boundary-heading">
+      <span class="code-lab-section-index">03 / Evidence boundary</span>
+      <div>
+        <h2 id="boundary-heading">What this page claims</h2>
+        <p>
+          The map describes the verified software architecture for the tested Guided and Loiter PID-only paths.
+          It does not claim HIL or real-flight safety, complete ArduCopter mode coverage, or performance superiority
+          over the native controller.
+        </p>
+      </div>
+      <div class="code-lab-license">
+        <span>Source lineage</span>
+        <p>
+          ArduGeo is derived from <a href="{{ $codeMap.upstream_url }}" target="_blank" rel="noopener">ArduPilot</a>.
+          Code excerpts retain the upstream
+          <a href="{{ $codeMap.license_url }}" target="_blank" rel="noopener">GPLv3 license</a>.
+        </p>
+      </div>
+    </section>
+  </main>
+</article>
+
+{{- $script := resources.Get "js/ardugeo-code.js" | resources.Minify -}}
+<script defer src="{{ $script.RelPermalink }}"></script>
+{{ end }}

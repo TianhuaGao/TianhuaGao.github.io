@@ -16,6 +16,9 @@ main:
   - name: Events
     url: /#events
     weight: 13
+  - name: Code
+    url: code/
+    weight: 20
   - name: Guides
     url: guides/
     weight: 40
