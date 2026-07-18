@@ -106,12 +106,21 @@
     const card = cardFor(id);
     if (!card || !inspector) return;
 
+    const symbol = card.querySelector('.code-lab-source-symbol code');
+    const excerpt = card.querySelector('.code-lab-source-excerpt pre code');
+    const inspectorSymbol = inspector.querySelector('[data-inspector-symbol]');
+    const inspectorCode = inspector.querySelector('[data-inspector-code]');
+    const inspectorCopy = inspector.querySelector('[data-inspector-copy]');
+
     inspector.querySelector('[data-inspector-index]').textContent = card.dataset.index;
     inspector.querySelector('[data-inspector-group]').textContent = groupLabels[card.dataset.group];
     inspector.querySelector('[data-inspector-label]').textContent = card.dataset.label;
     inspector.querySelector('[data-inspector-description]').textContent = card.dataset.description;
     inspector.querySelector('[data-inspector-file]').textContent = card.dataset.sourceRef;
-    inspectorLink.href = '#source-' + id;
+    if (inspectorSymbol) inspectorSymbol.textContent = symbol?.textContent.trim() || '—';
+    if (inspectorCode) inspectorCode.textContent = excerpt?.textContent.trim() || 'Source excerpt unavailable.';
+    if (inspectorCopy) inspectorCopy.dataset.copySource = card.dataset.sourceRef;
+    if (inspectorLink) inspectorLink.href = '#source-' + id;
   };
 
   const selectNode = (id, options = {}) => {
@@ -129,11 +138,12 @@
     nodes.forEach((item) => item.classList.toggle('is-active', item === node));
     cards.forEach((item) => item.classList.toggle('is-active', item === card));
     updateInspector(id);
+    updateStatus(card.dataset.label + ' · source shown in the side inspector');
 
     if (open) card.open = true;
 
     if (updateHash) {
-      window.history.pushState(null, '', '#source-' + id);
+      window.history.pushState(null, '', '#inspect-' + id);
     }
 
     if (scroll) {
@@ -182,16 +192,15 @@
   nodes.forEach((node) => {
     const id = node.dataset.codeNode;
 
-    node.addEventListener('pointerenter', () => updateInspector(id));
     node.addEventListener('focus', () => {
       selectNode(id);
-      updateStatus(cardFor(id).dataset.label + ' · press Enter to open source mapping');
+      updateStatus(cardFor(id).dataset.label + ' · press Enter to show source at right');
     });
     node.addEventListener('click', (event) => {
       event.preventDefault();
       const card = cardFor(id);
       if (card.hidden) setView(card.dataset.group);
-      selectNode(id, { open: true, scroll: true, updateHash: true });
+      selectNode(id, { updateHash: true });
     });
   });
 
@@ -264,12 +273,16 @@
   });
 
   const selectFromHash = (shouldScroll = false) => {
-    const match = window.location.hash.match(/^#source-(.+)$/);
+    const match = window.location.hash.match(/^#(?:inspect|source)-(.+)$/);
     if (!match || !cardFor(match[1])) return false;
     const id = match[1];
     const card = cardFor(id);
+    if (window.location.hash.startsWith('#source-')) {
+      window.history.replaceState(null, '', '#inspect-' + id);
+    }
     setView(card.dataset.group, false);
-    selectNode(id, { open: true, scroll: shouldScroll, instant: shouldScroll });
+    selectNode(id);
+    if (shouldScroll) scrollToArchitecture(false, true);
     return true;
   };
 

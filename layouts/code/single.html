@@ -1,6 +1,14 @@
 {{ define "main" }}
 {{- $codeMap := site.Data.ardugeo_code_map -}}
 {{- $modules := $codeMap.modules -}}
+{{- $defaultModule := index (where $modules "id" "selector") 0 -}}
+{{- $defaultSourceRef := printf "%s:%d–%d" $defaultModule.file $defaultModule.line_start $defaultModule.line_end -}}
+{{- $flowMap := site.Data.ardugeo_flow_maps -}}
+{{- $flowNodes := 0 -}}
+{{- range $flowMap.flows -}}
+  {{- $flowNodes = add $flowNodes (len .nodes) -}}
+{{- end -}}
+{{- $interactiveMappings := add (len $modules) $flowNodes -}}
 <article class="code-lab" data-ardugeo-code>
   <header class="code-lab-hero">
     <div class="code-lab-hero-grid" aria-hidden="true"></div>
@@ -9,8 +17,8 @@
         <p class="code-lab-eyebrow"><span>Code</span> Flight control / source atlas</p>
         <h1>ArduGeo, from control block to source line.</h1>
         <p class="code-lab-deck">
-          Explore the PID-only geometric-control path inside ArduPilot. Focus a subsystem,
-          select any block, and jump to the exact implementation boundary behind it.
+          Explore the PID-only geometric-control path inside ArduPilot. Start with the system
+          architecture, then follow the paper's Guided and Loiter lifecycles into exact source boundaries.
         </p>
         <div class="code-lab-actions">
           <a class="code-lab-action code-lab-action--primary" href="#architecture" data-scroll-architecture>
@@ -41,12 +49,19 @@
     </div>
   </header>
 
-  <section class="code-lab-metrics" aria-label="Architecture summary">
-    <div><strong>{{ len $modules }}</strong><span>Source-linked blocks</span></div>
-    <div><strong>02</strong><span>Mode-owned front ends</span></div>
-    <div><strong>01</strong><span>Writer per rate frame</span></div>
+  <section class="code-lab-metrics" aria-label="ArduGeo code guide summary">
+    <div><strong>{{ $interactiveMappings }}</strong><span>Interactive mappings</span></div>
+    <div><strong>02</strong><span>Lifecycle walkthroughs</span></div>
+    <div><strong>{{ len $modules }}</strong><span>Architecture blocks</span></div>
     <div><strong>81 / 81</strong><span>PID-only unit tests</span></div>
   </section>
+
+  <nav class="code-lab-project-nav" aria-label="ArduGeo code guide sections">
+    <a href="#architecture"><span>01</span> System architecture</a>
+    <a href="#guided-flow"><span>02</span> Guided lifecycle</a>
+    <a href="#loiter-flow"><span>03</span> Loiter lifecycle</a>
+    <a href="#source-map"><span>04</span> Source atlas</a>
+  </nav>
 
   <main class="code-lab-main">
     <section class="code-lab-architecture" id="architecture" aria-labelledby="architecture-heading">
@@ -54,7 +69,7 @@
         <div>
           <span class="code-lab-section-index">01 / Interactive architecture</span>
           <h2 id="architecture-heading">Trace the active control path</h2>
-          <p>Use a subsystem view to make the diagram readable at any screen size. Every outlined block is keyboard accessible.</p>
+          <p>Focus a subsystem, then select any block to read its implementation directly in the side inspector—without leaving the architecture.</p>
         </div>
         <p class="code-lab-instruction">
           <span><kbd>Tab</kbd> focus</span><i aria-hidden="true">·</i>
@@ -95,7 +110,7 @@
             aria-labelledby="interactive-architecture-title interactive-architecture-desc"
           >
             <title id="interactive-architecture-title">Interactive ArduGeo PID-only control architecture</title>
-            <desc id="interactive-architecture-desc">Select any highlighted control block to open its exact source mapping.</desc>
+            <desc id="interactive-architecture-desc">Select any highlighted control block to show its exact source mapping in the side inspector.</desc>
             <image
               href="{{ "images/ardugeo-pid-architecture.svg" | relURL }}"
               x="0"
@@ -112,7 +127,7 @@
                 href="#source-{{ .id }}"
                 data-code-node="{{ .id }}"
                 data-group="{{ .group }}"
-                aria-label="{{ .label }} — open source mapping"
+                aria-label="{{ .label }} — show source in the side inspector"
               >
                 <title>{{ .label }} — {{ .file }} lines {{ .line_start }}–{{ .line_end }}</title>
                 <rect
@@ -132,19 +147,30 @@
           </div>
         </div>
 
-        <aside class="code-lab-inspector" data-code-inspector aria-live="polite" aria-label="Selected source module">
+        <aside class="code-lab-inspector" data-code-inspector aria-label="Selected source module and code excerpt">
           <div class="code-lab-inspector-topline">
-            <span data-inspector-index>17</span>
+            <span data-inspector-index>{{ $defaultModule.index }}</span>
             <em data-inspector-group>Safety + output</em>
           </div>
-          <h3 data-inspector-label>Frame-exclusive ownership arbiter</h3>
-          <p data-inspector-description>Select a block in the architecture to inspect its implementation boundary.</p>
+          <h3 data-inspector-label>{{ $defaultModule.label }}</h3>
+          <p data-inspector-description>{{ $defaultModule.description }}</p>
           <div class="code-lab-inspector-path">
             <span>Primary source</span>
-            <code data-inspector-file>ArduCopter/Attitude.cpp:25–92</code>
+            <code data-inspector-file>{{ $defaultSourceRef }}</code>
           </div>
+          <div class="code-lab-inspector-symbol">
+            <span>Owning symbol</span>
+            <code data-inspector-symbol>{{ $defaultModule.symbol }}</code>
+          </div>
+          <section class="code-lab-inspector-excerpt" aria-label="Selected source excerpt">
+            <header>
+              <span>Condensed source excerpt</span>
+              <button type="button" data-copy-source="{{ $defaultSourceRef }}" data-inspector-copy>Copy path</button>
+            </header>
+            <pre><code data-inspector-code>{{ $defaultModule.excerpt }}</code></pre>
+          </section>
           <a class="code-lab-inspector-link" data-inspector-link href="#source-selector">
-            Open source mapping <span aria-hidden="true">↓</span>
+            View full source entry <span aria-hidden="true">↓</span>
           </a>
         </aside>
       </div>
@@ -157,10 +183,14 @@
       </div>
     </section>
 
+    {{- range $flowMap.flows }}
+      {{- partial "code/flow.html" (dict "flow" . "codeMap" $codeMap) -}}
+    {{- end }}
+
     <section class="code-lab-source-map" id="source-map" aria-labelledby="source-map-heading">
       <header class="code-lab-section-head">
         <div>
-          <span class="code-lab-section-index">02 / Source map</span>
+          <span class="code-lab-section-index">04 / Source atlas</span>
           <h2 id="source-map-heading">Implementation boundaries</h2>
           <p>Each entry records the primary file, exact line range, owning symbol, and a short excerpt from the current PID-only snapshot.</p>
         </div>
@@ -214,7 +244,7 @@
     </section>
 
     <section class="code-lab-boundary" aria-labelledby="boundary-heading">
-      <span class="code-lab-section-index">03 / Evidence boundary</span>
+      <span class="code-lab-section-index">05 / Evidence boundary</span>
       <div>
         <h2 id="boundary-heading">What this page claims</h2>
         <p>
@@ -237,4 +267,6 @@
 
 {{- $script := resources.Get "js/ardugeo-code.js" | resources.Minify -}}
 <script defer src="{{ $script.RelPermalink }}"></script>
+{{- $flowScript := resources.Get "js/ardugeo-flows.js" | resources.Minify -}}
+<script defer src="{{ $flowScript.RelPermalink }}"></script>
 {{ end }}

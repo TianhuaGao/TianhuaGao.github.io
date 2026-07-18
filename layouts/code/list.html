@@ -74,7 +74,14 @@
 <script>
   (() => {
     const legacyHash = window.location.hash;
-    if (legacyHash === '#architecture' || legacyHash === '#source-map' || legacyHash.startsWith('#source-')) {
+    const projectSection = legacyHash === '#architecture' ||
+      legacyHash === '#guided-flow' ||
+      legacyHash === '#loiter-flow' ||
+      legacyHash === '#source-map';
+    const sourceAnchor = legacyHash.startsWith('#source-') ||
+      legacyHash.startsWith('#guided-source-') ||
+      legacyHash.startsWith('#loiter-source-');
+    if (projectSection || sourceAnchor) {
       window.location.replace('{{ "code/ardugeo/" | relURL }}' + legacyHash);
     }
   })();
