@@ -2,6 +2,8 @@
 {{- $codeMap := .codeMap -}}
 {{- $first := index $flow.nodes 0 -}}
 {{- $firstGroup := index (where $flow.groups "id" $first.group) 0 -}}
+{{- $firstSourceRef := printf "%s:%d–%d" $first.file $first.line_start $first.line_end -}}
+{{- $firstSourceURL := printf "%s/blob/%s/%s#L%d-L%d" $codeMap.repository_url $codeMap.current_commit $first.file $first.line_start $first.line_end -}}
 {{- $overviewGroup := index (where $flow.groups "id" "all") 0 -}}
 <section class="code-flow" id="{{ $flow.id }}-flow" data-code-flow="{{ $flow.id }}" aria-labelledby="{{ $flow.id }}-flow-heading">
   <header class="code-lab-section-head">
@@ -57,7 +59,7 @@
           {{- range $flow.nodes }}
           <a
             class="code-lab-hotspot"
-            href="#{{ $flow.id }}-source-{{ .id }}"
+            href="#{{ $flow.id }}-inspect-{{ .id }}"
             data-flow-node="{{ .id }}"
             data-group="{{ .group }}"
             aria-label="{{ .label }} — show source in the side inspector"
@@ -89,7 +91,10 @@
       <p data-flow-inspector-description>{{ $first.description }}</p>
       <div class="code-lab-inspector-path">
         <span>Primary source</span>
-        <code data-flow-inspector-file>{{ $first.file }}:{{ $first.line_start }}–{{ $first.line_end }}</code>
+        <code data-flow-inspector-file>{{ $firstSourceRef }}</code>
+        <a class="code-lab-github-source" data-flow-inspector-source-link href="{{ $firstSourceURL }}" target="_blank" rel="noopener">
+          Open exact lines <span aria-hidden="true">↗</span>
+        </a>
       </div>
       <div class="code-lab-inspector-symbol">
         <span>Owning symbol</span>
@@ -98,73 +103,34 @@
       <section class="code-lab-inspector-excerpt" aria-label="Selected lifecycle source excerpt">
         <header>
           <span>Condensed source excerpt</span>
-          <button type="button" data-flow-copy="{{ $first.file }}:{{ $first.line_start }}–{{ $first.line_end }}" data-flow-inspector-copy>Copy path</button>
+          <button type="button" data-flow-copy="{{ $firstSourceRef }}" data-flow-inspector-copy>Copy path</button>
         </header>
         <pre><code data-flow-inspector-code>{{ $first.excerpt }}</code></pre>
       </section>
-      <a class="code-lab-inspector-link" data-flow-inspector-link href="#{{ $flow.id }}-source-{{ $first.id }}">
-        View full source entry <span aria-hidden="true">↓</span>
-      </a>
     </aside>
   </div>
 
-  <div class="code-flow-source-map" aria-labelledby="{{ $flow.id }}-source-heading">
-    <header class="code-flow-source-head">
-      <span>Code walkthrough</span>
-      <div>
-        <h3 id="{{ $flow.id }}-source-heading">{{ $flow.source_title }}</h3>
-        <p>{{ $flow.source_description }}</p>
-      </div>
-    </header>
-
-    <div class="code-lab-source-list">
-      {{- range $flow.nodes }}
-      {{- $nodeGroup := index (where $flow.groups "id" .group) 0 -}}
-      {{- $sourceRef := printf "%s:%d–%d" .file .line_start .line_end -}}
-      <details
-        class="code-lab-source-card"
-        id="{{ $flow.id }}-source-{{ .id }}"
-        data-flow-card="{{ .id }}"
-        data-group="{{ .group }}"
-        data-index="{{ .index }}"
-        data-label="{{ .label }}"
-        data-description="{{ .description }}"
-        data-source-ref="{{ $sourceRef }}"
-        tabindex="-1"
-      >
-        <summary>
-          <span class="code-lab-source-number">{{ .index }}</span>
-          <span class="code-lab-source-title">
-            <em>{{ $nodeGroup.label }}</em>
-            <strong>{{ .label }}</strong>
-            <small>{{ .description }}</small>
-          </span>
-          <code>{{ .file }}<b> L{{ .line_start }}–{{ .line_end }}</b></code>
-          <span class="code-lab-source-toggle" aria-hidden="true"></span>
-        </summary>
-        <div class="code-lab-source-body">
-          <div class="code-lab-source-symbol">
-            <span>Owning symbol</span>
-            <code>{{ .symbol }}</code>
-          </div>
-          <div class="code-lab-source-excerpt">
-            <span>Condensed source excerpt · whitespace may be normalized · “…” marks omitted lines</span>
-            <pre aria-label="Condensed source excerpt"><code>{{ .excerpt }}</code></pre>
-          </div>
-          <div class="code-lab-source-actions">
-            <button type="button" data-flow-copy="{{ $sourceRef }}">Copy source path</button>
-            <a href="#{{ $flow.id }}-flow" data-flow-back="{{ .id }}">
-              Back to lifecycle step <span aria-hidden="true">↑</span>
-            </a>
-          </div>
-        </div>
-      </details>
-      {{- end }}
+  <div hidden aria-hidden="true" data-flow-records data-pagefind-ignore>
+    {{- range $flow.nodes }}
+    {{- $sourceRef := printf "%s:%d–%d" .file .line_start .line_end -}}
+    {{- $sourceURL := printf "%s/blob/%s/%s#L%d-L%d" $codeMap.repository_url $codeMap.current_commit .file .line_start .line_end -}}
+    <div
+      data-flow-record="{{ .id }}"
+      data-group="{{ .group }}"
+      data-index="{{ .index }}"
+      data-label="{{ .label }}"
+      data-description="{{ .description }}"
+      data-source-ref="{{ $sourceRef }}"
+      data-source-url="{{ $sourceURL }}"
+    >
+      <code data-flow-record-symbol>{{ .symbol }}</code>
+      <code data-flow-record-excerpt>{{ .excerpt }}</code>
     </div>
+    {{- end }}
   </div>
 
-  <div class="code-lab-release-note code-flow-source-note" role="note">
+  <div class="code-lab-release-note" role="note">
     <strong>Mapping boundary.</strong>
-    This walkthrough is pinned to <code>{{ substr $codeMap.current_commit 0 12 }}</code> and explains the supported PID-only lifecycle shown in the paper figure. Unsupported mode semantics remain on their native path.
+    This interactive map is pinned to public snapshot <a href="{{ printf "%s/commit/%s" $codeMap.repository_url $codeMap.current_commit }}" target="_blank" rel="noopener"><code>{{ substr $codeMap.current_commit 0 12 }}</code></a> and explains the supported PID-only lifecycle shown in the paper figure. Unsupported mode semantics remain on their native path.
   </div>
 </section>

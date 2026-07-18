@@ -3,6 +3,7 @@
 {{- $modules := $codeMap.modules -}}
 {{- $defaultModule := index (where $modules "id" "selector") 0 -}}
 {{- $defaultSourceRef := printf "%s:%d–%d" $defaultModule.file $defaultModule.line_start $defaultModule.line_end -}}
+{{- $defaultSourceURL := printf "%s/blob/%s/%s#L%d-L%d" $codeMap.repository_url $codeMap.current_commit $defaultModule.file $defaultModule.line_start $defaultModule.line_end -}}
 {{- $flowMap := site.Data.ardugeo_flow_maps -}}
 {{- $flowNodes := 0 -}}
 {{- range $flowMap.flows -}}
@@ -14,7 +15,7 @@
     <div class="code-lab-hero-grid" aria-hidden="true"></div>
     <div class="code-lab-hero-inner">
       <div class="code-lab-hero-copy">
-        <p class="code-lab-eyebrow"><span>Code</span> Flight control / source atlas</p>
+        <p class="code-lab-eyebrow"><span>Code</span> Flight control / interactive map</p>
         <h1>ArduGeo, from control block to source line.</h1>
         <p class="code-lab-deck">
           Explore the PID-only geometric-control path inside ArduPilot. Start with the system
@@ -24,16 +25,16 @@
           <a class="code-lab-action code-lab-action--primary" href="#architecture" data-scroll-architecture>
             Explore the architecture <span aria-hidden="true">↓</span>
           </a>
-          <a class="code-lab-action" href="{{ $codeMap.repository_url }}" target="_blank" rel="noopener">
-            Repository <span aria-hidden="true">↗</span>
+          <a class="code-lab-action" href="{{ $codeMap.repository_branch_url }}" target="_blank" rel="noopener">
+            Public branch <span aria-hidden="true">↗</span>
           </a>
         </div>
       </div>
       <aside class="code-lab-release" aria-label="Source snapshot">
-        <span class="code-lab-release-status"><i aria-hidden="true"></i> Release candidate</span>
+        <span class="code-lab-release-status"><i aria-hidden="true"></i> Open source</span>
         <dl>
           <div>
-            <dt>Current implementation</dt>
+            <dt>Mapped snapshot</dt>
             <dd><code>{{ substr $codeMap.current_commit 0 12 }}</code></dd>
           </div>
           <div>
@@ -41,8 +42,8 @@
             <dd><code>{{ substr $codeMap.paper_commit 0 12 }}</code></dd>
           </div>
           <div>
-            <dt>Controller</dt>
-            <dd>SE(3) / SO(3) PID</dd>
+            <dt>Public branch</dt>
+            <dd><code>{{ $codeMap.repository_branch }}</code></dd>
           </div>
         </dl>
       </aside>
@@ -60,7 +61,7 @@
     <a href="#architecture"><span>01</span> System architecture</a>
     <a href="#guided-flow"><span>02</span> Guided lifecycle</a>
     <a href="#loiter-flow"><span>03</span> Loiter lifecycle</a>
-    <a href="#source-map"><span>04</span> Source atlas</a>
+    <a href="#evidence-boundary"><span>04</span> Evidence boundary</a>
   </nav>
 
   <main class="code-lab-main">
@@ -124,7 +125,7 @@
               {{- range $modules }}
               <a
                 class="code-lab-hotspot"
-                href="#source-{{ .id }}"
+                href="#inspect-{{ .id }}"
                 data-code-node="{{ .id }}"
                 data-group="{{ .group }}"
                 aria-label="{{ .label }} — show source in the side inspector"
@@ -157,6 +158,9 @@
           <div class="code-lab-inspector-path">
             <span>Primary source</span>
             <code data-inspector-file>{{ $defaultSourceRef }}</code>
+            <a class="code-lab-github-source" data-inspector-source-link href="{{ $defaultSourceURL }}" target="_blank" rel="noopener">
+              Open exact lines <span aria-hidden="true">↗</span>
+            </a>
           </div>
           <div class="code-lab-inspector-symbol">
             <span>Owning symbol</span>
@@ -169,17 +173,34 @@
             </header>
             <pre><code data-inspector-code>{{ $defaultModule.excerpt }}</code></pre>
           </section>
-          <a class="code-lab-inspector-link" data-inspector-link href="#source-selector">
-            View full source entry <span aria-hidden="true">↓</span>
-          </a>
         </aside>
+      </div>
+
+      <div hidden aria-hidden="true" data-code-records data-pagefind-ignore>
+        {{- range $modules }}
+        {{- $sourceRef := printf "%s:%d–%d" .file .line_start .line_end -}}
+        {{- $sourceURL := printf "%s/blob/%s/%s#L%d-L%d" $codeMap.repository_url $codeMap.current_commit .file .line_start .line_end -}}
+        <div
+          data-source-record="{{ .id }}"
+          data-group="{{ .group }}"
+          data-index="{{ .index }}"
+          data-label="{{ .label }}"
+          data-description="{{ .description }}"
+          data-source-ref="{{ $sourceRef }}"
+          data-source-url="{{ $sourceURL }}"
+        >
+          <code data-source-record-symbol>{{ .symbol }}</code>
+          <code data-source-record-excerpt>{{ .excerpt }}</code>
+        </div>
+        {{- end }}
       </div>
 
       <div class="code-lab-release-note" role="note">
         <strong>Source-link status.</strong>
-        The paths and excerpts below are pinned to <code>{{ substr $codeMap.current_commit 0 12 }}</code>.
-        That snapshot has not yet been published to the public remote, so this page uses exact on-page
-        anchors instead of broken GitHub permalinks. External commit links can be enabled after release.
+        The paths and inspector excerpts are pinned to immutable mapped snapshot
+        <a href="{{ printf "%s/commit/%s" $codeMap.repository_url $codeMap.current_commit }}" target="_blank" rel="noopener"><code>{{ substr $codeMap.current_commit 0 12 }}</code></a>,
+        now published on the public <a href="{{ $codeMap.repository_branch_url }}" target="_blank" rel="noopener"><code>{{ $codeMap.repository_branch }}</code></a> branch.
+        Every selected block can open its exact GitHub line range.
       </div>
     </section>
 
@@ -187,64 +208,8 @@
       {{- partial "code/flow.html" (dict "flow" . "codeMap" $codeMap) -}}
     {{- end }}
 
-    <section class="code-lab-source-map" id="source-map" aria-labelledby="source-map-heading">
-      <header class="code-lab-section-head">
-        <div>
-          <span class="code-lab-section-index">04 / Source atlas</span>
-          <h2 id="source-map-heading">Implementation boundaries</h2>
-          <p>Each entry records the primary file, exact line range, owning symbol, and a short excerpt from the current PID-only snapshot.</p>
-        </div>
-      </header>
-
-      <div class="code-lab-source-list">
-        {{- range $modules }}
-        {{- $sourceRef := printf "%s:%d–%d" .file .line_start .line_end -}}
-        <details
-          class="code-lab-source-card"
-          id="source-{{ .id }}"
-          data-source-card="{{ .id }}"
-          data-group="{{ .group }}"
-          data-index="{{ .index }}"
-          data-label="{{ .label }}"
-          data-description="{{ .description }}"
-          data-source-ref="{{ $sourceRef }}"
-          tabindex="-1"
-        >
-          <summary>
-            <span class="code-lab-source-number">{{ .index }}</span>
-            <span class="code-lab-source-title">
-              <em>{{ .group }}</em>
-              <strong>{{ .label }}</strong>
-              <small>{{ .description }}</small>
-            </span>
-            <code>{{ .file }}<b> L{{ .line_start }}–{{ .line_end }}</b></code>
-            <span class="code-lab-source-toggle" aria-hidden="true"></span>
-          </summary>
-          <div class="code-lab-source-body">
-            <div class="code-lab-source-symbol">
-              <span>Owning symbol</span>
-              <code>{{ .symbol }}</code>
-            </div>
-            <div class="code-lab-source-excerpt">
-              <span>Condensed source excerpt · whitespace may be normalized · “…” marks omitted lines</span>
-              <pre aria-label="Condensed source excerpt"><code>{{ .excerpt }}</code></pre>
-            </div>
-            <div class="code-lab-source-actions">
-              <button type="button" data-copy-source="{{ $sourceRef }}">
-                Copy source path
-              </button>
-              <a href="#architecture" data-back-to-node="{{ .id }}">
-                Back to block <span aria-hidden="true">↑</span>
-              </a>
-            </div>
-          </div>
-        </details>
-        {{- end }}
-      </div>
-    </section>
-
-    <section class="code-lab-boundary" aria-labelledby="boundary-heading">
-      <span class="code-lab-section-index">05 / Evidence boundary</span>
+    <section class="code-lab-boundary" id="evidence-boundary" aria-labelledby="boundary-heading">
+      <span class="code-lab-section-index">04 / Evidence boundary</span>
       <div>
         <h2 id="boundary-heading">What this page claims</h2>
         <p>

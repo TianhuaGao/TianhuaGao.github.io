@@ -7,17 +7,15 @@
   flows.forEach((root) => {
     const diagram = root.querySelector('[data-flow-diagram]');
     const nodes = [...root.querySelectorAll('[data-flow-node]')];
-    const cards = [...root.querySelectorAll('[data-flow-card]')];
+    const records = [...root.querySelectorAll('[data-flow-record]')];
     const viewButtons = [...root.querySelectorAll('[data-flow-view]')];
     const inspector = root.querySelector('[data-flow-inspector]');
-    const inspectorLink = root.querySelector('[data-flow-inspector-link]');
     const status = root.querySelector('[data-flow-status]');
     const flowId = root.dataset.codeFlow;
-    let activeNodeId = '';
     let activeView = 'all';
     let viewAnimation = 0;
 
-    const cardFor = (id) => root.querySelector('[data-flow-card="' + CSS.escape(id) + '"]');
+    const recordFor = (id) => root.querySelector('[data-flow-record="' + CSS.escape(id) + '"]');
     const nodeFor = (id) => root.querySelector('[data-flow-node="' + CSS.escape(id) + '"]');
     const buttonFor = (name) => viewButtons.find((button) => button.dataset.flowView === name);
     const labelFor = (name) => buttonFor(name)?.dataset.viewLabel || name;
@@ -72,10 +70,6 @@
         node.classList.toggle('is-muted', name !== 'all' && !related);
       });
 
-      cards.forEach((card) => {
-        card.hidden = name !== 'all' && card.dataset.group !== name;
-      });
-
       if (shouldAnimate) {
         animateViewBox(button.dataset.viewbox);
       } else if (diagram) {
@@ -83,66 +77,43 @@
       }
 
       const count = name === 'all'
-        ? cards.length
-        : cards.filter((card) => card.dataset.group === name).length;
+        ? records.length
+        : records.filter((record) => record.dataset.group === name).length;
       updateStatus(
         labelFor(name) + ' · ' + count + ' source-linked step' + (count === 1 ? '' : 's')
       );
     };
 
     const updateInspector = (id) => {
-      const card = cardFor(id);
-      if (!card || !inspector) return;
-      const symbol = card.querySelector('.code-lab-source-symbol code');
-      const excerpt = card.querySelector('.code-lab-source-excerpt pre code');
+      const record = recordFor(id);
+      if (!record || !inspector) return;
+      const symbol = record.querySelector('[data-flow-record-symbol]');
+      const excerpt = record.querySelector('[data-flow-record-excerpt]');
       const inspectorSymbol = inspector.querySelector('[data-flow-inspector-symbol]');
       const inspectorCode = inspector.querySelector('[data-flow-inspector-code]');
       const inspectorCopy = inspector.querySelector('[data-flow-inspector-copy]');
-      inspector.querySelector('[data-flow-inspector-index]').textContent = card.dataset.index;
-      inspector.querySelector('[data-flow-inspector-group]').textContent = labelFor(card.dataset.group);
-      inspector.querySelector('[data-flow-inspector-label]').textContent = card.dataset.label;
-      inspector.querySelector('[data-flow-inspector-description]').textContent = card.dataset.description;
-      inspector.querySelector('[data-flow-inspector-file]').textContent = card.dataset.sourceRef;
+      const inspectorSourceLink = inspector.querySelector('[data-flow-inspector-source-link]');
+      inspector.querySelector('[data-flow-inspector-index]').textContent = record.dataset.index;
+      inspector.querySelector('[data-flow-inspector-group]').textContent = labelFor(record.dataset.group);
+      inspector.querySelector('[data-flow-inspector-label]').textContent = record.dataset.label;
+      inspector.querySelector('[data-flow-inspector-description]').textContent = record.dataset.description;
+      inspector.querySelector('[data-flow-inspector-file]').textContent = record.dataset.sourceRef;
       if (inspectorSymbol) inspectorSymbol.textContent = symbol?.textContent.trim() || '—';
       if (inspectorCode) inspectorCode.textContent = excerpt?.textContent.trim() || 'Source excerpt unavailable.';
-      if (inspectorCopy) inspectorCopy.dataset.flowCopy = card.dataset.sourceRef;
-      if (inspectorLink) inspectorLink.href = '#' + card.id;
+      if (inspectorCopy) inspectorCopy.dataset.flowCopy = record.dataset.sourceRef;
+      if (inspectorSourceLink) inspectorSourceLink.href = record.dataset.sourceUrl;
     };
 
     const selectNode = (id, options = {}) => {
-      const {
-        open = false,
-        scroll = false,
-        updateHash = false,
-        instant = false,
-      } = options;
+      const { updateHash = false } = options;
       const node = nodeFor(id);
-      const card = cardFor(id);
-      if (!node || !card) return;
+      const record = recordFor(id);
+      if (!node || !record) return;
 
-      activeNodeId = id;
       nodes.forEach((item) => item.classList.toggle('is-active', item === node));
-      cards.forEach((item) => item.classList.toggle('is-active', item === card));
       updateInspector(id);
-      updateStatus(card.dataset.label + ' · source shown in the side inspector');
-      if (open) card.open = true;
+      updateStatus(record.dataset.label + ' · source shown in the side inspector');
       if (updateHash) window.history.pushState(null, '', '#' + flowId + '-inspect-' + id);
-
-      if (scroll) {
-        window.requestAnimationFrame(() => {
-          card.scrollIntoView({
-            behavior: instant || reduceMotion.matches ? 'auto' : 'smooth',
-            block: 'start',
-          });
-          window.setTimeout(() => {
-            try {
-              card.focus({ preventScroll: true });
-            } catch (_error) {
-              card.focus();
-            }
-          }, reduceMotion.matches || instant ? 0 : 380);
-        });
-      }
     };
 
     viewButtons.forEach((button) => {
@@ -153,45 +124,13 @@
       const id = node.dataset.flowNode;
       node.addEventListener('focus', () => {
         selectNode(id);
-        updateStatus(cardFor(id).dataset.label + ' · press Enter to show source at right');
+        updateStatus(recordFor(id).dataset.label + ' · press Enter to show source at right');
       });
       node.addEventListener('click', (event) => {
         event.preventDefault();
-        const card = cardFor(id);
-        if (card.hidden) setView(card.dataset.group);
+        const record = recordFor(id);
+        if (activeView !== 'all' && activeView !== record.dataset.group) setView(record.dataset.group);
         selectNode(id, { updateHash: true });
-      });
-    });
-
-    cards.forEach((card) => {
-      card.addEventListener('toggle', () => {
-        if (card.open) selectNode(card.dataset.flowCard);
-      });
-    });
-
-    if (inspectorLink) {
-      inspectorLink.addEventListener('click', (event) => {
-        event.preventDefault();
-        if (!activeNodeId) return;
-        const card = cardFor(activeNodeId);
-        if (card.hidden) setView(card.dataset.group);
-        selectNode(activeNodeId, { open: true, scroll: true, updateHash: true });
-      });
-    }
-
-    root.querySelectorAll('[data-flow-back]').forEach((link) => {
-      link.addEventListener('click', (event) => {
-        event.preventDefault();
-        const id = link.dataset.flowBack;
-        const card = cardFor(id);
-        setView(card.dataset.group);
-        selectNode(id);
-        window.history.pushState(null, '', '#' + flowId + '-flow');
-        root.scrollIntoView({
-          behavior: reduceMotion.matches ? 'auto' : 'smooth',
-          block: 'start',
-        });
-        window.setTimeout(() => nodeFor(id)?.focus(), reduceMotion.matches ? 0 : 380);
       });
     });
 
@@ -223,18 +162,21 @@
 
     const selectFromHash = (shouldScroll = false) => {
       const inspectPrefix = '#' + flowId + '-inspect-';
+      const legacyPrefix = '#' + flowId + '-source-';
       const inspectId = window.location.hash.startsWith(inspectPrefix)
         ? window.location.hash.slice(inspectPrefix.length)
         : '';
-      const card = inspectId
-        ? cardFor(inspectId)
-        : cards.find((item) => '#' + item.id === window.location.hash);
-      if (!card) return false;
-      if (!inspectId) {
-        window.history.replaceState(null, '', inspectPrefix + card.dataset.flowCard);
+      const legacyId = window.location.hash.startsWith(legacyPrefix)
+        ? window.location.hash.slice(legacyPrefix.length)
+        : '';
+      const id = inspectId || legacyId;
+      const record = id ? recordFor(id) : null;
+      if (!record) return false;
+      if (legacyId) {
+        window.history.replaceState(null, '', inspectPrefix + id);
       }
-      setView(card.dataset.group, false);
-      selectNode(card.dataset.flowCard);
+      setView(record.dataset.group, false);
+      selectNode(id);
       if (shouldScroll) {
         window.requestAnimationFrame(() => {
           root.scrollIntoView({ behavior: 'auto', block: 'start' });

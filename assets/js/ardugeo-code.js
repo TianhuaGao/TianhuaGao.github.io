@@ -4,10 +4,9 @@
 
   const diagram = root.querySelector('[data-code-diagram]');
   const nodes = [...root.querySelectorAll('[data-code-node]')];
-  const cards = [...root.querySelectorAll('[data-source-card]')];
+  const records = [...root.querySelectorAll('[data-source-record]')];
   const viewButtons = [...root.querySelectorAll('[data-code-view]')];
   const inspector = root.querySelector('[data-code-inspector]');
-  const inspectorLink = root.querySelector('[data-inspector-link]');
   const architecture = root.querySelector('#architecture');
   const architectureLink = root.querySelector('[data-scroll-architecture]');
   const status = root.querySelector('[data-code-status]');
@@ -21,11 +20,10 @@
     evidence: 'Compatibility + evidence',
   };
 
-  let activeNodeId = '';
   let activeView = 'all';
   let viewAnimation = 0;
 
-  const cardFor = (id) => root.querySelector('[data-source-card="' + CSS.escape(id) + '"]');
+  const recordFor = (id) => root.querySelector('[data-source-record="' + CSS.escape(id) + '"]');
   const nodeFor = (id) => root.querySelector('[data-code-node="' + CSS.escape(id) + '"]');
 
   const parseViewBox = (value) => value.trim().split(/\s+/).map(Number);
@@ -81,10 +79,6 @@
       node.classList.toggle('is-muted', name !== 'all' && !related);
     });
 
-    cards.forEach((card) => {
-      card.hidden = name !== 'all' && card.dataset.group !== name;
-    });
-
     if (diagram) {
       if (shouldAnimate) {
         animateViewBox(button.dataset.viewbox);
@@ -94,8 +88,8 @@
     }
 
     const visibleCount = name === 'all'
-      ? cards.length
-      : cards.filter((card) => card.dataset.group === name).length;
+      ? records.length
+      : records.filter((record) => record.dataset.group === name).length;
     updateStatus(
       groupLabels[name] + ' · ' + visibleCount + ' source-linked block' +
       (visibleCount === 1 ? '' : 's')
@@ -103,63 +97,39 @@
   };
 
   const updateInspector = (id) => {
-    const card = cardFor(id);
-    if (!card || !inspector) return;
+    const record = recordFor(id);
+    if (!record || !inspector) return;
 
-    const symbol = card.querySelector('.code-lab-source-symbol code');
-    const excerpt = card.querySelector('.code-lab-source-excerpt pre code');
+    const symbol = record.querySelector('[data-source-record-symbol]');
+    const excerpt = record.querySelector('[data-source-record-excerpt]');
     const inspectorSymbol = inspector.querySelector('[data-inspector-symbol]');
     const inspectorCode = inspector.querySelector('[data-inspector-code]');
     const inspectorCopy = inspector.querySelector('[data-inspector-copy]');
+    const inspectorSourceLink = inspector.querySelector('[data-inspector-source-link]');
 
-    inspector.querySelector('[data-inspector-index]').textContent = card.dataset.index;
-    inspector.querySelector('[data-inspector-group]').textContent = groupLabels[card.dataset.group];
-    inspector.querySelector('[data-inspector-label]').textContent = card.dataset.label;
-    inspector.querySelector('[data-inspector-description]').textContent = card.dataset.description;
-    inspector.querySelector('[data-inspector-file]').textContent = card.dataset.sourceRef;
+    inspector.querySelector('[data-inspector-index]').textContent = record.dataset.index;
+    inspector.querySelector('[data-inspector-group]').textContent = groupLabels[record.dataset.group];
+    inspector.querySelector('[data-inspector-label]').textContent = record.dataset.label;
+    inspector.querySelector('[data-inspector-description]').textContent = record.dataset.description;
+    inspector.querySelector('[data-inspector-file]').textContent = record.dataset.sourceRef;
     if (inspectorSymbol) inspectorSymbol.textContent = symbol?.textContent.trim() || '—';
     if (inspectorCode) inspectorCode.textContent = excerpt?.textContent.trim() || 'Source excerpt unavailable.';
-    if (inspectorCopy) inspectorCopy.dataset.copySource = card.dataset.sourceRef;
-    if (inspectorLink) inspectorLink.href = '#source-' + id;
+    if (inspectorCopy) inspectorCopy.dataset.copySource = record.dataset.sourceRef;
+    if (inspectorSourceLink) inspectorSourceLink.href = record.dataset.sourceUrl;
   };
 
   const selectNode = (id, options = {}) => {
-    const {
-      open = false,
-      scroll = false,
-      updateHash = false,
-      instant = false,
-    } = options;
+    const { updateHash = false } = options;
     const node = nodeFor(id);
-    const card = cardFor(id);
-    if (!node || !card) return;
+    const record = recordFor(id);
+    if (!node || !record) return;
 
-    activeNodeId = id;
     nodes.forEach((item) => item.classList.toggle('is-active', item === node));
-    cards.forEach((item) => item.classList.toggle('is-active', item === card));
     updateInspector(id);
-    updateStatus(card.dataset.label + ' · source shown in the side inspector');
-
-    if (open) card.open = true;
+    updateStatus(record.dataset.label + ' · source shown in the side inspector');
 
     if (updateHash) {
       window.history.pushState(null, '', '#inspect-' + id);
-    }
-
-    if (scroll) {
-      window.requestAnimationFrame(() => {
-        card.scrollIntoView({
-          behavior: instant ? 'instant' : (reduceMotion.matches ? 'auto' : 'smooth'),
-          block: 'start',
-        });
-        window.setTimeout(() => {
-          try {
-            card.focus({ preventScroll: true });
-          } catch (_error) {
-            card.focus();
-          }
-        }, reduceMotion.matches ? 0 : 380);
-      });
     }
   };
 
@@ -194,48 +164,13 @@
 
     node.addEventListener('focus', () => {
       selectNode(id);
-      updateStatus(cardFor(id).dataset.label + ' · press Enter to show source at right');
+      updateStatus(recordFor(id).dataset.label + ' · press Enter to show source at right');
     });
     node.addEventListener('click', (event) => {
       event.preventDefault();
-      const card = cardFor(id);
-      if (card.hidden) setView(card.dataset.group);
+      const record = recordFor(id);
+      if (activeView !== 'all' && activeView !== record.dataset.group) setView(record.dataset.group);
       selectNode(id, { updateHash: true });
-    });
-  });
-
-  cards.forEach((card) => {
-    card.addEventListener('toggle', () => {
-      if (card.open) selectNode(card.dataset.sourceCard);
-    });
-  });
-
-  if (inspectorLink) {
-    inspectorLink.addEventListener('click', (event) => {
-      event.preventDefault();
-      if (!activeNodeId) return;
-      const card = cardFor(activeNodeId);
-      if (card.hidden) setView(card.dataset.group);
-      selectNode(activeNodeId, { open: true, scroll: true, updateHash: true });
-    });
-  }
-
-  root.querySelectorAll('[data-back-to-node]').forEach((link) => {
-    link.addEventListener('click', (event) => {
-      event.preventDefault();
-      const id = link.dataset.backToNode;
-      const card = cardFor(id);
-      setView(card.dataset.group);
-      selectNode(id);
-      window.history.pushState(null, '', '#architecture');
-      root.querySelector('#architecture').scrollIntoView({
-        behavior: reduceMotion.matches ? 'auto' : 'smooth',
-        block: 'start',
-      });
-      window.setTimeout(() => {
-        const node = nodeFor(id);
-        if (node) node.focus();
-      }, reduceMotion.matches ? 0 : 380);
     });
   });
 
@@ -274,20 +209,23 @@
 
   const selectFromHash = (shouldScroll = false) => {
     const match = window.location.hash.match(/^#(?:inspect|source)-(.+)$/);
-    if (!match || !cardFor(match[1])) return false;
+    if (!match || !recordFor(match[1])) return false;
     const id = match[1];
-    const card = cardFor(id);
+    const record = recordFor(id);
     if (window.location.hash.startsWith('#source-')) {
       window.history.replaceState(null, '', '#inspect-' + id);
     }
-    setView(card.dataset.group, false);
+    setView(record.dataset.group, false);
     selectNode(id);
     if (shouldScroll) scrollToArchitecture(false, true);
     return true;
   };
 
   window.addEventListener('hashchange', () => {
-    if (window.location.hash === '#architecture') {
+    if (window.location.hash === '#architecture' || window.location.hash === '#source-map') {
+      if (window.location.hash === '#source-map') {
+        window.history.replaceState(null, '', '#architecture');
+      }
       scrollToArchitecture(false, true);
       return;
     }
@@ -303,6 +241,9 @@
   if (!selectFromHash(true)) {
     selectNode('selector');
     setView('all', false);
+    if (window.location.hash === '#source-map') {
+      window.history.replaceState(null, '', '#architecture');
+    }
     if (window.location.hash === '#architecture') {
       scrollToArchitecture(false, true);
     }

@@ -2,7 +2,10 @@ project: ArduGeo
 architecture: PID-only control architecture
 current_commit: 0305a73b4ee07b64962b00c53bb2f0c18ccd6e1e
 paper_commit: 8568151a51a88550721ed4878384fa41ce4af249
-repository_url: https://github.com/TianhuaGao/Ardupilot-SANM
+repository_url: https://github.com/TianhuaGao/ArduGeo
+repository_branch: ardugeo-pid
+repository_branch_head: d1a704d0fdf9494b6b8d938f9c49557d9e7dcc2c
+repository_branch_url: https://github.com/TianhuaGao/ArduGeo/tree/ardugeo-pid
 upstream_url: https://github.com/ArduPilot/ardupilot
 license_url: https://github.com/ArduPilot/ardupilot/blob/master/COPYING.txt
 
