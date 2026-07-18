@@ -1,0 +1,136 @@
+{{- $flow := .flow -}}
+{{- $codeMap := .codeMap -}}
+{{- $first := index $flow.nodes 0 -}}
+{{- $firstGroup := index (where $flow.groups "id" $first.group) 0 -}}
+{{- $firstSourceRef := printf "%s:%d–%d" $first.file $first.line_start $first.line_end -}}
+{{- $firstSourceURL := printf "%s/blob/%s/%s#L%d-L%d" $codeMap.repository_url $codeMap.current_commit $first.file $first.line_start $first.line_end -}}
+{{- $overviewGroup := index (where $flow.groups "id" "all") 0 -}}
+<section class="code-flow" id="{{ $flow.id }}-flow" data-code-flow="{{ $flow.id }}" aria-labelledby="{{ $flow.id }}-flow-heading">
+  <header class="code-lab-section-head">
+    <div>
+      <span class="code-lab-section-index">{{ $flow.index }} / {{ $flow.kicker }}</span>
+      <h2 id="{{ $flow.id }}-flow-heading">{{ $flow.title }}</h2>
+      <p>{{ $flow.description }}</p>
+    </div>
+    <p class="code-lab-instruction">
+      <span><kbd>Tab</kbd> focus</span><i aria-hidden="true">·</i>
+      <span><kbd>Enter</kbd> source</span><i aria-hidden="true">·</i>
+      <span><kbd>Esc</kbd> overview</span>
+    </p>
+  </header>
+
+  <div class="code-lab-viewbar" role="group" aria-label="Focus {{ $flow.title }} stage">
+    {{- range $index, $group := $flow.groups }}
+    <button
+      type="button"
+      {{ if eq $group.id "all" }}class="is-active"{{ end }}
+      data-flow-view="{{ $group.id }}"
+      data-view-label="{{ $group.label }}"
+      data-viewbox="{{ delimit $group.viewbox " " }}"
+      aria-pressed="{{ if eq $group.id "all" }}true{{ else }}false{{ end }}"
+    >
+      <span>{{ $group.index }}</span> {{ $group.label }}
+    </button>
+    {{- end }}
+  </div>
+
+  <div class="code-lab-diagram-grid code-flow-diagram-grid">
+    <div class="code-lab-diagram-frame code-flow-diagram-frame">
+      <svg
+        class="code-lab-diagram code-flow-diagram"
+        data-flow-diagram
+        viewBox="{{ delimit $overviewGroup.viewbox " " }}"
+        preserveAspectRatio="xMidYMid meet"
+        role="img"
+        aria-labelledby="{{ $flow.id }}-diagram-title {{ $flow.id }}-diagram-desc"
+      >
+        <title id="{{ $flow.id }}-diagram-title">{{ $flow.diagram_title }}</title>
+        <desc id="{{ $flow.id }}-diagram-desc">Select any highlighted lifecycle step to show its primary source boundary in the side inspector.</desc>
+        <image
+          href="{{ $flow.image | relURL }}"
+          x="0"
+          y="0"
+          width="{{ $flow.width }}"
+          height="{{ $flow.height }}"
+          aria-hidden="true"
+          pointer-events="none"
+        />
+        <g class="code-lab-hotspots">
+          {{- range $flow.nodes }}
+          <a
+            class="code-lab-hotspot"
+            href="#{{ $flow.id }}-inspect-{{ .id }}"
+            data-flow-node="{{ .id }}"
+            data-group="{{ .group }}"
+            aria-label="{{ .label }} — show source in the side inspector"
+          >
+            <title>{{ .label }} — {{ .file }} lines {{ .line_start }}–{{ .line_end }}</title>
+            <rect
+              x="{{ index .bbox 0 }}"
+              y="{{ index .bbox 1 }}"
+              width="{{ index .bbox 2 }}"
+              height="{{ index .bbox 3 }}"
+              rx="{{ .rx }}"
+              vector-effect="non-scaling-stroke"
+            />
+          </a>
+          {{- end }}
+        </g>
+      </svg>
+      <div class="code-lab-diagram-status" aria-live="polite" data-flow-status>
+        Overview · {{ len $flow.nodes }} source-linked steps
+      </div>
+    </div>
+
+    <aside class="code-lab-inspector" data-flow-inspector aria-label="Selected {{ $flow.title }} source step and code excerpt">
+      <div class="code-lab-inspector-topline">
+        <span data-flow-inspector-index>{{ $first.index }}</span>
+        <em data-flow-inspector-group>{{ $firstGroup.label }}</em>
+      </div>
+      <h3 data-flow-inspector-label>{{ $first.label }}</h3>
+      <p data-flow-inspector-description>{{ $first.description }}</p>
+      <div class="code-lab-inspector-path">
+        <span>Primary source</span>
+        <code data-flow-inspector-file>{{ $firstSourceRef }}</code>
+        <a class="code-lab-github-source" data-flow-inspector-source-link href="{{ $firstSourceURL }}" target="_blank" rel="noopener">
+          Open exact lines <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+      <div class="code-lab-inspector-symbol">
+        <span>Owning symbol</span>
+        <code data-flow-inspector-symbol>{{ $first.symbol }}</code>
+      </div>
+      <section class="code-lab-inspector-excerpt" aria-label="Selected lifecycle source excerpt">
+        <header>
+          <span>Condensed source excerpt</span>
+          <button type="button" data-flow-copy="{{ $firstSourceRef }}" data-flow-inspector-copy>Copy path</button>
+        </header>
+        <pre><code data-flow-inspector-code>{{ $first.excerpt }}</code></pre>
+      </section>
+    </aside>
+  </div>
+
+  <div hidden aria-hidden="true" data-flow-records data-pagefind-ignore>
+    {{- range $flow.nodes }}
+    {{- $sourceRef := printf "%s:%d–%d" .file .line_start .line_end -}}
+    {{- $sourceURL := printf "%s/blob/%s/%s#L%d-L%d" $codeMap.repository_url $codeMap.current_commit .file .line_start .line_end -}}
+    <div
+      data-flow-record="{{ .id }}"
+      data-group="{{ .group }}"
+      data-index="{{ .index }}"
+      data-label="{{ .label }}"
+      data-description="{{ .description }}"
+      data-source-ref="{{ $sourceRef }}"
+      data-source-url="{{ $sourceURL }}"
+    >
+      <code data-flow-record-symbol>{{ .symbol }}</code>
+      <code data-flow-record-excerpt>{{ .excerpt }}</code>
+    </div>
+    {{- end }}
+  </div>
+
+  <div class="code-lab-release-note" role="note">
+    <strong>Mapping boundary.</strong>
+    This interactive map is pinned to public snapshot <a href="{{ printf "%s/commit/%s" $codeMap.repository_url $codeMap.current_commit }}" target="_blank" rel="noopener"><code>{{ substr $codeMap.current_commit 0 12 }}</code></a> and explains the supported PID-only lifecycle shown in the paper figure. Unsupported mode semantics remain on their native path.
+  </div>
+</section>

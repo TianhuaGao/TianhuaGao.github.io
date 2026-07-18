@@ -1,0 +1,89 @@
+{{ define "main" }}
+{{- $projects := .RegularPages.ByWeight -}}
+<article class="code-index">
+  <header class="code-index-hero">
+    <div class="code-index-hero-inner">
+      <p class="code-index-eyebrow"><span>Code</span> Engineering systems</p>
+      <div class="code-index-title-row">
+        <h1>From research idea<br>to working system.</h1>
+        <p>
+          A field guide to flight-control software, research infrastructure, and engineering tools.
+          Select a project to inspect its architecture, evidence boundary, and implementation.
+        </p>
+      </div>
+      <div class="code-index-statline" aria-label="Code collection summary">
+        <span><strong>{{ len $projects }}</strong> published project</span>
+        <span><strong>03</strong> engineering tracks</span>
+        <a href="#projects">Browse the projects <i aria-hidden="true">↓</i></a>
+      </div>
+    </div>
+  </header>
+
+  <nav class="code-index-tracks" aria-label="Code project categories">
+    <a class="is-active" href="#projects">
+      <span>01</span><strong>Flight Control</strong><small>{{ len $projects }} project</small>
+    </a>
+    <div aria-disabled="true">
+      <span>02</span><strong>Research Infrastructure</strong><small>In development</small>
+    </div>
+    <div aria-disabled="true">
+      <span>03</span><strong>Engineering Tools</strong><small>In development</small>
+    </div>
+  </nav>
+
+  <main class="code-index-main" id="projects">
+    <header class="code-index-section-head">
+      <div>
+        <span>Selected projects</span>
+        <h2>Code with a traceable engineering story.</h2>
+      </div>
+      <p>Each project page connects system-level intent to concrete source boundaries.</p>
+    </header>
+
+    <div class="code-index-projects">
+      {{- range $projects }}
+      <a class="code-project-feature" href="{{ .RelPermalink }}" aria-labelledby="code-project-{{ .File.UniqueID }}">
+        <div class="code-project-visual" aria-hidden="true">
+          <img src="{{ .Params.image | relURL }}" alt="" width="1600" height="930">
+          <span>Open interactive atlas <i>↗</i></span>
+        </div>
+        <div class="code-project-copy">
+          <div class="code-project-meta">
+            <span>{{ .Params.category_index }} / {{ .Params.category }}</span>
+            <span>{{ .Params.year }}</span>
+          </div>
+          <p class="code-project-status"><i aria-hidden="true"></i>{{ .Params.status }}</p>
+          <h3 id="code-project-{{ .File.UniqueID }}">{{ .Title }}</h3>
+          <p>{{ .Params.summary }}</p>
+          <ul aria-label="Technology stack">
+            {{- range .Params.stack }}<li>{{ . }}</li>{{- end }}
+          </ul>
+          <span class="code-project-link">Explore the project <i aria-hidden="true">→</i></span>
+        </div>
+      </a>
+      {{- end }}
+    </div>
+
+    <footer class="code-index-next">
+      <span>Next in the lab</span>
+      <p>Additional project case studies will appear here when their implementation and evidence are ready to inspect.</p>
+    </footer>
+  </main>
+</article>
+
+<script>
+  (() => {
+    const legacyHash = window.location.hash;
+    const projectSection = legacyHash === '#architecture' ||
+      legacyHash === '#guided-flow' ||
+      legacyHash === '#loiter-flow' ||
+      legacyHash === '#source-map';
+    const sourceAnchor = legacyHash.startsWith('#source-') ||
+      legacyHash.startsWith('#guided-source-') ||
+      legacyHash.startsWith('#loiter-source-');
+    if (projectSection || sourceAnchor) {
+      window.location.replace('{{ "code/ardugeo/" | relURL }}' + legacyHash);
+    }
+  })();
+</script>
+{{ end }}

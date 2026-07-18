@@ -1,0 +1,698 @@
+flows:
+  - id: guided
+    index: "02"
+    kicker: Guided lifecycle
+    title: Follow Guided from entry to motor ownership
+    description: The paper's final Guided lifecycle figure becomes a source-linked walkthrough. Focus a stage, then select a highlighted step to inspect its primary PID-only implementation boundary.
+    diagram_title: Interactive Guided full-geometric lifecycle
+    image: images/ardugeo-guided-lifecycle.svg
+    width: 1400
+    height: 1500
+    source_title: Guided, one lifecycle at a time
+    source_description: Current-state entry, bounded target generation, frame-exclusive output, fallback, and same-mode landing are traced to the current PID-only snapshot.
+    groups:
+      - id: all
+        index: "00"
+        label: Overview
+        viewbox: [0, 0, 1400, 1500]
+      - id: entry
+        index: "01"
+        label: Entry + eligibility
+        viewbox: [430, 80, 540, 385]
+      - id: reference
+        index: "02"
+        label: Guided references
+        viewbox: [20, 460, 1360, 360]
+      - id: control
+        index: "03"
+        label: Control + ownership
+        viewbox: [350, 815, 700, 410]
+      - id: lifecycle
+        index: "04"
+        label: Lifecycle + fallback
+        viewbox: [20, 1220, 900, 270]
+    nodes:
+      - id: entry
+        index: "01"
+        label: Enter Guided + request eligibility
+        group: entry
+        bbox: [550, 112, 300, 154]
+        rx: 18
+        file: ArduCopter/mode_guided.cpp
+        line_start: 55
+        line_end: 125
+        symbol: ModeGuided::init
+        description: Clears inherited external-reference ownership, resets lifecycle state, and selects a current-state PVA entry when full-geometric options are requested.
+        excerpt: |-
+          const bool full_geometric_entry =
+              geometric_motor_output_options_requested();
+          if (full_geometric_entry) {
+              posvelaccel_control_start();
+          } else {
+              velaccel_control_start();
+          }
+
+      - id: prewarm
+        index: "02"
+        label: Ground-safe prewarm + arm readiness
+        group: entry
+        bbox: [535, 282, 330, 161]
+        rx: 18
+        file: ArduCopter/mode_guided.cpp
+        line_start: 2237
+        line_end: 2268
+        symbol: ModeGuided::update_geometric_ground_safe_observer
+        description: Builds a measured-state, gravity-compensated NED target with zero collective and keeps it fresh until arming and spool readiness pass.
+        excerpt: |-
+          geometric_target.velocity_ned_ms =
+              pos_control->get_vel_estimate_NED_ms();
+          geometric_target.accel_ned_mss =
+              Vector3f{0.0f, 0.0f, GRAVITY_MSS};
+          ahrs.get_quat_body_to_ned(
+              geometric_target.attitude_body_to_ned);
+
+      - id: dispatch
+        index: "03"
+        label: Supported Guided target dispatch
+        group: reference
+        bbox: [545, 495, 310, 84]
+        rx: 14
+        file: ArduCopter/mode_guided.cpp
+        line_start: 272
+        line_end: 297
+        symbol: ModeGuided::geometric_submode_supported
+        description: Admits supported non-terrain TakeOff and Pos, PosVelAccel, internal Land, and pause semantics; incompatible targets remain native.
+        excerpt: |-
+          case SubMode::TakeOff:
+              return !guided_geometric_takeoff_terrain_alt;
+          case SubMode::Pos:
+              return !guided_is_terrain_alt;
+          case SubMode::PosVelAccel:
+          case SubMode::Land:
+              return true;
+
+      - id: takeoff
+        index: "04"
+        label: Geometric takeoff
+        group: reference
+        bbox: [140, 605, 280, 82]
+        rx: 12
+        file: ArduCopter/mode_guided.cpp
+        line_start: 1246
+        line_end: 1323
+        symbol: ModeGuided::takeoff_run
+        description: Leaves arm, interlock, and spool authority with AP_Motors, keeps the ground-safe target fresh, then starts the shaped altitude reference.
+        excerpt: |-
+          if (!motors->armed() || !copter.ap.auto_armed ||
+              motors->get_spool_state() !=
+                  AP_Motors::SpoolState::THROTTLE_UNLIMITED) {
+              guided_geometric_takeoff_spool_ready = false;
+              update_geometric_ground_safe_observer();
+              return;
+          }
+
+      - id: position
+        index: "05"
+        label: Position / PVA / pause
+        group: reference
+        bbox: [560, 605, 280, 82]
+        rx: 12
+        file: ArduCopter/mode_guided.cpp
+        line_start: 1130
+        line_end: 1176
+        symbol: ModeGuided::set_pos_vel_accel_NED_m
+        description: Merges Guided position, velocity, acceleration, and yaw semantics, then prepares the compatible target before the next rate frame.
+        excerpt: |-
+          guided_pos_target_ned_m =
+              guided_geometric_target_manager.set_position_target(
+                  pos_ned_m, false,
+                  geometric_position_control_active() ?
+                      &current_pos_ned_m : nullptr);
+          guided_vel_target_ned_ms = vel_ned_ms;
+          guided_accel_target_ned_mss = accel_ned_mss;
+
+      - id: land
+        index: "06"
+        label: Internal geometric Land
+        group: reference
+        bbox: [980, 605, 280, 82]
+        rx: 12
+        file: ArduCopter/mode_guided.cpp
+        line_start: 1344
+        line_end: 1443
+        symbol: ModeGuided::geometric_land_run
+        description: Holds horizontal position and yaw, ramps NED descent velocity, and anchors vertical position to the estimate until the land detector fires.
+        excerpt: |-
+          Vector3p landing_target_ned_m =
+              guided_geometric_land_hold_ned_m;
+          landing_target_ned_m.z = current_pos_ned_m.z;
+          target_velocity_ned_ms.z =
+              guided_geometric_land_descent_ned_ms;
+          update_geometric_position_observer(
+              &landing_target_ned_m, target_velocity_ned_ms,
+              target_accel_ned_mss, heading, false, false);
+
+      - id: reference
+        index: "07"
+        label: Shaped P/V/A/yaw reference
+        group: reference
+        bbox: [505, 715, 390, 72]
+        rx: 12
+        file: libraries/AC_GeometricControl/AC_GeometricControl.cpp
+        line_start: 517
+        line_end: 565
+        symbol: AC_GeometricControl::update
+        description: Converts step-like Guided commands into one bounded position, velocity, acceleration, yaw, and yaw-rate trajectory before feedback.
+        excerpt: |-
+          if (_shape_enabled &&
+              target.build_attitude_from_position &&
+              target.shape_position_target) {
+              _setpoint_shaper.set_limits(limits);
+              _setpoint_shaper.update(
+                  state, target, dt, position_target);
+              _shaper_active = true;
+          }
+
+      - id: cascade
+        index: "08"
+        label: Shared SE(3) / SO(3) cascade
+        group: control
+        bbox: [530, 850, 340, 70]
+        rx: 12
+        file: libraries/AC_GeometricControl/AC_GeometricControl.cpp
+        line_start: 517
+        line_end: 592
+        symbol: AC_GeometricControl::update
+        description: Runs position PID, constructs commanded attitude, evaluates SO(3) attitude PID, and maps force and moments into normalized actuator intent.
+        excerpt: |-
+          _position_pid.update(
+              state, position_target, dt, _output.position);
+          _attitude_pid.update(
+              state, attitude_target, dt, _output.attitude);
+          _output_mapper.update(
+              _output.position, _output.attitude,
+              hover_throttle_norm(), moment_norm, _output.mapped);
+
+      - id: publish
+        index: "09"
+        label: Publish external compatibility reference
+        group: control
+        bbox: [535, 940, 330, 66]
+        rx: 12
+        file: ArduCopter/mode_guided.cpp
+        line_start: 2289
+        line_end: 2326
+        symbol: ModeGuided::publish_geometric_position_reference
+        description: Publishes shaped PVA and commanded attitude as read-only compatibility state; it neither runs native feedback nor grants actuator ownership.
+        excerpt: |-
+          const bool position_published =
+              pos_control->publish_external_reference_NED_m(
+                  shaped_target.position_ned_m.topostype(),
+                  shaped_target.velocity_ned_ms,
+                  shaped_target.accel_ned_mss);
+          if (position_published &&
+              attitude_control->set_external_attitude_target(
+                  geometric_position.attitude_body_to_ned,
+                  geometric_position.omega_body_rads)) {
+              return true;
+          }
+
+      - id: gate
+        index: "10"
+        label: Output authorization gate
+        group: control
+        bbox: [520, 1025, 360, 78]
+        rx: 18
+        file: ArduCopter/Attitude.cpp
+        line_start: 119
+        line_end: 151
+        symbol: Copter::geometric_motor_output_failure_flags
+        description: Fails closed unless mode authorization, output enable, main-rate scheduling, arming, controller enable, freshness, finiteness, and mode safety pass.
+        excerpt: |-
+          if (!geometric_control.output_is_fresh(
+                  millis(), GEOMETRIC_OUTPUT_MAX_AGE_MS)) {
+              failure_flags |= GEO_FAIL_STALE;
+          }
+          if (!geometric_motor_output_is_valid()) {
+              failure_flags |= GEO_FAIL_INVALID;
+          }
+          if (flightmode != nullptr &&
+              !flightmode->geometric_motor_output_is_safe()) {
+              failure_flags |= GEO_FAIL_MODE_UNSAFE;
+          }
+
+      - id: write
+        index: "11"
+        label: Write geometric actuator intent
+        group: control
+        bbox: [500, 1120, 400, 70]
+        rx: 12
+        file: ArduCopter/Attitude.cpp
+        line_start: 25
+        line_end: 92
+        symbol: Copter::run_rate_controller_main
+        description: Selects exactly one writer per main-rate frame; an authorized geometric frame freezes native rate PID and writes normalized intent through AP_Motors.
+        excerpt: |-
+          if (geometric_output_active) {
+              attitude_control->rate_controller_update_throttle_mix();
+              geometric_motor_output_to_motors();
+              geometric_motor_output_frame_count++;
+              geometric_motor_output_was_active = true;
+          } else {
+              attitude_control->rate_controller_run();
+              native_rate_controller_frame_count++;
+          }
+
+      - id: handoff
+        index: "12"
+        label: Atomic handoff + native Guided
+        group: lifecycle
+        bbox: [70, 1255, 330, 162]
+        rx: 32
+        file: ArduCopter/Attitude.cpp
+        line_start: 38
+        line_end: 92
+        symbol: Copter::run_rate_controller_main
+        description: On an ownership falling edge, transfers controller state before native PID runs in the same frame; a no-request entry can stay native directly.
+        excerpt: |-
+          if (geometric_motor_output_was_active &&
+              !geometric_output_active) {
+              if (flightmode != nullptr) {
+                  flightmode->
+                      handle_geometric_motor_output_fallback();
+              }
+              geometric_motor_output_was_active = false;
+          }
+
+      - id: land-complete
+        index: "13"
+        label: Internal Land completion
+        group: lifecycle
+        bbox: [550, 1250, 300, 86]
+        rx: 14
+        file: ArduCopter/mode_guided.cpp
+        line_start: 1369
+        line_end: 1384
+        symbol: ModeGuided::geometric_land_run
+        description: Uses the standard land detector for touchdown, then keeps a fresh ground-safe target while AP_Motors transitions to GROUND_IDLE.
+        excerpt: |-
+          if (copter.ap.land_complete) {
+              motors->set_desired_spool_state(
+                  AP_Motors::DesiredSpoolState::GROUND_IDLE);
+              update_geometric_ground_safe_observer();
+
+              if (motors->get_spool_state() ==
+                  AP_Motors::SpoolState::GROUND_IDLE) {
+
+      - id: ground-idle
+        index: "14"
+        label: Ground-safe through idle
+        group: lifecycle
+        bbox: [520, 1360, 360, 62]
+        rx: 30
+        file: ArduCopter/mode_guided.cpp
+        line_start: 1370
+        line_end: 1407
+        symbol: ModeGuided::geometric_land_run
+        description: Waits for GROUND_IDLE, disarms explicitly, and recreates the zero-collective hold so another Guided lifecycle can start without leaving the mode.
+        excerpt: |-
+          if (motors->get_spool_state() ==
+              AP_Motors::SpoolState::GROUND_IDLE) {
+              // …
+              if (copter.arming.disarm(
+                      AP_Arming::Method::LANDED)) {
+                  posvelaccel_control_start();
+                  update_geometric_ground_safe_observer();
+              }
+          }
+
+  - id: loiter
+    index: "03"
+    kicker: Loiter lifecycle
+    title: Follow Loiter from pilot intent to ground idle
+    description: The paper's final Loiter lifecycle figure becomes a source-linked walkthrough of the dedicated reference, shared cascade, actuator ownership, and fallback boundary.
+    diagram_title: Interactive Loiter full-geometric lifecycle
+    image: images/ardugeo-loiter-lifecycle.svg
+    width: 1400
+    height: 1500
+    source_title: Loiter, from sticks to lifecycle completion
+    source_description: Pilot-reference semantics stay separate from shared feedback while native AP_Motors, fallback, and landed behavior remain authoritative.
+    groups:
+      - id: all
+        index: "00"
+        label: Overview
+        viewbox: [0, 0, 1400, 1500]
+      - id: entry
+        index: "01"
+        label: Entry + eligibility
+        viewbox: [430, 80, 540, 380]
+      - id: reference
+        index: "02"
+        label: Loiter reference
+        viewbox: [20, 465, 1360, 350]
+      - id: control
+        index: "03"
+        label: Cascade + ownership
+        viewbox: [350, 815, 700, 410]
+      - id: lifecycle
+        index: "04"
+        label: Lifecycle + fallback
+        viewbox: [20, 1220, 900, 260]
+    nodes:
+      - id: enter
+        index: "01"
+        label: Enter Loiter
+        group: entry
+        bbox: [555, 105, 290, 54]
+        rx: 27
+        file: ArduCopter/mode_loiter.cpp
+        line_start: 41
+        line_end: 75
+        symbol: ModeLoiter::init
+        description: Resets Loiter-owned lifecycle and reference state, then prewarms a ground-safe or airborne geometric output before the first rate frame.
+        excerpt: |-
+          _geometric_motor_output_active = false;
+          _geometric_motor_output_rejected = false;
+          reset_geometric_lifecycle();
+          _geometric_reference.reset();
+          pos_control->clear_external_reference();
+
+          const bool dedicated_prepared =
+              loiter_nav->geometric_motor_output_enabled() &&
+              geometric_reference_supported() &&
+              run_geometric_loiter_reference(initial_state, /* … */);
+
+      - id: pilot-intent
+        index: "02"
+        label: Read pilot intent
+        group: entry
+        bbox: [535, 175, 330, 68]
+        rx: 18
+        file: ArduCopter/mode_loiter.cpp
+        line_start: 165
+        line_end: 187
+        symbol: ModeLoiter::run
+        description: Applies Simple-mode mapping and converts roll, pitch, throttle, and yaw input into lean, climb-rate, and yaw-rate requests before lifecycle dispatch.
+        excerpt: |-
+          update_simple_mode();
+          get_pilot_desired_lean_angles_rad(
+              target_roll_rad, target_pitch_rad,
+              loiter_nav->get_angle_max_rad(),
+              attitude_control->get_althold_lean_angle_max_rad());
+          target_yaw_rate_rads = get_pilot_desired_yaw_rate_rads();
+          target_climb_rate_ms = get_pilot_desired_climb_rate_ms();
+
+      - id: eligibility
+        index: "03"
+        label: Full-geometric eligibility
+        group: entry
+        bbox: [550, 258, 300, 182]
+        rx: 12
+        file: ArduCopter/mode_loiter.cpp
+        line_start: 189
+        line_end: 249
+        symbol: ModeLoiter::run
+        description: Requires Loiter geometric options and a supported multicopter main-rate configuration; precision Loiter and surface tracking remain outside this path.
+        excerpt: |-
+          const bool dedicated_requested =
+              loiter_nav->geometric_motor_output_enabled();
+          const bool dedicated_supported =
+              geometric_reference_supported();
+
+          if (dedicated_requested && dedicated_supported &&
+              !_geometric_motor_output_rejected) {
+              if (run_geometric_loiter_reference(/* … */)) {
+                  finish_geometric_lifecycle(/* … */);
+                  return;
+              }
+          }
+
+      - id: lifecycle-state
+        index: "04"
+        label: Ground / takeoff / flying dispatch
+        group: reference
+        bbox: [550, 495, 300, 84]
+        rx: 14
+        file: ArduCopter/mode_loiter.cpp
+        line_start: 519
+        line_end: 599
+        symbol: ModeLoiter::run_geometric_loiter_reference
+        description: Dispatches AltHold lifecycle state into a ground-safe hold, an absolute-altitude takeoff, or the synchronized airborne pilot-reference path.
+        excerpt: |-
+          const bool ground_safe =
+              loiter_state == AltHoldModeState::MotorStopped ||
+              loiter_state == AltHoldModeState::Landed_Ground_Idle ||
+              loiter_state == AltHoldModeState::Landed_Pre_Takeoff;
+          if (ground_safe) {
+              build_geometric_ground_safe_target(target);
+              return update_geometric_observer(loiter_state, &target) &&
+                     _geometric_motor_output_active;
+          }
+
+      - id: ground-safe
+        index: "05"
+        label: Ground-safe reference
+        group: reference
+        bbox: [120, 610, 270, 78]
+        rx: 18
+        file: ArduCopter/mode_loiter.cpp
+        line_start: 497
+        line_end: 548
+        symbol: ModeLoiter::build_geometric_ground_safe_target
+        description: Uses measured state with +g NED acceleration to produce nominally zero collective while AP_Motors retains spool and idle authority.
+        excerpt: |-
+          target.position_ned_m =
+              pos_control->get_pos_estimate_NED_m().tofloat();
+          target.velocity_ned_ms =
+              pos_control->get_vel_estimate_NED_ms();
+          target.accel_ned_mss =
+              Vector3f{0.0f, 0.0f, GRAVITY_MSS};
+          ahrs.get_quat_body_to_ned(target.attitude_body_to_ned);
+          target.build_attitude_from_position = false;
+
+      - id: takeoff
+        index: "06"
+        label: Geometric takeoff
+        group: reference
+        bbox: [565, 610, 270, 78]
+        rx: 18
+        file: ArduCopter/mode_loiter.cpp
+        line_start: 558
+        line_end: 599
+        symbol: ModeLoiter::run_geometric_loiter_reference
+        description: Creates an absolute NED altitude boundary, limits climb with pilot input, requests unrestricted spool, and supports cancellation before liftoff.
+        excerpt: |-
+          if (!takeoff.running()) {
+              takeoff.start_m(constrain_float(
+                  g2.pilot_takeoff_alt_m, 0.0f, 10.0f));
+              _geometric_takeoff_target_valid = false;
+          }
+          if (!_geometric_takeoff_target_valid) {
+              _geometric_takeoff_target_z_ned_m =
+                  -takeoff.get_complete_alt_U_m();
+              _geometric_takeoff_target_valid = true;
+          }
+
+      - id: flying
+        index: "07"
+        label: Flying / airborne entry
+        group: reference
+        bbox: [1010, 610, 270, 78]
+        rx: 18
+        file: ArduCopter/mode_loiter.cpp
+        line_start: 551
+        line_end: 641
+        symbol: ModeLoiter::run_geometric_loiter_reference
+        description: Synchronizes the airborne reference, compensates EKF resets, and converts lean, climb, and yaw commands into the dedicated input contract.
+        excerpt: |-
+          if (!_geometric_reference.initialized() &&
+              !reset_geometric_reference(false)) {
+              return false;
+          }
+          if (!handle_geometric_ekf_resets()) {
+              return false;
+          }
+          input.pilot_accel_ne_mss =
+              pos_control->lean_angles_rad_to_accel_NED_mss(
+                  Vector3f{target_roll_rad, target_pitch_rad,
+                           ahrs.get_yaw_rad()}).xy();
+
+      - id: limits
+        index: "08"
+        label: Effective limits
+        group: reference
+        bbox: [1010, 700, 270, 64]
+        rx: 18
+        file: ArduCopter/mode_loiter.cpp
+        line_start: 443
+        line_end: 495
+        symbol: ModeLoiter::geometric_reference_limits
+        description: Builds effective speed, lean-derived acceleration, climb, jerk, braking, and yaw limits before EKF-shift and avoidance constraints are applied.
+        excerpt: |-
+          limits.speed_xy_max_ms =
+              MAX(MIN(MIN(loiter_config.speed_max_ne_ms,
+                          profile.speed_xy_max_ms),
+                      ekf_ground_speed_limit_ms), 0.1f);
+          limits.accel_xy_max_mss =
+              MAX(MIN(profile.accel_xy_max_mss * control_scale_xy,
+                      physical_accel_xy_max_mss), 0.1f);
+          limits.speed_up_max_ms = get_pilot_speed_up_ms();
+
+      - id: reference
+        index: "09"
+        label: Dedicated Loiter reference
+        group: reference
+        bbox: [505, 715, 390, 72]
+        rx: 18
+        file: libraries/AC_GeometricControl/AC_Geometric_LoiterReference.cpp
+        line_start: 308
+        line_end: 735
+        symbol: AC_Geometric_LoiterReference::update
+        description: Integrates one controller-independent NED P/V/A/yaw reference with separately bounded horizontal, vertical, and yaw braking profiles.
+        excerpt: |-
+          const bool vertical_brake_requested =
+              !input.pilot_z_active || vertical_command_reversing;
+          // …
+          const float yaw_rate_target_rads =
+              input.pilot_yaw_active ? yaw_rate_command_rads : 0.0f;
+          // …
+          write_target(target);
+          _velocity_constraint_pending = true;
+          return true;
+
+      - id: cascade
+        index: "10"
+        label: Shared SE(3) / SO(3) cascade
+        group: control
+        bbox: [530, 850, 340, 70]
+        rx: 18
+        file: libraries/AC_GeometricControl/AC_GeometricControl.cpp
+        line_start: 517
+        line_end: 592
+        symbol: AC_GeometricControl::update
+        description: Runs position PID, constructs commanded attitude, evaluates SO(3) attitude PID, and maps force and moments into normalized intent.
+        excerpt: |-
+          _position_pid.update(
+              state, position_target, dt, _output.position);
+          _attitude_pid.update(
+              state, attitude_target, dt, _output.attitude);
+          _output_mapper.update(
+              _output.position, _output.attitude,
+              hover_throttle_norm(), moment_norm, _output.mapped);
+
+      - id: publish
+        index: "11"
+        label: Publish external compatibility reference
+        group: control
+        bbox: [535, 940, 330, 66]
+        rx: 18
+        file: ArduCopter/mode_loiter.cpp
+        line_start: 996
+        line_end: 1021
+        symbol: ModeLoiter::update_geometric_observer
+        description: Mirrors dedicated PVA and commanded attitude into compatibility caches without running native position, attitude, or rate feedback.
+        excerpt: |-
+          if (!pos_control->publish_external_reference_NED_m(
+                  target.position_ned_m.topostype(),
+                  target.velocity_ned_ms,
+                  target.accel_ned_mss)) {
+              pos_control->clear_external_reference();
+              return false;
+          }
+          if (!attitude_control->set_external_attitude_target(
+                  geometric_position.attitude_body_to_ned,
+                  geometric_position.omega_body_rads)) {
+              return false;
+          }
+
+      - id: gate
+        index: "12"
+        label: Output authorization gate
+        group: control
+        bbox: [520, 1025, 360, 78]
+        rx: 18
+        file: ArduCopter/Attitude.cpp
+        line_start: 119
+        line_end: 151
+        symbol: Copter::geometric_motor_output_failure_flags
+        description: Fails closed unless mode ownership, output enable, main-rate scheduling, arming, controller enable, freshness, finiteness, and Loiter safety pass.
+        excerpt: |-
+          if (flightmode == nullptr ||
+              !flightmode->allows_geometric_motor_output()) {
+              failure_flags |= GEO_FAIL_MODE;
+          }
+          if (!motors->armed()) {
+              failure_flags |= GEO_FAIL_DISARMED;
+          }
+          if (!geometric_control.output_is_fresh(
+                  millis(), GEOMETRIC_OUTPUT_MAX_AGE_MS)) {
+              failure_flags |= GEO_FAIL_STALE;
+          }
+
+      - id: write
+        index: "13"
+        label: Write geometric actuator intent
+        group: control
+        bbox: [500, 1120, 400, 70]
+        rx: 18
+        file: ArduCopter/Attitude.cpp
+        line_start: 25
+        line_end: 92
+        symbol: Copter::run_rate_controller_main
+        description: Selects one writer for the frame; the geometric branch bypasses native rate PID and writes normalized roll, pitch, yaw, and collective intent into AP_Motors.
+        excerpt: |-
+          if (geometric_output_active) {
+              attitude_control->rate_controller_update_throttle_mix();
+              geometric_motor_output_to_motors();
+              geometric_motor_output_frame_count++;
+              geometric_motor_output_was_active = true;
+          } else {
+              attitude_control->rate_controller_run();
+              native_rate_controller_frame_count++;
+          }
+
+      - id: handoff
+        index: "14"
+        label: Latched fault / native handoff
+        group: lifecycle
+        bbox: [70, 1255, 330, 162]
+        rx: 32
+        file: ArduCopter/mode_loiter.cpp
+        line_start: 847
+        line_end: 893
+        symbol: ModeLoiter::deactivate_geometric_motor_output / handle_geometric_motor_output_fallback
+        description: Clears ownership and caches, rebuilds the native stopping target, transfers controller state, and latches a fault while output remains requested.
+        excerpt: |-
+          _geometric_motor_output_active = false;
+          pos_control->clear_external_reference();
+          Mode::handle_geometric_motor_output_fallback();
+
+          if (reset_loiter_targets) {
+              reset_geometric_lifecycle();
+              _geometric_reference.reset();
+              loiter_nav->init_target();
+              pos_control->D_init_controller();
+          }
+
+      - id: landed-idle
+        index: "15"
+        label: Touchdown through ground idle
+        group: lifecycle
+        bbox: [520, 1250, 360, 172]
+        rx: 30
+        file: ArduCopter/mode_loiter.cpp
+        line_start: 694
+        line_end: 749
+        symbol: ModeLoiter::finish_geometric_lifecycle
+        description: Retains geometric intent through confirmed touchdown and AP_Motors GROUND_IDLE, then applies the existing PILOT_THR_BHV optional-disarm policy.
+        excerpt: |-
+          if (_geometric_lifecycle_in_progress &&
+              _geometric_touchdown_logged &&
+              loiter_state == AltHoldModeState::Landed_Ground_Idle &&
+              motors->get_spool_state() ==
+                  AP_Motors::SpoolState::GROUND_IDLE) {
+              if ((g.throttle_behavior &
+                   THR_BEHAVE_DISARM_ON_LAND_DETECT) != 0) {
+                  copter.arming.disarm(AP_Arming::Method::LANDED);
+              }
+          }
