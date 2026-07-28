@@ -5751,6 +5751,16 @@ body[data-bs-theme="dark"] .about-card-body .bio-text p {
   overflow: visible;
 }
 
+/* Keep the third-party visitor widget display-only. */
+.space-home-hero .visitors-map-display {
+  display: grid;
+  width: 100%;
+  place-items: center;
+  pointer-events: none;
+  user-select: none;
+  cursor: default;
+}
+
 .space-home-hero .visitors-map-block #mapmyvisitors-widget {
   width: min(100%, 320px) !important;
   min-height: 0 !important;

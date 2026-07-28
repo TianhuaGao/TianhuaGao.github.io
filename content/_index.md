@@ -28,10 +28,13 @@ sections:
       visitors:
         title: Visitors
         html: |
-          <div class="visitors-map-block">
-            <script type='text/javascript' id='mapmyvisitors'
-              src='https://mapmyvisitors.com/map.js?cl=78828d&w=320&t=tt&d=8qEclr0ZrJSCsBmLm_UzUi6VHCoFchZ1lngCvTQbj10&co=000000&ct=b9c0c8&cmo=ff5353&cmn=ff5353'>
-            </script>
+          <div class="visitors-map-block" role="img"
+            aria-label="Live global traffic map showing total pageviews and recent visitor locations">
+            <div class="visitors-map-display" inert aria-hidden="true">
+              <script type='text/javascript' id='mapmyvisitors'
+                src='https://mapmyvisitors.com/map.js?cl=78828d&w=320&t=tt&d=8qEclr0ZrJSCsBmLm_UzUi6VHCoFchZ1lngCvTQbj10&co=000000&ct=b9c0c8&cmo=ff5353&cmn=ff5353'>
+              </script>
+            </div>
           </div>
       button:
         text: Contact Me
